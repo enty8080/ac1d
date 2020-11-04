@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-void showAlert(NSString *args) {
+void alert(NSString *args) {
     NSData *jsonData = [args dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *uploadargs = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
     const char *title = [[NSString stringWithFormat:@"%@",[uploadargs valueForKey:@"title"]] UTF8String];
@@ -21,14 +21,14 @@ void showAlert(NSString *args) {
     CFUserNotificationCreate( NULL, timeout, flags, &error, dict );
 }
 
-int main(int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     @autoreleasepool {
         if (argc < 3) {
             printf("Usage: ac1d <option> <arguments>\n");
         } else {
             if ([argv[1] isEqualToString:@"alert"]) {
-                showAlert(argv[2]);
+                alert(argv[2]);
             }
         }
     }
