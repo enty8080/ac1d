@@ -1,18 +1,32 @@
-#include "ac1d.h"
+#import "ac1d.h"
 
 @implementation ac1d
 
--(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:first_button];
-    [alert addButtonWithTitle:second_button];
-    [alert setMessageText:title];
-    [alert setInformativeText:message];
-    [alert setAlertStyle:NSWarningAlertStyle];
+-(id)init {
+	return self;
+}
 
-    if ([alert runModal] == NSAlertFirstButtonReturn) {
-        NULL;
-    }
+-(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button {
+    UIAlertController * alert = [UIAlertController
+				 alertControllerWithTitle:title
+				 message:message
+				 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * firstButton = [UIAlertAction
+				 actionWithTitle:first_button
+				 style:UIAlertActionStyleDefault
+				 handler:^(UIAlertAction * action) {
+				     printf("First button tapped.\n");
+				 }];
+    UIAlertAction * secondButton = [UIAlertAction
+				    actionWithTitle:second_button
+				    style:UIAlertActionStyleDefault
+				    handler:^(UIAlertAction * action) {
+					printf("Second button tapped.\n");
+				    }];
+    [alert addAction:firstButton];
+    [alert addAction:secondButton];
+
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

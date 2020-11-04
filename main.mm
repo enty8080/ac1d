@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "ac1d.h"
 
 int main(int argc, const char * argv[]) {
@@ -15,7 +16,8 @@ int main(int argc, const char * argv[]) {
         if ([args[1] isEqualToString:@"alert"]) {
             if (argc < 6) printf("Usage: ac1d alert <title> <message> <first_button> <second_button>\n");
             else {
-                [ac1d showAlert:args[2]:args[3]:args[4]:args[5]];
+		ac1d *ac1d_base = [[ac1d alloc] init];
+                [ac1d_base showAlert:args[2]:args[3]:args[4]:args[5]];
             }
         }
     }
