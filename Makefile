@@ -4,7 +4,6 @@ TOOL_NAME = ac1d
 
 ac1d_FILES = main.mm ac1d.m
 ac1d_FRAMEWORS = Foundation UIKit
-ac1d_PRIVATE_FLAMEWORKS = UIKit
 
 include ~/theos/makefiles/tool.mk
 
