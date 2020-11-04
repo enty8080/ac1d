@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
 void alert(NSString *given_title, NSString *given_message) {
-    const char *title = [given_title cStringUsingEncoding:NSASCIIStringEncoding$
-    const char *message = [given_message cStringUsingEncoding:NSASCIIStringEnco$
+    const char *title = [given_title cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *message = [given_message cStringUsingEncoding:NSASCIIStringEncoding];
     extern char *optarg;
     extern int optind;
 
