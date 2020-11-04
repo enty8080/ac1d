@@ -4,6 +4,8 @@
 @interface ac1d : NSObject {
 }
 
+@property (retain) UIDevice *thisUIDevice;
+
 -(void)battery;
 
 @end
