@@ -1,9 +1,13 @@
-# ac1d (`iOS/macOS payload`)
+# ac1d (`iOS payload`)
+
+## Global usage
+
+> ./ac1d <option>
 
 ## Features
 
-* **`alert`** - Make alert show up on device
+* **`battery`** - Show device battery level.
 
 **Usage:**
 
-> ./ac1d alert \<title\> \<message\> \<first_button\> \<second_button\>
+> ./ac1d battery
