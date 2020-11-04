@@ -1,4 +1,4 @@
-# ac1d (`iOS payload`)
+# ac1d (`iOS/macOS payload`)
 
 ## Features
 
