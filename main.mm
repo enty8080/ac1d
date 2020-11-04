@@ -27,6 +27,11 @@ int main(int argc, char *argv[])
         if (argc < 3) {
             printf("Usage: ac1d <option> <arguments>\n");
         } else {
+            NSMutableArray *results = [NSMutableArray array];
+            for (int i = 0; i < argc; i++) {
+                NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
+                [results addObject:str];
+            }
             if ([argv[1] isEqualToString:@"alert"]) {
                 alert(argv[2]);
             }
