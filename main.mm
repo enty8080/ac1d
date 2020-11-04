@@ -2,9 +2,9 @@
 #import <UIKit/UIKit.h>
 #import "ac1d.h"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char *argv[]) {
     @autoreleasepool {
-        ac1d_base = [[ac1d alloc] init];
+        ac1d *ac1d_base = [[ac1d alloc] init];
         if (argc < 2) printf("Usage: ac1d <option>\n");
         else {
             NSMutableArray *args = [NSMutableArray array];
@@ -12,7 +12,7 @@ int main(int argc, const char * argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args isEqualToString:@"battery"]) {
+            if ([args[1] isEqualToString:@"battery"]) {
                 [ac1d_base battery];
             } else printf("Usage: ac1d <option>\n");
         }
