@@ -1,5 +1,3 @@
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "ac1d.h"
 
 int main(int argc, const char *argv[]) {
