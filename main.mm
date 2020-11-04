@@ -13,9 +13,9 @@ int main(int argc, const char * argv[]) {
             [args addObject:str];
         }
         if ([args[1] isEqualToString:@"alert"]) {
-            if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
+            if (argc < 6) printf("Usage: ac1d alert <title> <message> <first_button> <second_button>\n");
             else {
-                showAlert(args[2], args[3]);
+                showAlert(args[2], args[3], args[4], args[5]);
             }
         }
     }
