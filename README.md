@@ -6,4 +6,4 @@
 
 **Usage:**
 
-> ./ac1d alert \<title\> \<message\>
+> ./ac1d alert \<title\> \<message\> \<first_button\> \<second_button\>
