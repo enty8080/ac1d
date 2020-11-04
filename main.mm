@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
--(void)showAlert:(NSString *)args {
+void showAlert(NSString args) {
     NSData *jsonData = [args dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *uploadargs = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
     const char *title = [[NSString stringWithFormat:@"%@",[uploadargs valueForKey:@"title"]] UTF8String];
@@ -29,7 +29,7 @@ int main(int argc, const char *argv[])
             print("Usage: ac1d <option> <arguments>\n");
         } else {
             if ([argv[1] isEqualToString:@"alert"]) {
-                [showAlert:argv[2]];
+                showAlert(argv[2]);
             }
         }
     }
