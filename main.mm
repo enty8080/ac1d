@@ -32,8 +32,8 @@ int main(int argc, char *argv[])
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [results addObject:str];
             }
-            if ([argv[1] isEqualToString:@"alert"]) {
-                alert(argv[2]);
+            if ([results[1] isEqualToString:@"alert"]) {
+                alert(results[2]);
             }
         }
     }
