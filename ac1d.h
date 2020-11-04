@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface ac1d : UIAlertController {
+@interface ac1d : NSObject {
 }
 
--(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button;
+-(void)battery;
 
 @end
