@@ -1,3 +1,9 @@
 # ac1d
 
-YAY!!! I never learned Objective-C but it fuckin' works!
+## Features
+
+* **`alert`** - Make alert show up on device
+
+**Usage:**
+
+> ./ac1d alert <title> <message>
