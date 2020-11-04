@@ -1,11 +1,8 @@
 #import <Foundation/Foundation.h>
 
-void alert(NSString *args) {
-    NSData *jsonData = [args dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableDictionary *uploadargs = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
-    const char *title = [[NSString stringWithFormat:@"%@",[uploadargs valueForKey:@"title"]] UTF8String];
-    const char *message = [[NSString stringWithFormat:@"%@",[uploadargs valueForKey:@"message"]] UTF8String];
-
+void alert(NSString *given_title, NSString *given_message) {
+    const char *title = [given_title cStringUsingEncoding:NSASCIIStringEncoding$
+    const char *message = [given_message cStringUsingEncoding:NSASCIIStringEnco$
     extern char *optarg;
     extern int optind;
 
@@ -33,7 +30,7 @@ int main(int argc, char *argv[])
                 [results addObject:str];
             }
             if ([results[1] isEqualToString:@"alert"]) {
-                alert(results[2]);
+                alert(results[2], results[3]);
             }
         }
     }
