@@ -31,10 +31,8 @@
 }
 
 -(void)say:(NSString *)message {
-    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:message];
-    utterance.rate = 0.4;
-    AVSpeechSynthesizer *syn = [[[AVSpeechSynthesizer alloc] init]autorelease];
-    [syn speakUtterance:utterance];
+    NSSpeechSynthesizer *syn = [[NSSpeechSynthesizer alloc] init];
+    [syn startSpeakingString:message]
 }
 
 @end
