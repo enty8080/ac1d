@@ -15,7 +15,12 @@ int main(int argc, const char *argv[]) {
             } else if ([args[1] isEqualToString:@"vibrate"]) {
                 [ac1d_base vibrate];
             } else if ([args[1] isEqualToString:@"locate"]) {
-                [ac1d_base locate;]
+                [ac1d_base locate];
+            } else if ([args[1] isEqualToString:@"say"]) {
+                if (argc < 3) printf("Usage: ac1d say <message>\n");
+                else {
+                    [ac1d_base say:args[2]];
+                }
             } else printf("Usage: ac1d <option>\n");
         }
     }
