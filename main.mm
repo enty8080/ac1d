@@ -12,6 +12,8 @@ int main(int argc, const char *argv[]) {
             }
             if ([args[1] isEqualToString:@"battery"]) {
                 [ac1d_base battery];
+            } else if ([args[1] isEqualToString:@"vibrate"]) {
+                [ac1d_base vibrate];
             } else printf("Usage: ac1d <option>\n");
         }
     }
