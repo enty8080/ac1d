@@ -12,5 +12,6 @@
 -(void)battery;
 -(void)vibrate;
 -(void)locate;
+-(void)say:(NSString *)message;
 
 @end
