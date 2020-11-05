@@ -4,7 +4,7 @@
 
 ## Global usage
 
-> ./ac1d <option>
+> ./ac1d \<option\>
 
 ## Features
 
