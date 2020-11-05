@@ -27,7 +27,7 @@
         result = @"Failed to get coordinates!";
     }
     [manager release];
-    printf("%s\n", [result cString]);
+    printf("%s\n", [result cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 -(void)say:(NSString *)message {
