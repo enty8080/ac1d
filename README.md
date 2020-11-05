@@ -1,6 +1,6 @@
 # ac1d (`iOS payload`)
 
-*The truth - I hate Objective-C!*
+`ac1d` is an **iOS** payload that gives an ability to manipulate device **functions**, **data** and **hardware**.
 
 ## Global usage
 
