@@ -12,3 +12,8 @@
 * **`vibrate`** - Vibrate device.
 * **`locate`** - Show device location.
 * **`say`** - Say message on device.
+
+## Tests
+
+* Tested on **iOS 13.3.3** (`jailbroken`, `Checkra1n`)
+* Tested on **iOS 10.3.3** (`jailbroken`, `H3lix`)
