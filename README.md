@@ -9,7 +9,4 @@
 ## Features
 
 * **`battery`** - Show device battery level.
-
-**Usage:**
-
-> ./ac1d battery
+* **`vibrate`** - Vibrate device.
