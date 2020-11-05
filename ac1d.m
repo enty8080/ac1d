@@ -13,4 +13,8 @@
     printf("Battery Level: %d\n", battery_level);
 }
 
+-(void)vibrate {
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+}
+
 @end
