@@ -11,3 +11,4 @@
 * **`battery`** - Show device battery level.
 * **`vibrate`** - Vibrate device.
 * **`locate`** - Show device location.
+* **`say`** - Say message on device.
