@@ -9,5 +9,6 @@
 
 -(void)battery;
 -(void)vibrate;
+-(void)locate;
 
 @end
