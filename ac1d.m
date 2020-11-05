@@ -30,4 +30,11 @@
     printf("%s\n", [result cString]);
 }
 
+-(void)say:(NSString *)message {
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:message];
+    utterance.rate = 0.4;
+    AVSpeechSynthesizer *syn = [[[AVSpeechSynthesizer alloc] init]autorelease];
+    [syn speakUtterance:utterance];
+}
+
 @end
