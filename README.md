@@ -9,11 +9,12 @@
 ## Features
 
 * **`battery`** - Show device battery level.
-* **`vibrate`** - Vibrate device.
+* [`not works`] **`vibrate`** - Vibrate device.
 * **`locate`** - Show device location.
-* **`say`** - Say message on device.
+* [`not works`] **`say`** - Say message on device.
 * **`getvol`** - Show device volume level.
-* **`setvol`** - Set device volume level.
+* [`not works`] **`setvol`** - Set device volume level.
+* **`openurl`** - Open URL on device.
 
 ## Tests
 
