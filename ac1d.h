@@ -20,5 +20,6 @@
 -(void)getvol;
 -(void)setvol:(NSString *)level;
 -(void)openurl:(NSString *)url;
+-(void)openapp:(NSString *)application;
 
 @end
