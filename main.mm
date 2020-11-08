@@ -38,6 +38,8 @@ int main(int argc, const char *argv[]) {
                 else {
                     [ac1d_base openapp:args[2]];
                 }
+            } else if ([args[1] isEqualToString:@"applications"]) {
+                [ac1d_base applications];
             } else printf("Usage: ac1d <option>\n");
         }
     }
