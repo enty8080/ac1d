@@ -6,6 +6,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIKit.h>
 
+#include "SpringBoardServices/SpringBoardServices.h"
+
 @interface ac1d : NSObject {
 }
 
@@ -17,5 +19,6 @@
 -(void)say:(NSString *)message;
 -(void)getvol;
 -(void)setvol:(NSString *)level;
+-(void)openurl:(NSString *)url;
 
 @end
