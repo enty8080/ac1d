@@ -15,6 +15,6 @@
 -(void)locate;
 -(void)say:(NSString *)message;
 -(void)getvol;
--(void)setvol:(NSString *)percent;
+-(void)setvol:(NSString *)level;
 
 @end
