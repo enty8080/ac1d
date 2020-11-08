@@ -8,14 +8,14 @@
 
 ## Features
 
-## Able to use
+### Able to use
 
 * **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
 * **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
 
-## Not able to use
+### Not able to use
 
 * **`vibrate`** - Vibrate device.
 * **`say`** - Say message on device.
