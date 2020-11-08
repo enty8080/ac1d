@@ -14,6 +14,7 @@
 * **`locate`** - Show device location.
 * **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
+* **`openapp`** - Open device application.
 
 ### Not able to use
 
