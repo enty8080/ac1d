@@ -31,8 +31,8 @@
 }
 
 -(void)say:(NSString *)message {
-    NSSpeechSynthesizer *syn = [[NSSpeechSynthesizer alloc] init];
-    [syn startSpeakingString:message]
+    AVSpeechSynthesizer *syn = [[AVSpeechSynthesizer alloc] init];
+    [syn startSpeakingString:message];
 }
 
 -(void)getvol {
