@@ -57,7 +57,7 @@
     [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)openURL:(NSString *)url {
+-(void)openurl:(NSString *)url {
     if (![url isEqualToString:@""]) {
         CFURLRef cu = CFURLCreateWithBytes(NULL, (UInt8*)[url UTF8String], strlen([url UTF8String]), kCFStringEncodingUTF8, NULL);
         if (!cu) printf("Invalid URL!\n");
