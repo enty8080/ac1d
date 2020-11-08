@@ -15,6 +15,7 @@
 * **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
+* **`applications`** - Show all device applications.
 
 ### Not able to use
 
