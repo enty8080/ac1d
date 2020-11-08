@@ -12,6 +12,8 @@
 * **`vibrate`** - Vibrate device.
 * **`locate`** - Show device location.
 * **`say`** - Say message on device.
+* **`getvol`** - Show device volume level.
+* **`setvol`** - Set device volume level.
 
 ## Tests
 
