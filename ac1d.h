@@ -11,6 +11,9 @@
 @interface ac1d : NSObject {
 }
 
+CFArrayRef SBSCopyApplicationDisplayIdentifiers(bool onlyActive, bool debuggable);
+extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean suspended);
+
 @property (retain) UIDevice *thisUIDevice;
 
 -(void)battery;
@@ -21,5 +24,6 @@
 -(void)setvol:(NSString *)level;
 -(void)openurl:(NSString *)url;
 -(void)openapp:(NSString *)application;
+-(void)applications;
 
 @end
