@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -13,5 +14,7 @@
 -(void)vibrate;
 -(void)locate;
 -(void)say:(NSString *)message;
+-(void)getvol;
+-(void)setvol:(NSString *)percent;
 
 @end
