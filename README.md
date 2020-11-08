@@ -8,13 +8,19 @@
 
 ## Features
 
+## Able to use
+
 * **`battery`** - Show device battery level.
-* [`not works`] **`vibrate`** - Vibrate device.
 * **`locate`** - Show device location.
-* [`not works`] **`say`** - Say message on device.
 * **`getvol`** - Show device volume level.
-* [`not works`] **`setvol`** - Set device volume level.
 * **`openurl`** - Open URL on device.
+
+## Not able to use
+
+* **`vibrate`** - Vibrate device.
+* **`say`** - Say message on device.
+* **`setvol`** - Set device volume level.
+
 
 ## Tests
 
