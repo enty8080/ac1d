@@ -70,4 +70,14 @@
     }
 }
 
+-(void)openapp:(NSString *)application {
+    CFStringRef identifier = CFStringCreateWithCString(kCFAllocatorDefault, [application UTF8String], kCFStringEncodingUTF8);
+    assert(identifier != NULL);
+    int ret = SBSLaunchApplicationWithIdentifier(identifier, FALSE);
+    if (ret != 0) {
+        printf("Failed to open application!\n");
+    }
+    CFRelease(identifier);
+}
+
 @end
