@@ -35,4 +35,24 @@
     [syn startSpeakingString:message]
 }
 
+-(void)getvol {
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
+    NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
+    printf("Volume Level: %s\n", [result cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
+-(void)setvol:(NSString *)level {
+    MPVolumeView* volumeView = [[MPVolumeView alloc] init];
+    UISlider* volumeViewSlider = nil;
+    for (UIView *view in [volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
+    [volumeViewSlider setValue:[level floatValue] animated:YES];
+    [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+
 @end
