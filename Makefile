@@ -1,4 +1,5 @@
 include ~/theos/makefiles/common.mk
+export SYSROOT = /Users/teleprosheo/theos/sdks/iPhoneOS11.2.sdk
 export TARGET_CODESIGN_FLAGS = "-Ssign.plist"
 TOOL_NAME = ac1d
 
