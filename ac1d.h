@@ -6,7 +6,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIKit.h>
 
-#include "include/SpringBoardServices.h"
+#include "SpringBoardServices/SpringBoardServices.h"
 
 @interface ac1d : NSObject {
 }
