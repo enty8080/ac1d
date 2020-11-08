@@ -3,6 +3,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIKit.h>
 
 @interface ac1d : NSObject {
