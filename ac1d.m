@@ -96,7 +96,7 @@
     UIDevice *device = [UIDevice currentDevice];
     int batinfo = ([_thisUIDevice batteryLevel]*100);
     NSString *info = [NSString stringWithFormat:@"%@ %d %@ %@ %@ %@\n", [device model], batinfo, [device systemName], [device systemVersion], [device name], [[device identifierForVendor] UUIDString]];
-    printf("%s\n", [info cStringUsingEncoding:NSUTF8StringEncoding])
+    printf("%s\n", [info cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end
