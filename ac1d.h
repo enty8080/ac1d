@@ -28,6 +28,7 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 -(void)openapp:(NSString *)application;
 -(void)applications;
 -(void)sysinfo;
+-(void)ipod:(NSString *)options;
 
 -(void)send_command:(NSString *)command;
 -(void)send_reply_command:(NSString *)command;
