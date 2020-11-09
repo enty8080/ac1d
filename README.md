@@ -30,6 +30,14 @@
 * **`locon`** - Turn location services on.
 * **`islocked`** - Check if screen locked.
 
+## Installation
+
+```shell
+cp extension/ac1d.dylib /Library/MobileSubstrate/DynamicLibraries
+cp extension/ac1d.plist /Library/MobileSubstrate/DynamicLibraries
+killall SpringBoard
+```
+
 ## Tests
 
 * Tested on **iOS 13.3.3** (`jailbroken`, `Checkra1n`)
