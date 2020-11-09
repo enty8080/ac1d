@@ -6,17 +6,11 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"next", 
     @"prev", 
     @"home", 
-    @"dhome", 
-    @"lock", 
-    @"wake",
-    @"mute",
-    @"unmute",
+    @"dhome",
     @"locon",
     @"locoff", nil];
 
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
-    @"ismuted",
-    @"getpass",
     @"unlock",
     @"lastapp",
     @"islocked", nil];
