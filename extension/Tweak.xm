@@ -1,8 +1,5 @@
-// Based on espro
-// https://github.com/neoneggplant/EggShell/blob/master/src/espro/Tweak.xm
-
-#import "ac1d.h"
 #import <AppSupport/CPDistributedMessagingCenter.h>
+#import "ac1d.h"
 
 %hook SpringBoard
 
