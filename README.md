@@ -2,6 +2,10 @@
 
 `ac1d` is an **iOS** payload that gives an ability to manipulate device **functions**, **data** and **hardware**.
 
+<table><tr><th>
+⚠️ Do not use it on your iPhone becuase it can brick your device! ⚠️
+</th></tr></table>
+
 ## Global usage
 
 > ./ac1d \<option\>
