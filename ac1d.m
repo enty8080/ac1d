@@ -5,6 +5,7 @@
 -(id)init {
     _thisUIDevice = [UIDevice currentDevice];
     [_thisUIDevice setBatteryMonitoringEnabled:YES];
+    _messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.sysserver"];
     return self;
 }
 
