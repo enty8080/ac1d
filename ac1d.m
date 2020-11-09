@@ -88,8 +88,8 @@
     for (i = 0; i < CFArrayGetCount(ary); i++) {
         CFStringGetCString(CFArrayGetValueAtIndex(ary, i), buf, sizeof(buf), kCFStringEncodingUTF8);
         result = [NSString stringWithFormat:@"%@%s\n", result, buf];
-        printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
     }
+    printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 -(void)sysinfo {
