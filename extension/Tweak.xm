@@ -9,7 +9,7 @@ NSString *keyLog;
 -(void)applicationDidFinishLaunching:(id)application {
     %orig;
     mediaController = (SBMediaController *)[%c(SBMediaController) sharedInstance];
-    CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.sysserver"];
+    CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.ac1d"];
     [messagingCenter runServerOnCurrentThread];
     [messagingCenter registerForMessageName:@"commandWithNoReply" target:self selector:@selector(commandWithNoReply:withUserInfo:)];
     [messagingCenter registerForMessageName:@"commandWithReply" target:self selector:@selector(commandWithReply:withUserInfo:)];
