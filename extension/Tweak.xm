@@ -100,9 +100,9 @@ NSString *keyLog;
 %end
 
 %hook SBLockScreenManager
--(void)attemptUnlockWithPasscode:(id)arg1 {
+-(void)attemptUnlockWithPasscode:(id)argument {
     %orig;
-    passcode = [[NSString alloc] initWithFormat:@"%@", arg1];
+    passcode = [[NSString alloc] initWithFormat:@"%@", argument];
     [(SBBacklightController *)[%c(SBBacklightController) sharedInstance] cancelLockScreenIdleTimer];
     [(SBBacklightController *)[%c(SBBacklightController) sharedInstance] turnOnScreenFullyWithBacklightSource:1];
 }
