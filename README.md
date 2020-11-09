@@ -12,7 +12,7 @@
 
 ## Features
 
-### Able to use
+### No installation needed
 
 * **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
@@ -21,18 +21,14 @@
 * **`openapp`** - Open device application.
 * **`applications`** - Show all device applications.
 * **`sysinfo`** - Should return string of device.
+
+### Installation needed
+
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
 * **`locoff`** - Turn location services off.
 * **`locon`** - Turn location services on.
 * **`islocked`** - Check if screen locked.
-
-### Not able to use
-
-* **`vibrate`** - Vibrate device.
-* **`say`** - Say message on device.
-* **`setvol`** - Set device volume level.
-
 
 ## Tests
 
