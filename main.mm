@@ -11,8 +11,6 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"locoff", nil];
 
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
-    @"unlock",
-    @"lastapp",
     @"islocked", nil];
 
 int main(int argc, const char *argv[]) {
