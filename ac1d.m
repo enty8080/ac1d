@@ -102,7 +102,7 @@
 -(void)send_command:(NSString *)command {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd"];
     if ([_messagingCenter sendMessageName:@"commandWithNoReply" userInfo:userInfo] == false) {
-        printf("You do not have ac1d installed!")
+        printf("You do not have ac1d installed!\n");
     }
 }
 
@@ -110,7 +110,7 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"commandWithReply" userInfo:userInfo];
     NSString *replystr = [reply objectForKey:@"returnStatus"];
-    printf("%s\n", [replystr cStringUsingEncoding:NSUTF8StringEncoding])
+    printf("%s\n", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end
