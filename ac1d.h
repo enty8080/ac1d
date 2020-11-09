@@ -27,4 +27,7 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 -(void)applications;
 -(void)sysinfo;
 
+-(void)send_command(NSString *)command;
+-(void)send_reply_command(NSString *)command;
+
 @end
