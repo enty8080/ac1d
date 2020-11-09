@@ -25,5 +25,6 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 -(void)openurl:(NSString *)url;
 -(void)openapp:(NSString *)application;
 -(void)applications;
+-(void)sysinfo;
 
 @end
