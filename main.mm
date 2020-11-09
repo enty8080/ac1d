@@ -40,6 +40,8 @@ int main(int argc, const char *argv[]) {
                 }
             } else if ([args[1] isEqualToString:@"applications"]) {
                 [ac1d_base applications];
+            } else if ([args[1] isEqualToString:@"sysinfo"]) {
+                [ac1d_base sysinfo];
             } else printf("Usage: ac1d <option>\n");
         }
     }
