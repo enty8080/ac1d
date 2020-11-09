@@ -68,7 +68,6 @@
 @property (nonatomic, readonly) BOOL isUILocked;
 
 +(id)sharedInstance;
--(BOOL)attemptUnlockWithPasscode:(id)passcode;
 
 @end
 
