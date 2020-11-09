@@ -6,20 +6,20 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"next", 
     @"prev", 
     @"home", 
-    @"doublehome", 
+    @"dhome", 
     @"lock", 
     @"wake",
     @"mute",
     @"unmute",
-    @"locationon",
-    @"locationoff", nil];
+    @"locon",
+    @"locoff", nil];
 
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
     @"ismuted",
-    @"getpasscode",
+    @"getpass",
     @"unlock",
     @"lastapp",
-    @"islocked",nil];
+    @"islocked", nil];
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
