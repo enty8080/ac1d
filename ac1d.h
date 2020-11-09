@@ -19,11 +19,8 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
 -(void)battery;
--(void)vibrate;
 -(void)locate;
--(void)say:(NSString *)message;
 -(void)getvol;
--(void)setvol:(NSString *)level;
 -(void)openurl:(NSString *)url;
 -(void)openapp:(NSString *)application;
 -(void)applications;
