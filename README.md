@@ -17,6 +17,11 @@
 * **`openapp`** - Open device application.
 * **`applications`** - Show all device applications.
 * **`sysinfo`** - Should return string of device.
+* **`dhome`** - Double home button tap.
+* **`home`** - Home button tap.
+* **`locoff`** - Turn location services off.
+* **`locon`** - Turn location services on.
+* **`islocked`** - Check if screen locked.
 
 ### Not able to use
 
