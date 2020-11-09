@@ -51,6 +51,11 @@ int main(int argc, const char *argv[]) {
                 [ac1d_base applications];
             } else if ([args[1] isEqualToString:@"sysinfo"]) {
                 [ac1d_base sysinfo];
+            } else if ([args[1] isEqualToString:@"player"]) {
+                if (argc < 3) printf("Usage: ac1d player <option>\n");
+                else {
+                    [ac1d_base player:args[2]];
+                }
             } else if ([commands containsObject:args[1]]) {
                 [ac1d_base send_command:args[1]];
             } else if ([reply_commands containsObject:args[1]]) {
