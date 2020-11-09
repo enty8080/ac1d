@@ -1,6 +1,6 @@
 #import "ac1d.h"
 
-NSArray *customCommands = [[NSArray alloc] initWithObjects:
+NSArray *commands = [[NSArray alloc] initWithObjects:
     @"play",
     @"pause", 
     @"next", 
@@ -12,9 +12,9 @@ NSArray *customCommands = [[NSArray alloc] initWithObjects:
     @"mute",
     @"unmute",
     @"locationon",
-    @"locationoff",nil];
+    @"locationoff", nil];
 
-NSArray *customReplyCommands = [[NSArray alloc] initWithObjects:
+NSArray *reply_commands = [[NSArray alloc] initWithObjects:
     @"ismuted",
     @"getpasscode",
     @"unlock",
@@ -63,10 +63,10 @@ int main(int argc, const char *argv[]) {
                 [ac1d_base applications];
             } else if ([args[1] isEqualToString:@"sysinfo"]) {
                 [ac1d_base sysinfo];
-            } else if ([customCommands containsObject:args[1]]) {
+            } else if ([commands containsObject:args[1]]) {
                 [ac1d_base send_command:args[1]];
-            } else if ([customReplyCommands containsObject:args[1]]) {
-                [ac1d_base send_command_reply:args[1]];
+            } else if ([reply_commands containsObject:args[1]]) {
+                [ac1d_base send_reply_command:args[1]];
             } else printf("Usage: ac1d <option>\n");
         }
     }
