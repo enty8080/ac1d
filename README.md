@@ -21,7 +21,7 @@
 * **`openapp`** - Open device application.
 * **`applications`** - Show all device applications.
 * **`sysinfo`** - Should return string of device.
-* **`ipod`** - Control iPod media player.
+* **`player`** - Control device media player.
 
 ### Installation needed
 
