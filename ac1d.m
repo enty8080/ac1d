@@ -14,10 +14,6 @@
     printf("Battery Level: %d\n", battery_level);
 }
 
--(void)vibrate {
-    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-}
-
 -(void)locate {
     CLLocationManager* manager = [[CLLocationManager alloc] init];
     [manager startUpdatingLocation];
@@ -31,31 +27,11 @@
     printf("%s\n", [result cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
--(void)say:(NSString *)message {
-    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:message];
-    utterance.rate = 0.4;
-    AVSpeechSynthesizer *syn = [[[AVSpeechSynthesizer alloc] init]autorelease];
-    [syn speakUtterance:utterance];
-}
-
 -(void)getvol {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
     NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
     printf("Volume Level: %s\n", [result cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
--(void)setvol:(NSString *)level {
-    MPVolumeView* volumeView = [[MPVolumeView alloc] init];
-    UISlider* volumeViewSlider = nil;
-    for (UIView *view in [volumeView subviews]){
-        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-            volumeViewSlider = (UISlider*)view;
-            break;
-        }
-    }
-    [volumeViewSlider setValue:[level floatValue] animated:YES];
-    [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)openurl:(NSString *)url {
