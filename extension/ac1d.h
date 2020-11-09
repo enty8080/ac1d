@@ -13,7 +13,7 @@
 +(id)sharedInstance;
 -(void)setRingerMuted:(BOOL)arg1;
 -(void)cancelLockScreenIdleTimer;
--(void)turnOnScreenFullyWithBacklightSource:(int)argument;
+-(void)turnOnScreenFullyWithBacklightSource:(int)arg1;
 -(BOOL)play;
 -(BOOL)togglePlayPause;
 -(BOOL)isPlaying;
@@ -59,7 +59,7 @@
 
 @interface CLLocationManager : NSObject
 
-+(void)setLocationServicesEnabled:(BOOL)argument;
++(void)setLocationServicesEnabled:(BOOL)arg1;
 
 @end
 
