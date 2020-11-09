@@ -1,10 +1,6 @@
 #import "ac1d.h"
 
 NSArray *commands = [[NSArray alloc] initWithObjects:
-    @"play",
-    @"pause", 
-    @"next", 
-    @"prev", 
     @"home", 
     @"dhome",
     @"locon",
