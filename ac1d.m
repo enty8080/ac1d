@@ -93,9 +93,9 @@
 -(void)player:(NSString *)option {
     AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] init];
     if ([option isEqualToString:@"play"]) {
-        [audioPlayer play];
+        [MPMediaPlayback play];
     } else if ([option isEqualToString:@"pause"]) {
-        [audioPlayer pause];
+        [MPMediaPlayback stop];
     //} else if ([option isEqualToString:@"next"]) {
     //    [audioPlayer skipToNextItem];
     //} else if ([option isEqualToString:@"prev"]) {
