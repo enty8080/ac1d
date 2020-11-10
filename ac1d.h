@@ -23,10 +23,8 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 -(void)getvol;
 -(void)openurl:(NSString *)url;
 -(void)openapp:(NSString *)application;
--(void)applications;
 -(void)sysinfo;
 -(void)player:(NSString *)option;
--(void)torch:(NSString *)state;
 
 -(void)send_command:(NSString *)command;
 -(void)send_reply_command:(NSString *)command;
