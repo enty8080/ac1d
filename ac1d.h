@@ -18,8 +18,6 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 @property (retain) UIDevice *thisUIDevice;
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
-//-(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button
-
 -(void)battery;
 -(void)locate;
 -(void)getvol;
@@ -28,8 +26,7 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 -(void)applications;
 -(void)sysinfo;
 -(void)player:(NSString *)option;
--(void)phone;
--(void)disk;
+-(void)pasteboard;
 
 -(void)send_command:(NSString *)command;
 -(void)send_reply_command:(NSString *)command;
