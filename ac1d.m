@@ -57,18 +57,6 @@
     CFRelease(identifier);
 }
 
--(void)applications {
-    NSString *result = @"";
-    char buf[1024];
-    CFArrayRef ary = SBSCopyApplicationDisplayIdentifiers(false, false);
-    CFIndex i;
-    for (i = 0; i < CFArrayGetCount(ary); i++) {
-        CFStringGetCString(CFArrayGetValueAtIndex(ary, i), buf, sizeof(buf), kCFStringEncodingUTF8);
-        result = [NSString stringWithFormat:@"%@%s\n", result, buf];
-    }
-    printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
 -(void)sysinfo {
     UIDevice *device = [UIDevice currentDevice];
     int batinfo = ([_thisUIDevice batteryLevel]*100);
@@ -107,15 +95,6 @@
         }
     } else {
         printf("Usage: ac1d player [info]\n");
-    }
-}
-
--(void)torch:(NSString *)state {
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if ([device hasTorch]) {
-        [device lockForConfiguration:nil];
-        [device setTorchMode:AVCaptureTorchModeOn];
-        [device unlockForConfiguration];
     }
 }
 
