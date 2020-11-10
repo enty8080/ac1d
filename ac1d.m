@@ -91,6 +91,7 @@
 }
 
 -(void)player:(NSString *)option {
+    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] init];
     if ([option isEqualToString:@"play"]) {
         [audioPlayer play];
     } else if ([option isEqualToString:@"pause"]) {
