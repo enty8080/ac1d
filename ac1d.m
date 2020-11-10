@@ -92,13 +92,13 @@
 
 -(void)player:(NSString *)option {
     if ([option isEqualToString:@"play"]) {
-        [[MPMusicPlayerController systemMusicPlayer] play];
+        [audioPlayer play];
     } else if ([option isEqualToString:@"pause"]) {
-        [[MPMusicPlayerController systemMusicPlayer] pause];
+        [audioPlayer pause];
     } else if ([option isEqualToString:@"next"]) {
-        [[MPMusicPlayerController systemMusicPlayer] skipToNextItem];
+        [audioPlayer skipToNextItem];
     } else if ([option isEqualToString:@"prev"]) {
-        [[MPMusicPlayerController systemMusicPlayer] skipToPreviousItem];
+        [audioPlayer skipToPreviousItem];
     } else if ([option isEqualToString:@"info"]) {
         float time1 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
         [NSThread sleepForTimeInterval:0.1];
