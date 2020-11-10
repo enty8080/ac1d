@@ -9,7 +9,7 @@
     return self;
 }
 
--(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button {
+/*-(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button {
     UIAlertController * alert = [UIAlertController
                  alertControllerWithTitle:title
                  message:message
@@ -30,7 +30,7 @@
     [alert addAction:secondButton];
 
     [self presentViewController:alert animated:YES completion:nil];
-}
+}*/
 
 -(void)battery {
     int battery_level = ([_thisUIDevice batteryLevel] * 100);
@@ -137,6 +137,11 @@
             printf("error");
         }
     }
+}
+
+-(void)phone {
+    NSString *num = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
+    printf("%s", [num cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end
