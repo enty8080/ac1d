@@ -1,4 +1,5 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
+#import <AudioToolbox/AudioServices.h>
 #import "ac1d.h"
 
 %hook SpringBoard
@@ -34,7 +35,10 @@ NSString *keyLog;
         [%c(CLLocationManager) setLocationServicesEnabled:true];
     } else if ([command isEqual:@"locoff"]) {
         [%c(CLLocationManager) setLocationServicesEnabled:false];
-    }    
+    } else if ([command isEqual:@"vibrate"]) {
+    	AudioServicesPlaySystemSound(1521);
+        AudioServicesPlaySystemSound(1521);
+    }
 }
 
 %new
