@@ -110,7 +110,7 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"commandWithReply" userInfo:userInfo];
     NSString *replystr = [reply objectForKey:@"returnStatus"];
-    printf("%s\n", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
+    printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 -(void)player:(NSString *)option {
