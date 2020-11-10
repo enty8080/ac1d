@@ -14,8 +14,8 @@
 
 CFArrayRef SBSCopyApplicationDisplayIdentifiers(bool onlyActive, bool debuggable);
 extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean suspended);
-AVAudioPlayer *audioPlayer;
 
+@property (retain) AVAudioPlayer *audioPlayer;
 @property (retain) UIDevice *thisUIDevice;
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
