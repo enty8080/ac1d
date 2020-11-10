@@ -18,7 +18,7 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 @property (retain) UIDevice *thisUIDevice;
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
--(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button
+//-(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button
 
 -(void)battery;
 -(void)locate;
