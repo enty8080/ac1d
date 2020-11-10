@@ -119,7 +119,7 @@
 -(void)pasteboard {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     NSString *string = pasteboard.string;
-    NSLog (@"clipboard text :%@",string);
+    NSLog(@"clipboard text :%@",string);
 }
 
 @end
