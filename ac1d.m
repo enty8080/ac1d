@@ -42,7 +42,7 @@
     [manager startUpdatingLocation];
     CLLocation *location = [manager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
-    NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
+    NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f\n", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
     if ((int)(coordinate.latitude + coordinate.longitude) == 0) {
         result = @"error";
     }
