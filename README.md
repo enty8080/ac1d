@@ -19,7 +19,6 @@
 * **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
-* **`applications`** - Show all device applications.
 * **`sysinfo`** - Should return string of device.
 * **`player`** - Control device media player.
 
