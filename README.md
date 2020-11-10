@@ -23,6 +23,7 @@
 * **`sysinfo`** - Should return string of device.
 * **`player`** - Control device media player.
 * **`phone`** - Get device phone number.
+* **`disk`** - Show available free space on device.
 
 ### Installation needed
 
