@@ -40,9 +40,9 @@ NSString *keyLog;
 %new
 - (NSDictionary *)commandWithReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
     NSString *command = [userInfo objectForKey:@"cmd"];
-    if ([command isEqual:@"islocked"]) {
-	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"true" forKey:@"returnStatus"];
-	return [NSDictionary dictionaryWithObject:@"false" forKey:@"returnStatus"];
+    if ([command isEqual:@"state"]) {
+	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"locked" forKey:@"returnStatus"];
+	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     }	
     return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"returnStatus"];
 }
