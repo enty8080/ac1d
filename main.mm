@@ -46,7 +46,7 @@ int main(int argc, const char *argv[]) {
                 }
             } else if ([args[1] isEqualToString:@"torch"]) {
                 if (argc < 3) printf("Usage: ac1d torch [on|off]\n");
-                } else {
+                else {
                     [ac1d_base torch:args[2]];
                 }
             } else if ([commands containsObject:args[1]]) {
