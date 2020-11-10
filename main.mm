@@ -19,7 +19,12 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"battery"]) {
+            if ([args[1] isEqualToString:@"alert"]) {
+                if (argc < 6) printf("Usage: ac1d alert <title> <message> <first_button> <second_button>\n");
+                else {
+                    [ac1d_base showAlert:args[2]:args[3]:args[4]:args[5]];
+                }
+            else if ([args[1] isEqualToString:@"battery"]) {
                 [ac1d_base battery];
             } else if ([args[1] isEqualToString:@"locate"]) {
                 [ac1d_base locate];
