@@ -9,29 +9,6 @@
     return self;
 }
 
-/*-(void)showAlert:(NSString *)title :(NSString *)message :(NSString *)first_button :(NSString *)second_button {
-    UIAlertController * alert = [UIAlertController
-                 alertControllerWithTitle:title
-                 message:message
-                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * firstButton = [UIAlertAction
-                 actionWithTitle:first_button
-                 style:UIAlertActionStyleDefault
-                 handler:^(UIAlertAction * action) {
-                     printf("First button tapped.");
-                 }];
-    UIAlertAction * secondButton = [UIAlertAction
-                    actionWithTitle:second_button
-                    style:UIAlertActionStyleDefault
-                    handler:^(UIAlertAction * action) {
-                    printf("Second button tapped.");
-                    }];
-    [alert addAction:firstButton];
-    [alert addAction:secondButton];
-
-    [self presentViewController:alert animated:YES completion:nil];
-}*/
-
 -(void)battery {
     int battery_level = ([_thisUIDevice batteryLevel] * 100);
     printf("%d", battery_level);
@@ -139,27 +116,10 @@
     }
 }
 
--(void)phone {
-    NSString *num = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
-    printf("%s", [num cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
--(void)disk {
-    uint64_t totalSpace = 0;
-    uint64_t totalFreeSpace = 0;
-    NSError *error = nil;  
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  
-    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];  
-
-    if (dictionary) {  
-        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];  
-        NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
-        totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
-        totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
-        printf("Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
-    } else {  
-        printf("error");
-    }
+-(void)pasteboard {
+    UIPasteboard *thePasteboard = [UIPasteboard generalPasteboard];
+    NSString *pasteboardString = thePasteboard.string;
+    printf("%s", [pasteboardString cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end
