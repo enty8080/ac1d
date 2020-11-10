@@ -22,6 +22,7 @@
 * **`applications`** - Show all device applications.
 * **`sysinfo`** - Should return string of device.
 * **`player`** - Control device media player.
+* **`phone`** - Get device phone number.
 
 ### Installation needed
 
