@@ -111,20 +111,11 @@
 }
 
 -(void)torch:(NSString *)state {
-    AVCaptureDevice *flashLight = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if ([flashLight isTorchAvailable] && [flashLight isTorchModeSupported:AVCaptureTorchModeOn]) {
-        if ([flashLight lockForConfiguration:nil]) {
-            if ([state isEqualToString:@"off"]) {
-                [flashLight setTorchMode:AVCaptureTorchModeOff];
-            } else if ([state isEqualToString:@"on"]) {
-                [flashLight setTorchMode:AVCaptureTorchModeOn];
-            } else {
-                printf("Usage: ac1d torch [on|off]\n");
-            }
-            [flashLight unlockForConfiguration];
-        } else {
-            printf("error");
-        }
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch]) {
+        [device lockForConfiguration:nil];
+        [device setTorchMode:AVCaptureTorchModeOn];
+        [device unlockForConfiguration];
     }
 }
 
