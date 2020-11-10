@@ -44,8 +44,6 @@ int main(int argc, const char *argv[]) {
                 else {
                     [ac1d_base player:args[2]];
                 }
-            } else if ([args[1] isEqualToString:@"pasteboard"]) {
-                [ac1d_base pasteboard];
             } else if ([commands containsObject:args[1]]) {
                 [ac1d_base send_command:args[1]];
             } else if ([reply_commands containsObject:args[1]]) {
