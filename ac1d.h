@@ -29,6 +29,7 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 -(void)sysinfo;
 -(void)player:(NSString *)option;
 -(void)phone;
+-(void)disk;
 
 -(void)send_command:(NSString *)command;
 -(void)send_reply_command:(NSString *)command;
