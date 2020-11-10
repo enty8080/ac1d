@@ -95,10 +95,10 @@
         [audioPlayer play];
     } else if ([option isEqualToString:@"pause"]) {
         [audioPlayer pause];
-    } else if ([option isEqualToString:@"next"]) {
-        [audioPlayer skipToNextItem];
-    } else if ([option isEqualToString:@"prev"]) {
-        [audioPlayer skipToPreviousItem];
+    //} else if ([option isEqualToString:@"next"]) {
+    //    [audioPlayer skipToNextItem];
+    //} else if ([option isEqualToString:@"prev"]) {
+    //    [audioPlayer skipToPreviousItem];
     } else if ([option isEqualToString:@"info"]) {
         float time1 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
         [NSThread sleepForTimeInterval:0.1];
