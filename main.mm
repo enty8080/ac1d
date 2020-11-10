@@ -35,19 +35,12 @@ int main(int argc, const char *argv[]) {
                 else {
                     [ac1d_base openapp:args[2]];
                 }
-            } else if ([args[1] isEqualToString:@"applications"]) {
-                [ac1d_base applications];
             } else if ([args[1] isEqualToString:@"sysinfo"]) {
                 [ac1d_base sysinfo];
             } else if ([args[1] isEqualToString:@"player"]) {
                 if (argc < 3) printf("Usage: ac1d player [info]\n");
                 else {
                     [ac1d_base player:args[2]];
-                }
-            } else if ([args[1] isEqualToString:@"torch"]) {
-                if (argc < 3) printf("Usage: ac1d torch [on|off]\n");
-                else {
-                    [ac1d_base torch:args[2]];
                 }
             } else if ([commands containsObject:args[1]]) {
                 [ac1d_base send_command:args[1]];
