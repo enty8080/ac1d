@@ -117,9 +117,9 @@
 }
 
 -(void)pasteboard {
-    UIPasteboard *thePasteboard = [UIPasteboard generalPasteboard];
-    NSString *pasteboardString = thePasteboard.string;
-    printf("%s", [pasteboardString cStringUsingEncoding:NSUTF8StringEncoding]);
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    NSString *string = pasteboard.string;
+    NSLog (@"clipboard text :%@",string);
 }
 
 @end
