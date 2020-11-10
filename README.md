@@ -29,7 +29,7 @@
 * **`home`** - Home button tap.
 * **`locoff`** - Turn location services off.
 * **`locon`** - Turn location services on.
-* **`islocked`** - Check if screen locked.
+* **`state`** - Check device state.
 
 ## Installation
 
