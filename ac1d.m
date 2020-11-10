@@ -91,16 +91,7 @@
 }
 
 -(void)player:(NSString *)option {
-    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] init];
-    if ([option isEqualToString:@"play"]) {
-        [MPMediaPlayback play];
-    } else if ([option isEqualToString:@"pause"]) {
-        [MPMediaPlayback stop];
-    //} else if ([option isEqualToString:@"next"]) {
-    //    [audioPlayer skipToNextItem];
-    //} else if ([option isEqualToString:@"prev"]) {
-    //    [audioPlayer skipToPreviousItem];
-    } else if ([option isEqualToString:@"info"]) {
+    if ([option isEqualToString:@"info"]) {
         float time1 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
         [NSThread sleepForTimeInterval:0.1];
         float time2 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
@@ -111,6 +102,26 @@
             NSString *artist  = [song valueForProperty:MPMediaItemPropertyArtist];
             NSString *result = [NSString stringWithFormat:@"Currently Playing\nTitle: %@\nAlbum: %@\nArtist: %@\nPlayback time: %f", title, album, artist, time2];
             printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
+        } else {
+            printf("error");
+        }
+    } else {
+        printf("Usage: ac1d player [info]\n");
+    }
+}
+
+-(void)torch:(NSString *)state {
+    AVCaptureDevice *flashLight = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([flashLight isTorchAvailable] && [flashLight isTorchModeSupported:AVCaptureTorchModeOn]) {
+        if ([flashLight lockForConfiguration:nil]) {
+            if ([state isEqualToString:@"off"]) {
+                [flashLight setTorchMode:AVCaptureTorchModeOff];
+            } else if ([state isEqualToString:@"on"]) {
+                [flashLight setTorchMode:AVCaptureTorchModeOn];
+            } else {
+                printf("Usage: ac1d torch [on|off]\n");
+            }
+            [flashLight unlockForConfiguration];
         } else {
             printf("error");
         }
