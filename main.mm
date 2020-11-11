@@ -5,7 +5,8 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"dhome",
     @"getvol", 
     @"openurl", 
-    @"openapp"
+    @"openapp",
+    @"battery",
     @"alert",
     @"state",
     @"location",
@@ -21,13 +22,7 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"battery"]) {
-                 [ac1d_base battery];
-            } else if ([args[1] isEqualToString:@"locate"]) {
-                [ac1d_base locate];
-            } else if ([args[1] isEqualToString:@"sysinfo"]) {
-                [ac1d_base sysinfo];
-            } else if ([commands containsObject:args[1]]) {
+            if ([commands containsObject:args[1]]) {
                 if ([args[1] isEqualToString:@"alert"]) {
                     if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
                     else {
@@ -49,7 +44,7 @@ int main(int argc, const char *argv[]) {
                         [ac1d_base send_command:args[1]:args[2]:@"(null)"];
                     }
                 } else if ([args[1] isEqualToString:@"openapp"]) {
-                    if (argc < 3) printf("Usage: ac1d openapp <url>\n");
+                    if (argc < 3) printf("Usage: ac1d openapp <application>\n");
                     else {
                         [ac1d_base send_command:args[1]:args[2]:@"(null)"];
                     }
