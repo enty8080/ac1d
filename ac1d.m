@@ -85,14 +85,14 @@
 }
 
 -(void)send_command:(NSString *)command :(NSString *)arg1 :(NSString *)arg2 {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd", dictionaryWithObject:arg1 forKey:@"arg1", NSDictionary dictionaryWithObject:arg2 forKey:@"arg2"];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd", dictionaryWithObject:arg1 forKey:@"arg1", dictionaryWithObject:arg2 forKey:@"arg2"];
     if ([_messagingCenter sendMessageName:@"commandWithNoReply" userInfo:userInfo] == false) {
         printf("error");
     }
 }
 
 -(void)send_reply_command:(NSString *)command :(NSString *)arg1 :(NSString *)arg2 {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd", dictionaryWithObject:arg1 forKey:@"arg1", NSDictionary dictionaryWithObject:arg2 forKey:@"arg2"];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd", dictionaryWithObject:arg1 forKey:@"arg1", dictionaryWithObject:arg2 forKey:@"arg2"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"commandWithReply" userInfo:userInfo];
     NSString *replystr = [reply objectForKey:@"returnStatus"];
     printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
