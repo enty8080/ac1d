@@ -57,13 +57,6 @@
     CFRelease(identifier);
 }
 
--(void)sysinfo {
-    UIDevice *device = [UIDevice currentDevice];
-    int batinfo = ([_thisUIDevice batteryLevel]*100);
-    NSString *info = [NSString stringWithFormat:@"%@ %d %@ %@ %@ %@", [device model], batinfo, [device systemName], [device systemVersion], [device name], [[device identifierForVendor] UUIDString]];
-    printf("%s", [info cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
 -(void)send_command:(NSString *)command :(NSString *)arg1 :(NSString *)arg2 {
     NSArray *keys = [NSArray arrayWithObjects:@"cmd", @"arg1", @"arg2", nil];
     NSArray *values = [NSArray arrayWithObjects:command, arg1, arg2, nil];
