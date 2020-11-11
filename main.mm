@@ -3,8 +3,11 @@
 NSArray *commands = [[NSArray alloc] initWithObjects:
     @"home", 
     @"dhome",
-    @"vibrate",
     @"alert",
+    @"play",
+    @"pause",
+    @"next",
+    @"prev"
     @"locon",
     @"locoff", nil];
 
@@ -42,7 +45,15 @@ int main(int argc, const char *argv[]) {
             } else if ([args[1] isEqualToString:@"player"]) {
                 if (argc < 3) printf("Usage: ac1d player [info]\n");
                 else {
-                    [ac1d_base player:args[2]];
+                    if (args[2] isEqualToString:@"info") {
+                        [ac1d_base player:args[2]];
+                    } else {
+                        if (args[2] isEqualToString:@"play") [ac1d_base send_command:args[2]:"(null)":"(null)"];
+                        else if (args[2] isEqualToString:@"pause") [ac1d_base send_command:args[2]:"(null)":"(null)"];
+                        else if (args[2] isEqualToString:@"next") [ac1d_base send_command:args[2]:"(null)":"(null)"];
+                        else if (args[2] isEqualToString:@"prev") [ac1d_base send_command:args[2]:"(null)":"(null)"];
+                        else printf("Usage: ac1d player [info]\n");
+                    }
                 }
             } else if ([commands containsObject:args[1]]) {
                 if ([args[1] isEqualToString:@"alert"]) {
