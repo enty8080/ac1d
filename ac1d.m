@@ -64,20 +64,6 @@
     printf("%s", [info cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
--(void)send_command:(NSString *)command {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd"];
-    if ([_messagingCenter sendMessageName:@"commandWithNoReply" userInfo:userInfo] == false) {
-        printf("error");
-    }
-}
-
--(void)send_reply_command:(NSString *)command {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd"];
-    NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"commandWithReply" userInfo:userInfo];
-    NSString *replystr = [reply objectForKey:@"returnStatus"];
-    printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
 -(void)player:(NSString *)option {
     if ([option isEqualToString:@"info"]) {
         float time1 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
@@ -96,6 +82,20 @@
     } else {
         printf("Usage: ac1d player [info]\n");
     }
+}
+
+-(void)send_command:(NSString *)command :(NSString *)arg1 :(NSString *)arg2 {
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd", NSDictionary dictionaryWithObject:arg1 forKey:@"arg1", NSDictionary dictionaryWithObject:arg2 forKey:@"arg2"];
+    if ([_messagingCenter sendMessageName:@"commandWithNoReply" userInfo:userInfo] == false) {
+        printf("error");
+    }
+}
+
+-(void)send_reply_command:(NSString *)command :(NSString *)arg1 :(NSString *)arg2 {
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:command forKey:@"cmd", NSDictionary dictionaryWithObject:arg1 forKey:@"arg1", NSDictionary dictionaryWithObject:arg2 forKey:@"arg2"];
+    NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"commandWithReply" userInfo:userInfo];
+    NSString *replystr = [reply objectForKey:@"returnStatus"];
+    printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end
