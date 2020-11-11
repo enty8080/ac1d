@@ -6,19 +6,6 @@
 -(float)volume;
 @end
 
-@property (assign,getter=isRingerMuted,nonatomic) BOOL ringerMuted;
-
-+(id)sharedInstance;
--(void)setRingerMuted:(BOOL)arg1;
--(void)cancelLockScreenIdleTimer;
--(void)turnOnScreenFullyWithBacklightSource:(int)arg1;
--(BOOL)play;
--(BOOL)togglePlayPause;
--(BOOL)isPlaying;
--(BOOL)changeTrack:(int)track;
-
-@end
-
 @interface SBIcon : NSObject
 	
 -(NSString *)nodeIdentifier;
