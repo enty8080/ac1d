@@ -1,6 +1,6 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <AudioToolbox/AudioServices.h>
-#import <UIKit/UIAlertView>
+#import <UIKit/UIAlertView.h>
 
 #import "ac1d.h"
 
