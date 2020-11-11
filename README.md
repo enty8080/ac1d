@@ -14,6 +14,7 @@
 
 ### No installation needed
 
+* **`alert`** - Show alert on device.
 * **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
 * **`getvol`** - Show device volume level.
