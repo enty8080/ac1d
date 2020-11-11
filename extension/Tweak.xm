@@ -71,12 +71,7 @@ extern "C" void AudioServicesPlaySystemSoundWithVibration(SystemSoundID inSystem
 	[alert show];
 	[alert release];
     } else if ([command isEqual:@"openurl"]) {
-        CFURLRef cu = CFURLCreateWithBytes(NULL, (UInt8*)[argument1 UTF8String], strlen([argument1 UTF8String]), kCFStringEncodingUTF8, NULL);
-        if (!cu) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
-        else {
-            bool ret = SBSOpenSensitiveURLAndUnlock(cu, 1);
-            if (!ret) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
-        }
+        [(SBUserAgent *)[%c(SBUserAgent) sharedUserAgent] openURL:argument1 animateIn:YES scale:0.0f start:0.0f duration:0.3f animateOut:YES];
     //} else if ([command isEqual:@"openapp"]) {
     //	SBApplication *app = [[objc_getClass("SBApplicationController") sharedInstance] applicationWithDisplayIdentifier:argument1];
     //  [[objc_getClass("SBUIController") sharedInstance] activateApplicationFromSwitcher: app];
