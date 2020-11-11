@@ -1,6 +1,7 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <SpringBoard/SBApplication.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AudioToolbox/AudioServices.h>
 #import <UIKit/UIAlertView.h>
@@ -11,7 +12,6 @@
 #import "ac1d.h"
 
 extern "C" void AudioServicesPlaySystemSoundWithVibration(SystemSoundID inSystemSoundID, id unknown, NSDictionary *options);
-extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean suspended);
 
 %hook SpringBoard
 
@@ -79,13 +79,8 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
             if (!ret) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
         }
     } else if ([command isEqual:@"openapp"]) {
-    	CFStringRef identifier = CFStringCreateWithCString(kCFAllocatorDefault, [argument1 UTF8String], kCFStringEncodingUTF8);
-    	assert(identifier != NULL);
-    	int ret = SBSLaunchApplicationWithIdentifier(identifier, FALSE);
-    	if (ret != 0) {
-        	return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
-    	}
-    	CFRelease(identifier);
+    	SBApplication *app = [[objc_getClass("SBApplicationController") sharedInstance] applicationWithDisplayIdentifier:argument1];
+	[[objc_getClass("SBUIController") sharedInstance] activateApplicationFromSwitcher: app];
     } else if ([command isEqual:@"vibrate"]) {
     	NSMutableDictionary* VibrationDictionary = [NSMutableDictionary dictionary];
         NSMutableArray* VibrationArray = [NSMutableArray array ];
