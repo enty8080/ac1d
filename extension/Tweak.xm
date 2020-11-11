@@ -23,7 +23,10 @@
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     } else if ([command isEqual:@"player"]) {
     	if ([argument1 isEqual:@"info"]) {
-	    NSString *result = [NSString stringWithFormat:@"Name: %@\nAlbum: %@\nArtist: %@", information["kMRMediaRemoteNowPlayingInfoTitle"], information["kMRMediaRemoteNowPlayingInfoAlbum"], information["kMRMediaRemoteNowPlayingInfoArtist"]];
+	    NSString *name = (__bridge NSString *)kMRMediaRemoteNowPlayingInfoTitle;
+	    NSString *album = (__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum;
+	    NSString *artist = (__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtist;
+	    NSString *result = [NSString stringWithFormat:@"Name: %@\nAlbum: %@\nArtist: %@", name, album, artist];
 	    return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
 	} else if ([argument1 isEqual:@"play"]) {
 	    MRMediaRemoteSendCommand(kMRPlay, nil);
