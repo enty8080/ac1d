@@ -10,15 +10,7 @@
 @interface ac1d : NSObject {
 }
 
-CFArrayRef SBSCopyApplicationDisplayIdentifiers(bool onlyActive, bool debuggable);
-extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean suspended);
-
-@property (retain) UIDevice *thisUIDevice;
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
-
--(void)battery;
--(void)locate;
--(void)sysinfo;
 
 -(void)send_command:(NSString *)command :(NSString *)arg1 :(NSString *)arg2;
 
