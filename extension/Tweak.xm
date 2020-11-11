@@ -2,7 +2,7 @@
 #import <AudioToolbox/AudioServices.h>
 #import <UIKit/UIAlertView.h>
 
-#import "MediaRemote.h"
+#import "media_remote.h"
 #import "ac1d.h"
 
 %hook SpringBoard
@@ -36,17 +36,6 @@
         [%c(CLLocationManager) setLocationServicesEnabled:true];
     } else if ([command isEqual:@"locoff"]) {
         [%c(CLLocationManager) setLocationServicesEnabled:false];
-    } else if ([command isEqual:@"vibrate"]) {
-    	typedef void* (*vibratePointer)(SystemSoundID inSystemSoundID, id arg, NSDictionary *vibratePattern);
-        NSMutableArray* vPattern = [NSMutableArray array];
-        [vPattern addObject:[NSNumber numberWithBool:YES]];
-        [vPattern addObject:[NSNumber numberWithInt:100]];
-        NSDictionary *vDict = @{ @"VibePattern" : vPattern, @"Intensity" : @1 };
-
-        vibratePointer vibrate;
-        void *handle = dlopen(0, 9);
-        *(void**)(&vibrate) = dlsym(handle,"AudioServicesPlaySystemSoundWithVibration");
-        vibrate(kSystemSoundID_Vibrate, nil, vDict);
     } else if ([command isEqual:@"alert"]) {
     	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
