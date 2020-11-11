@@ -1,5 +1,4 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
-#import <CoreLocation/CoreLocation.h>
 #import <AudioToolbox/AudioServices.h>
 #import "ac1d.h"
 
@@ -49,20 +48,9 @@ NSString *keyLog;
 	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"locked" forKey:@"returnStatus"];
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     } else if ([command isEqual:@"battery"]) {
-    	int percent = [(SBUIController*)[objc_getClass("SBUIController") sharedInstance] displayBatteryCapacityAsPercentage];
-	NSString *percent = [NSString stringWithFormat:@"%d", percent];
-	return [NSDictionary dictionaryWithObject:percent forKey:@"returnStatus"];
-    } else if ([command isEqual:@"locate"]) {
-    	CLLocationManager* manager = [[CLLocationManager alloc] init];
-    	[manager startUpdatingLocation];
-    	CLLocation *location = [manager location];
-    	CLLocationCoordinate2D coordinate = [location coordinate];
-    	NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
-    	if ((int)(coordinate.latitude + coordinate.longitude) == 0) {
-        	result = @"error";
-    	}
-    	[manager release];
-    	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+    	int percent = [[SBUIController sharedInstance] batteryCapacity];
+	NSString *result = [NSString stringWithFormat:@"%d", percent];
+	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"returnStatus"];
 }
