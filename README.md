@@ -8,13 +8,11 @@
 
 ## Features
 
-* **`flashlight`** - Control device flashlight.
-* **`battery`** - Show device battery level.
-* **`locate`** - Show device location.
-* **`sysinfo`** - Should return string of device.
-* **`getvol`** - Show device volume level.
+* **`vibrate`** - Vibrate device.
+* **`battery`** - Show device battery level. (**unimplemented**)
+* **`getvol`** - Show device volume level. (**unimplemented**)
 * **`openurl`** - Open URL on device.
-* **`openapp`** - Open device application.
+* **`openapp`** - Open device application. (**unimplemented**)
 * **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
