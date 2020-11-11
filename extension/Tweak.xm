@@ -15,7 +15,7 @@
 }
 
 %new
-- (NSDictionary *)commandWithReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
+- (NSDictionary *)recieve_command:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
     NSString *command = [userInfo objectForKey:@"cmd"];
     NSString *argument1 = [userInfo objectForKey:@"arg1"];
     NSString *argument2 = [userInfo objectForKey:@"arg2"];
