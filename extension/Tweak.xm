@@ -1,9 +1,6 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
-#import <CoreFoundation/CoreFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIAlertView.h>
-
-#include "SpringBoardServices/SpringBoardServices.h"
 
 #import "mediaremote.h"
 #import "ac1d.h"
@@ -66,11 +63,6 @@
     	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
-    } else if ([command isEqual:@"openurl"]) {
-        [(SBUserAgent *)[%c(SBUserAgent) sharedUserAgent] openURL:argument1];
-    //} else if ([command isEqual:@"openapp"]) {
-    //	SBApplication *app = [[objc_getClass("SBApplicationController") sharedInstance] applicationWithDisplayIdentifier:argument1];
-    //  [[objc_getClass("SBUIController") sharedInstance] activateApplicationFromSwitcher: app];
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }

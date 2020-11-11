@@ -2,23 +2,45 @@
 
 `ac1d` is an **iOS** implant that gives an ability to manipulate device **functions**, **data** and **hardware**.
 
+<table><tr><th>
+❗️Very buggy now! Do not use it now!❗️
+</th></tr></table>
+
+<table><tr><th>
+⚠️ Do not use it on your iPhone because it can brick your device! ⚠️
+</th></tr></table>
+
 ## Global usage
 
 > ./ac1d \<option\>
 
 ## Features
 
-* **`vibrate`** - Vibrate device.
-* **`battery`** - Show device battery level. (**unimplemented**)
-* **`getvol`** - Show device volume level. (**unimplemented**)
+### No installation needed
+
+* **`battery`** - Show device battery level.
+* **`locate`** - Show device location.
+* **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
-* **`openapp`** - Open device application. (**unimplemented**)
+* **`openapp`** - Open device application.
+* **`sysinfo`** - Should return string of device.
+
+### Installation needed
+
 * **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
 * **`location`** - Control device location services.
 * **`state`** - Check device state.
 * **`player`** - Control device media player.
+
+## Installation
+
+```shell
+cp extension/ac1d.dylib /Library/MobileSubstrate/DynamicLibraries
+cp extension/ac1d.plist /Library/MobileSubstrate/DynamicLibraries
+killall SpringBoard
+```
 
 ## Tests
 

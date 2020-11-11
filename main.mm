@@ -3,12 +3,7 @@
 NSArray *commands = [[NSArray alloc] initWithObjects:
     @"home", 
     @"dhome",
-    @"getvol", 
-    @"openurl", 
-    @"openapp",
-    @"battery",
     @"alert",
-    @"vibrate",
     @"state",
     @"location",
     @"player", nil];
@@ -23,7 +18,25 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([commands containsObject:args[1]]) {
+            if ([args[1] isEqualToString:@"battery"]) {
+                 [ac1d_base battery];
+            } else if ([args[1] isEqualToString:@"locate"]) {
+                [ac1d_base locate];
+            } else if ([args[1] isEqualToString:@"getvol"]) {
+                [ac1d_base getvol];
+            } else if ([args[1] isEqualToString:@"openurl"]) {
+                if (argc < 3) printf("Usage: ac1d openurl <url>\n");
+                else {
+                    [ac1d_base openurl:args[2]];
+                }
+            } else if ([args[1] isEqualToString:@"openapp"]) {
+                if (argc < 3) printf("Usage: ac1d openapp <application>\n");
+                else {
+                    [ac1d_base openapp:args[2]];
+                }
+            } else if ([args[1] isEqualToString:@"sysinfo"]) {
+                [ac1d_base sysinfo];
+            } else if ([commands containsObject:args[1]]) {
                 if ([args[1] isEqualToString:@"alert"]) {
                     if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
                     else {
@@ -36,16 +49,6 @@ int main(int argc, const char *argv[]) {
                     }
                 } else if ([args[1] isEqualToString:@"location"]) {
                     if (argc < 3) printf("Usage: ac1d location [on|off|info]\n");
-                    else {
-                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
-                    }
-                } else if ([args[1] isEqualToString:@"openurl"]) {
-                    if (argc < 3) printf("Usage: ac1d openurl <url>\n");
-                    else {
-                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
-                    }
-                } else if ([args[1] isEqualToString:@"openapp"]) {
-                    if (argc < 3) printf("Usage: ac1d openapp <application>\n");
                     else {
                         [ac1d_base send_command:args[1]:args[2]:@"(null)"];
                     }
