@@ -15,30 +15,6 @@
 }
 
 %new
--(void)commandWithNoReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
-    NSString *command = [userInfo objectForKey:@"cmd"];
-    NSString *argument1 = [userInfo objectForKey:@"arg1"];
-    NSString *argument2 = [userInfo objectForKey:@"arg2"];
-    if ([command isEqual:@"home"]) {
-	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
-	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
-	} else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(clickedMenuButton)]) {
-	    [(SBUIController *)[%c(SBUIController) sharedInstance] clickedMenuButton];
-        }
-    } else if ([command isEqual:@"dhome"]) {
-	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonDoublePressDown)]) {
-	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonDoublePressDown];
-        } else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleMenuDoubleTap)]) {
-	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleMenuDoubleTap];
-	}
-    } else if ([command isEqual:@"alert"]) {
-    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-    }
-}
-
-%new
 - (NSDictionary *)commandWithReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
     NSString *command = [userInfo objectForKey:@"cmd"];
     NSString *argument1 = [userInfo objectForKey:@"arg1"];
@@ -73,6 +49,24 @@
 	    [%c(CLLocationManager) setLocationServicesEnabled:false];
 	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
 	}
+    } else if ([command isEqual:@"home"]) {
+	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
+	} else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(clickedMenuButton)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] clickedMenuButton];
+        }
+    } else if ([command isEqual:@"dhome"]) {
+	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonDoublePressDown)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonDoublePressDown];
+        } else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleMenuDoubleTap)]) {
+	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleMenuDoubleTap];
+	}
+	return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
+    } else if ([command isEqual:@"alert"]) {
+    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+	return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"returnStatus"];
 }
