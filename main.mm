@@ -8,13 +8,8 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"locoff", nil];
 
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
+    @"player",
     @"state", nil];
-
-NSArray *player_commands = [[NSArray alloc] initWithObjects:
-    @"play",
-    @"pause",
-    @"next",
-    @"prev", nil];
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
@@ -44,18 +39,6 @@ int main(int argc, const char *argv[]) {
                 }
             } else if ([args[1] isEqualToString:@"sysinfo"]) {
                 [ac1d_base sysinfo];
-            } else if ([args[1] isEqualToString:@"player"]) {
-                if (argc < 3) printf("Usage: ac1d player [play|pause|next|prev|info]\n");
-                else {
-                    if ([args[2] isEqualToString:@"info"]) {
-                        [ac1d_base player:args[2]];
-                    } else {
-                        if ([player_commands containsObject:args[2]]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
-                        else {
-                            printf("Usage: ac1d player [play|pause|next|prev|info]\n");
-                        }
-                    }
-                }
             } else if ([commands containsObject:args[1]]) {
                 if ([args[1] isEqualToString:@"alert"]) {
                     if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
@@ -66,7 +49,14 @@ int main(int argc, const char *argv[]) {
                     [ac1d_base send_command:args[1]:@"(null)":@"(null)"];
                 }
             } else if ([reply_commands containsObject:args[1]]) {
-                [ac1d_base send_reply_command:args[1]:@"(null)":@"(null)"];
+                if ([args[1] isEqualToString:@"player"]) {
+                    if (argc < 3) printf("Usage: ac1d player [next|prev|play|pause|info]\n");
+                    else {
+                        [ac1d_base send_reply_command:args[1]:args[2]];
+                    }
+                } else {
+                    [ac1d_base send_reply_command:args[1]:@"(null)":@"(null)"];
+                }
             } else printf("Usage: ac1d <option>\n");
         }
     }
