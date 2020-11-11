@@ -64,23 +64,19 @@
     printf("%s", [info cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
--(void)player:(NSString *)option {
-    if ([option isEqualToString:@"info"]) {
-        float time1 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
-        [NSThread sleepForTimeInterval:0.1];
-        float time2 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
-        if (time1 != time2) {
-            MPMediaItem *song = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
-            NSString *title   = [song valueForProperty:MPMediaItemPropertyTitle];
-            NSString *album   = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
-            NSString *artist  = [song valueForProperty:MPMediaItemPropertyArtist];
-            NSString *result = [NSString stringWithFormat:@"Currently Playing\nTitle: %@\nAlbum: %@\nArtist: %@\nPlayback time: %f", title, album, artist, time2];
-            printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
-        } else {
-            printf("error");
-        }
+-(void)player:(NSString *) {
+    float time1 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
+    [NSThread sleepForTimeInterval:0.1];
+    float time2 = [[MPMusicPlayerController systemMusicPlayer] currentPlaybackTime];
+    if (time1 != time2) {
+        MPMediaItem *song = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
+        NSString *title   = [song valueForProperty:MPMediaItemPropertyTitle];
+        NSString *album   = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
+        NSString *artist  = [song valueForProperty:MPMediaItemPropertyArtist];
+        NSString *result = [NSString stringWithFormat:@"Currently Playing\nTitle: %@\nAlbum: %@\nArtist: %@\nPlayback time: %f", title, album, artist, time2];
+        printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
     } else {
-        printf("Usage: ac1d player [play|pause|next|prev|info]\n");
+        printf("error");
     }
 }
 
