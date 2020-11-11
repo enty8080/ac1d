@@ -21,12 +21,7 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"alert"]) {
-                if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
-                else {
-                    [ac1d_base alert:args[2]:args[3]];
-                }
-            } else if ([args[1] isEqualToString:@"battery"]) {
+            if ([args[1] isEqualToString:@"battery"]) {
                  [ac1d_base battery];
             } else if ([args[1] isEqualToString:@"locate"]) {
                 [ac1d_base locate];
@@ -50,11 +45,13 @@ int main(int argc, const char *argv[]) {
                     [ac1d_base player:args[2]];
                 }
             } else if ([commands containsObject:args[1]]) {
-                if ([args[1] isEqualToString @"alert"]) {
+                if ([args[1] isEqualToString:@"alert"]) {
                     if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
                     else {
                         [ac1d_base send_command:args[1]:args[2]:args[3]];
                     }
+                } else {
+                    [ac1d_base send_command:args[1]:nil:nil];
                 }
             } else if ([reply_commands containsObject:args[1]:nil:nil]) {
                 [ac1d_base send_reply_command:args[1]];
