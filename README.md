@@ -8,6 +8,7 @@
 
 ## Features
 
+* **`flashlight`** - Control device flashlight.
 * **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
 * **`sysinfo`** - Should return string of device.
