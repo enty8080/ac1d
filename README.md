@@ -15,7 +15,6 @@
 * **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
-* **`sysinfo`** - Should return string of device.
 
 ### Installation needed
 
