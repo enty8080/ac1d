@@ -83,12 +83,13 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
         	return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
     	}
     	CFRelease(identifier);
-    } else if ([command isEqual:@"getvol"]) {
-    	[[AVAudioSession sharedInstance] setActive:YES error:nil];
-    	[[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
-    	NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
-    	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-    }
+    //} else if ([command isEqual:@"getvol"]) {
+    //	[[AVAudioSession sharedInstance] setActive:YES error:nil];
+    //	[[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
+    //	NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
+    //	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+    //}
+    } else if ([])
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }
 
