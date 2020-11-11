@@ -5,6 +5,7 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"dhome",
     @"vibrate",
     @"locon",
+    @"alert",
     @"locoff", nil];
 
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
