@@ -84,6 +84,14 @@ typedef NS_ENUM(uint32_t, MRMediaRemoteCommand) {
     	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+    } else if ([command isEqual:@"next"]) {
+    	MRMediaRemoteSendCommand(kMRNextTrack, nil);
+    } else if ([command isEqual:@"prev"]) {
+    	MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
+    } else if ([command isEqual:@"play"]) {
+    	MRMediaRemoteSendCommand(kMRPlay, nil);
+    } else if ([command isEqual:@"pause"]) {
+    	MRMediaRemoteSendCommand(kMRPause, nil);
     }
 }
 
