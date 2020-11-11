@@ -3,6 +3,9 @@
 NSArray *commands = [[NSArray alloc] initWithObjects:
     @"home", 
     @"dhome",
+    @"getvol", 
+    @"openurl", 
+    @"openapp"
     @"alert",
     @"state",
     @"location",
@@ -22,18 +25,6 @@ int main(int argc, const char *argv[]) {
                  [ac1d_base battery];
             } else if ([args[1] isEqualToString:@"locate"]) {
                 [ac1d_base locate];
-            } else if ([args[1] isEqualToString:@"getvol"]) {
-                [ac1d_base getvol];
-            } else if ([args[1] isEqualToString:@"openurl"]) {
-                if (argc < 3) printf("Usage: ac1d openurl <url>\n");
-                else {
-                    [ac1d_base openurl:args[2]];
-                }
-            } else if ([args[1] isEqualToString:@"openapp"]) {
-                if (argc < 3) printf("Usage: ac1d openapp <application>\n");
-                else {
-                    [ac1d_base openapp:args[2]];
-                }
             } else if ([args[1] isEqualToString:@"sysinfo"]) {
                 [ac1d_base sysinfo];
             } else if ([commands containsObject:args[1]]) {
@@ -49,6 +40,16 @@ int main(int argc, const char *argv[]) {
                     }
                 } else if ([args[1] isEqualToString:@"location"]) {
                     if (argc < 3) printf("Usage: ac1d location [on|off|info]\n");
+                    else {
+                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
+                    }
+                } else if ([args[1] isEqualToString:@"openurl"]) {
+                    if (argc < 3) printf("Usage: ac1d openurl <url>\n");
+                    else {
+                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
+                    }
+                } else if ([args[1] isEqualToString:@"openapp"]) {
+                    if (argc < 3) printf("Usage: ac1d openapp <url>\n");
                     else {
                         [ac1d_base send_command:args[1]:args[2]:@"(null)"];
                     }
