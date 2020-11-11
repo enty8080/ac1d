@@ -80,7 +80,7 @@
             printf("error");
         }
     } else {
-        printf("Usage: ac1d player [info]\n");
+        printf("Usage: ac1d player [play|pause|next|prev|info]\n");
     }
 }
 
