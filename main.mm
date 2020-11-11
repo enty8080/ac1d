@@ -44,10 +44,10 @@ int main(int argc, const char *argv[]) {
                     if ([args[2] isEqualToString:@"info"]) {
                         [ac1d_base player:args[2]];
                     } else {
-                        if ([args[2] isEqualToString:@"play"]) [ac1d_base send_command:args[2]:"(null)":"(null)"];
-                        else if ([args[2] isEqualToString:@"pause"]) [ac1d_base send_command:args[2]:"(null)":"(null)"];
-                        else if ([args[2] isEqualToString:@"next"]) [ac1d_base send_command:args[2]:"(null)":"(null)"];
-                        else if ([args[2] isEqualToString:@"prev"]) [ac1d_base send_command:args[2]:"(null)":"(null)"];
+                        if ([args[2] isEqualToString:@"play"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
+                        else if ([args[2] isEqualToString:@"pause"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
+                        else if ([args[2] isEqualToString:@"next"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
+                        else if ([args[2] isEqualToString:@"prev"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
                         else printf("Usage: ac1d player [play|pause|next|prev|info]\n");
                     }
                 }
