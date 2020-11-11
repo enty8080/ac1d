@@ -1,16 +1,12 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import <AudioToolbox/AudioServices.h>
 #import <UIKit/UIAlertView.h>
 
 #include "SpringBoardServices/SpringBoardServices.h"
 
 #import "mediaremote.h"
 #import "ac1d.h"
-
-extern "C" void AudioServicesPlaySystemSoundWithVibration(SystemSoundID inSystemSoundID, id unknown, NSDictionary *options);
 
 %hook SpringBoard
 
@@ -75,14 +71,6 @@ extern "C" void AudioServicesPlaySystemSoundWithVibration(SystemSoundID inSystem
     //} else if ([command isEqual:@"openapp"]) {
     //	SBApplication *app = [[objc_getClass("SBApplicationController") sharedInstance] applicationWithDisplayIdentifier:argument1];
     //  [[objc_getClass("SBUIController") sharedInstance] activateApplicationFromSwitcher: app];
-    } else if ([command isEqual:@"vibrate"]) {
-    	NSMutableDictionary* VibrationDictionary = [NSMutableDictionary dictionary];
-        NSMutableArray* VibrationArray = [NSMutableArray array ];
-        [VibrationArray addObject:[NSNumber numberWithBool:YES]];
-        [VibrationArray addObject:[NSNumber numberWithInt:30]];
-        [VibrationDictionary setObject:VibrationArray forKey:@"VibePattern"];
-        [VibrationDictionary setObject:[NSNumber numberWithInt:1] forKey:@"Intensity"];
-        AudioServicesPlaySystemSoundWithVibration(4095,nil,VibrationDictionary);
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }
