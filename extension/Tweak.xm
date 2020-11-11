@@ -51,26 +51,33 @@
     	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
-    } else if ([command isEqual:@"next"]) {
-    	MRMediaRemoteSendCommand(kMRNextTrack, nil);
-    } else if ([command isEqual:@"prev"]) {
-    	MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
-    } else if ([command isEqual:@"play"]) {
-    	MRMediaRemoteSendCommand(kMRPlay, nil);
-    } else if ([command isEqual:@"pause"]) {
-    	MRMediaRemoteSendCommand(kMRPause, nil);
     }
 }
 
 %new
 - (NSDictionary *)commandWithReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
     NSString *command = [userInfo objectForKey:@"cmd"];
+    NSString *argument1 = [userInfo objectForKey:@"arg1"];
+    NSString *argument2 = [userInfo objectForKey:@"arg2"];
     if ([command isEqual:@"state"]) {
 	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"locked" forKey:@"returnStatus"];
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     } else if ([command isEqual:@"player"]) {
-    	if ([arg1 isEqual:@""]) {
-		NULL;
+    	if ([argument1 isEqual:@"info"]) {
+	    NSString *result = [NSString stringWithFormat:@"Name: %@\nAlbum: %@\nArtist: %@", kMRMediaRemoteNowPlayingInfoTitle, kMRMediaRemoteNowPlayingInfoAlbum, kMRMediaRemoteNowPlayingInfoAuthor];
+	    return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+	} else if ([argument1 isEqual:@"play"]) {
+	    MRMediaRemoteSendCommand(kMRPlay, nil);
+	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
+	} else if ([argument1 isEqual:@"pause"]) {
+	    MRMediaRemoteSendCommand(kMRPause, nil);
+	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
+	} else if ([argument1 isEqual:@"next"]) {
+	    MRMediaRemoteSendCommand(kMRNextTrack, nil);
+	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
+	} else if ([argument1 isEqual:@"prev"]) {
+	    MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
+	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
 	}
     }
     return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"returnStatus"];
