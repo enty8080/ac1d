@@ -20,14 +20,6 @@
 -(BOOL)changeTrack:(int)track;
 
 @end
-	
-@interface SBUIController : NSObject {
-    float _batteryCapacity;
-}
-
-+(id)sharedInstance;
-
-@end
 
 @interface SBIcon : NSObject
 	
