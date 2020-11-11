@@ -8,7 +8,7 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"openapp",
     @"battery",
     @"alert",
-    @"flashlight",
+    @"vibrate",
     @"state",
     @"location",
     @"player", nil];
@@ -46,11 +46,6 @@ int main(int argc, const char *argv[]) {
                     }
                 } else if ([args[1] isEqualToString:@"openapp"]) {
                     if (argc < 3) printf("Usage: ac1d openapp <application>\n");
-                    else {
-                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
-                    }
-                } else if ([args[1] isEqualToString:@"flashlight"]) {
-                    if (argc < 3) printf("Usage: ac1d flashlight [on|off]\n");
                     else {
                         [ac1d_base send_command:args[1]:args[2]:@"(null)"];
                     }
