@@ -1,4 +1,5 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIAlertView.h>
 
 #import "mediaremote.h"
@@ -23,10 +24,11 @@
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     } else if ([command isEqual:@"player"]) {
     	if ([argument1 isEqual:@"info"]) {
-	    NSString *album = [info objectForKey:kMRMediaRemoteNowPlayingInfoAlbum];
-            NSString *artist = [info objectForKey:kMRMediaRemoteNowPlayingInfoArtist];
-            NSString *title = [info objectForKey:kMRMediaRemoteNowPlayingInfoTitle];
-	    NSString *result = [NSString stringWithFormat:@"Name: %@\nAlbum: %@\nArtist: %@", name, album, artist];
+	    MPMediaItem *song = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
+            NSString *title = [song valueForProperty:MPMediaItemPropertyTitle];
+            NSString *album = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
+            NSString *artist = [song valueForProperty:MPMediaItemPropertyArtist];
+            NSString *result = [NSString stringWithFormat:@"Title: %@\nAlbum: %@\nArtist: %@", title, album, artist];
 	    return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
 	} else if ([argument1 isEqual:@"play"]) {
 	    MRMediaRemoteSendCommand(kMRPlay, nil);
