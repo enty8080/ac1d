@@ -30,8 +30,7 @@
 * **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
-* **`locoff`** - Turn location services off.
-* **`locon`** - Turn location services on.
+* **`location`** - Control device location services.
 * **`state`** - Check device state.
 * **`player`** - Control device media player.
 
