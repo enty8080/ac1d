@@ -2,6 +2,7 @@
 #import <AudioToolbox/AudioServices.h>
 #import <UIKit/UIAlertView.h>
 
+#import "MediaRemote.h"
 #import "ac1d.h"
 
 %hook SpringBoard
