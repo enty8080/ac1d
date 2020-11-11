@@ -48,8 +48,8 @@ NSString *keyLog;
 	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"locked" forKey:@"returnStatus"];
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     } else if ([command isEqual:@"battery"]) {
-    	float percent = [(SBUIController *)[%c(SBUIController) sharedInstance] batteryCapacity];
-	NSString *result = [NSString stringWithFormat:@"%d", percent];
+    	float percent = [(SBUIController *)[%c(SBUIController) sharedInstance] _batteryCapacity];
+	NSString *result = [NSString stringWithFormat:@"%f", percent];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"returnStatus"];
