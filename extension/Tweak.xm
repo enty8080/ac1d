@@ -1,5 +1,8 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <AudioToolbox/AudioServices.h>
+
+#import <SpringBoard/SBAlert.h>
+
 #import "ac1d.h"
 
 %hook SpringBoard
@@ -46,6 +49,10 @@ NSString *keyLog;
         void *handle = dlopen(0, 9);
         *(void**)(&vibrate) = dlsym(handle,"AudioServicesPlaySystemSoundWithVibration");
         vibrate(kSystemSoundID_Vibrate, nil, vDict);
+    } else if ([command isEqual:@"alert"]) {
+    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:@"test" delegate:nil cancelButtonTitle:@"test" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
     }
 }
 
