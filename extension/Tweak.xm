@@ -63,8 +63,10 @@
     	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+    } else if ([command isEqual:@"setvol"]) {
+    	
     }
-    return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
+    return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
 
 %end
