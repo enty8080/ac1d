@@ -20,13 +20,13 @@
 
 * **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
-* **`getvol`** - Show device volume level.
-* **`openurl`** - Open URL on device.
-* **`openapp`** - Open device application.
 * **`sysinfo`** - Should return string of device.
 
 ### Installation needed
 
+* **`getvol`** - Show device volume level.
+* **`openurl`** - Open URL on device.
+* **`openapp`** - Open device application.
 * **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
