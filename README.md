@@ -19,6 +19,7 @@
 
 ### Installation needed
 
+* **`setvol`** - Set device volume level.
 * **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
