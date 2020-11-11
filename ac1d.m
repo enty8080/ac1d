@@ -27,36 +27,6 @@
     printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
--(void)getvol {
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
-    NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
-    printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
--(void)openurl:(NSString *)url {
-    if (![url isEqualToString:@""]) {
-        CFURLRef cu = CFURLCreateWithBytes(NULL, (UInt8*)[url UTF8String], strlen([url UTF8String]), kCFStringEncodingUTF8, NULL);
-        if (!cu) printf("error");
-        else {
-            bool ret = SBSOpenSensitiveURLAndUnlock(cu, 1);
-            if (!ret) {
-                printf("error");
-            }
-        }
-    }
-}
-
--(void)openapp:(NSString *)application {
-    CFStringRef identifier = CFStringCreateWithCString(kCFAllocatorDefault, [application UTF8String], kCFStringEncodingUTF8);
-    assert(identifier != NULL);
-    int ret = SBSLaunchApplicationWithIdentifier(identifier, FALSE);
-    if (ret != 0) {
-        printf("error");
-    }
-    CFRelease(identifier);
-}
-
 -(void)sysinfo {
     UIDevice *device = [UIDevice currentDevice];
     int batinfo = ([_thisUIDevice batteryLevel]*100);
