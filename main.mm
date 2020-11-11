@@ -34,8 +34,6 @@ int main(int argc, const char *argv[]) {
                 else {
                     [ac1d_base openapp:args[2]];
                 }
-            } else if ([args[1] isEqualToString:@"sysinfo"]) {
-                [ac1d_base sysinfo];
             } else if ([commands containsObject:args[1]]) {
                 if ([args[1] isEqualToString:@"alert"]) {
                     if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
