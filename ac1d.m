@@ -68,15 +68,6 @@
     NSArray *keys = [NSArray arrayWithObjects:@"cmd", @"arg1", @"arg2", nil];
     NSArray *values = [NSArray arrayWithObjects:command, arg1, arg2, nil];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
-    if ([_messagingCenter sendMessageName:@"commandWithNoReply" userInfo:userInfo] == false) {
-        printf("error");
-    }
-}
-
--(void)send_reply_command:(NSString *)command :(NSString *)arg1 :(NSString *)arg2 {
-    NSArray *keys = [NSArray arrayWithObjects:@"cmd", @"arg1", @"arg2", nil];
-    NSArray *values = [NSArray arrayWithObjects:command, arg1, arg2, nil];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"commandWithReply" userInfo:userInfo];
     NSString *replystr = [reply objectForKey:@"returnStatus"];
     printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
