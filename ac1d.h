@@ -18,7 +18,6 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 @property (retain) UIDevice *thisUIDevice;
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
--(void)battery;
 -(void)locate;
 -(void)getvol;
 -(void)openurl:(NSString *)url;
