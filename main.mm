@@ -4,10 +4,6 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"home", 
     @"dhome",
     @"alert",
-    @"play",
-    @"pause",
-    @"next",
-    @"prev"
     @"locon",
     @"locoff", nil];
 
