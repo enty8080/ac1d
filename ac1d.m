@@ -9,7 +9,7 @@
     return self;
 }
 
--(void)alert:(NSString *)title:(NSString *)message {
+-(void)alert:(NSString *)title :(NSString *)message {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
