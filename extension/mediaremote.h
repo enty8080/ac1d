@@ -1,8 +1,6 @@
 #ifndef MEDIAREMOTE_H_
 #define MEDIAREMOTE_H_
 
-#include <CoreFoundation/CoreFoundation.h>
-
 #if __cplusplus
 extern "C" {
 #endif
