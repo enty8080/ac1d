@@ -4,12 +4,9 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"home", 
     @"dhome",
     @"alert",
-    @"locon",
-    @"locoff", nil];
-
-NSArray *reply_commands = [[NSArray alloc] initWithObjects:
-    @"player",
-    @"state", nil];
+    @"state",
+    @"location",
+    @"player", nil];
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
@@ -45,17 +42,13 @@ int main(int argc, const char *argv[]) {
                     else {
                         [ac1d_base send_command:args[1]:args[2]:args[3]];
                     }
-                } else {
-                    [ac1d_base send_command:args[1]:@"(null)":@"(null)"];
-                }
-            } else if ([reply_commands containsObject:args[1]]) {
-                if ([args[1] isEqualToString:@"player"]) {
+                } else if ([args[1] isEqualToString:@"player"]) {
                     if (argc < 3) printf("Usage: ac1d player [next|prev|play|pause|info]\n");
                     else {
-                        [ac1d_base send_reply_command:args[1]:args[2]];
+                        [ac1d_base send_command:args[1]:args[2]];
                     }
                 } else {
-                    [ac1d_base send_reply_command:args[1]:@"(null)":@"(null)"];
+                    [ac1d_base send_command:args[1]:@"(null)":@"(null)"];
                 }
             } else printf("Usage: ac1d <option>\n");
         }
