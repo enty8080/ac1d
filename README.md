@@ -14,7 +14,6 @@
 
 ### No installation needed
 
-* **`alert`** - Show alert on device.
 * **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
 * **`getvol`** - Show device volume level.
@@ -25,6 +24,7 @@
 
 ### Installation needed
 
+* **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
 * **`vibrate`** - Vibrate device.
