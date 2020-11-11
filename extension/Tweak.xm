@@ -10,7 +10,7 @@
     %orig;
     CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.ac1d"];
     [messagingCenter runServerOnCurrentThread];
-    [messagingCenter registerForMessageName:@"recieve_command" target:self selector:@selector(commandWithReply:withUserInfo:)];
+    [messagingCenter registerForMessageName:@"recieve_command" target:self selector:@selector(recieve_command:withUserInfo:)];
 }
 
 %new
