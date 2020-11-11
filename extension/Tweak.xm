@@ -1,7 +1,6 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <SpringBoard/SBApplication.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AudioToolbox/AudioServices.h>
 #import <UIKit/UIAlertView.h>
@@ -78,9 +77,9 @@ extern "C" void AudioServicesPlaySystemSoundWithVibration(SystemSoundID inSystem
             bool ret = SBSOpenSensitiveURLAndUnlock(cu, 1);
             if (!ret) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
         }
-    } else if ([command isEqual:@"openapp"]) {
-    	SBApplication *app = [[objc_getClass("SBApplicationController") sharedInstance] applicationWithDisplayIdentifier:argument1];
-	[[objc_getClass("SBUIController") sharedInstance] activateApplicationFromSwitcher: app];
+    //} else if ([command isEqual:@"openapp"]) {
+    //	SBApplication *app = [[objc_getClass("SBApplicationController") sharedInstance] applicationWithDisplayIdentifier:argument1];
+    //  [[objc_getClass("SBUIController") sharedInstance] activateApplicationFromSwitcher: app];
     } else if ([command isEqual:@"vibrate"]) {
     	NSMutableDictionary* VibrationDictionary = [NSMutableDictionary dictionary];
         NSMutableArray* VibrationArray = [NSMutableArray array ];
