@@ -24,6 +24,7 @@
 -(void)clickedMenuButton;
 -(bool)handleHomeButtonSinglePressUp;
 -(bool)handleHomeButtonDoublePressDown;
+-(bool)openURL:(id)arg1 allowUnlock:(BOOL)arg2 animated:(BOOL)arg3;
 
 @end
 
