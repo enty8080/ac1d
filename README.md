@@ -2,14 +2,6 @@
 
 `ac1d` is an **iOS** implant that gives an ability to manipulate device **functions**, **data** and **hardware**.
 
-<table><tr><th>
-❗️Very buggy now! Do not use it now!❗️
-</th></tr></table>
-
-<table><tr><th>
-⚠️ Do not use it on your iPhone because it can brick your device! ⚠️
-</th></tr></table>
-
 ## Global usage
 
 > ./ac1d \<option\>
@@ -28,14 +20,6 @@
 * **`location`** - Control device location services.
 * **`state`** - Check device state.
 * **`player`** - Control device media player.
-
-## Installation
-
-```shell
-cp extension/ac1d.dylib /Library/MobileSubstrate/DynamicLibraries
-cp extension/ac1d.plist /Library/MobileSubstrate/DynamicLibraries
-killall SpringBoard
-```
 
 ## Tests
 
