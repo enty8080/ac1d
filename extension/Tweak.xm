@@ -5,38 +5,6 @@
 #import "MediaRemote.h"
 #import "ac1d.h"
 
-typedef NS_ENUM(uint32_t, MRMediaRemoteCommand) {
-    MRMediaRemoteCommandPlay,
-    MRMediaRemoteCommandPause,
-    MRMediaRemoteCommandTogglePlayPause,
-    MRMediaRemoteCommandStop,
-    MRMediaRemoteCommandNextTrack,
-    MRMediaRemoteCommandPreviousTrack,
-    MRMediaRemoteCommandAdvanceShuffleMode,
-    MRMediaRemoteCommandAdvanceRepeatMode,
-    MRMediaRemoteCommandBeginFastForward,
-    MRMediaRemoteCommandEndFastForward,
-    MRMediaRemoteCommandBeginRewind,
-    MRMediaRemoteCommandEndRewind,
-    MRMediaRemoteCommandRewind15Seconds,
-    MRMediaRemoteCommandFastForward15Seconds,
-    MRMediaRemoteCommandRewind30Seconds,
-    MRMediaRemoteCommandFastForward30Seconds,
-    MRMediaRemoteCommandToggleRecord,
-    MRMediaRemoteCommandSkipForward,
-    MRMediaRemoteCommandSkipBackward,
-    MRMediaRemoteCommandChangePlaybackRate,
-    MRMediaRemoteCommandRateTrack,
-    MRMediaRemoteCommandLikeTrack,
-    MRMediaRemoteCommandDislikeTrack,
-    MRMediaRemoteCommandBookmarkTrack,
-    MRMediaRemoteCommandSeekToPlaybackPosition,
-    MRMediaRemoteCommandChangeRepeatMode,
-    MRMediaRemoteCommandChangeShuffleMode,
-    MRMediaRemoteCommandEnableLanguageOption,
-    MRMediaRemoteCommandDisableLanguageOption
-};
-
 %hook SpringBoard
 
 -(void)applicationDidFinishLaunching:(id)application {
