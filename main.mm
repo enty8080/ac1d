@@ -3,11 +3,11 @@
 NSArray *commands = [[NSArray alloc] initWithObjects:
     @"home", 
     @"dhome",
+    @"vibrate",
     @"locon",
     @"locoff", nil];
 
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
-    @"battery",
     @"state", nil];
 
 int main(int argc, const char *argv[]) {
