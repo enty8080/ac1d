@@ -24,7 +24,7 @@
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     } else if ([command isEqual:@"player"]) {
     	if ([argument1 isEqual:@"info"]) {
-	    NSString *result = [NSString stringWithFormat:@"Name: %@\nAlbum: %@\nArtist: %@", kMRMediaRemoteNowPlayingInfoTitle, kMRMediaRemoteNowPlayingInfoAlbum, kMRMediaRemoteNowPlayingInfoAuthor];
+	    NSString *result = [NSString stringWithFormat:@"Name: %@\nAlbum: %@\nArtist: %@", kMRMediaRemoteNowPlayingInfoTitle, kMRMediaRemoteNowPlayingInfoAlbum, kMRMediaRemoteNowPlayingInfoArtist];
 	    return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
 	} else if ([argument1 isEqual:@"play"]) {
 	    MRMediaRemoteSendCommand(kMRPlay, nil);
@@ -37,7 +37,7 @@
 	}
     } else if ([command isEqual:@"location"]) {
     	if ([argument1 isEqual:@"info"]) {
-	    return [NSDictionary dictionaryWithObject:"test!" forKey:@"returnStatus"];
+	    return [NSDictionary dictionaryWithObject:@"test!" forKey:@"returnStatus"];
 	} else if ([argument1 isEqual:@"on"]) {
 	    [%c(CLLocationManager) setLocationServicesEnabled:true];
 	} else if ([argument1 isEqual:@"off"]) {
@@ -60,7 +60,7 @@
 	[alert show];
 	[alert release];
     }
-    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
+    return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
 
 %end
