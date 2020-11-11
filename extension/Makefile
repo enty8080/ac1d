@@ -7,6 +7,3 @@ ac1d_FILES = Tweak.xm
 ac1d_PRIVATE_FRAMEWORKS = AppSupport UIKit MediaRemote
 
 include /opt/theos/makefiles/tweak.mk
-
-after-install::
-	install.exec "killall -9 SpringBoard"
