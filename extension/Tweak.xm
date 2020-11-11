@@ -67,7 +67,7 @@
 	[alert show];
 	[alert release];
     } else if ([command isEqual:@"openurl"]) {
-        [(SBUserAgent *)[%c(SBUserAgent) sharedUserAgent] openURL:argument1:YES:YES];
+        [(SBUserAgent *)[%c(SBUserAgent) sharedUserAgent] openURL:argument1];
     //} else if ([command isEqual:@"openapp"]) {
     //	SBApplication *app = [[objc_getClass("SBApplicationController") sharedInstance] applicationWithDisplayIdentifier:argument1];
     //  [[objc_getClass("SBUIController") sharedInstance] activateApplicationFromSwitcher: app];
