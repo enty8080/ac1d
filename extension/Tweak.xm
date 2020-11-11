@@ -7,9 +7,6 @@
 
 %hook SpringBoard
 
-SBMediaController *mediaController;
-NSString *keyLog;
-
 -(void)applicationDidFinishLaunching:(id)application {
     %orig;
     mediaController = (SBMediaController *)[%c(SBMediaController) sharedInstance];
