@@ -23,9 +23,9 @@
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
     } else if ([command isEqual:@"player"]) {
     	if ([argument1 isEqual:@"info"]) {
-	    NSString *name = (__bridge NSString *)kMRMediaRemoteNowPlayingInfoTitle;
-	    NSString *album = (__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum;
-	    NSString *artist = (__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtist;
+	    NSString *album = [info objectForKey:kMRMediaRemoteNowPlayingInfoAlbum];
+            NSString *artist = [info objectForKey:kMRMediaRemoteNowPlayingInfoArtist];
+            NSString *title = [info objectForKey:kMRMediaRemoteNowPlayingInfoTitle];
 	    NSString *result = [NSString stringWithFormat:@"Name: %@\nAlbum: %@\nArtist: %@", name, album, artist];
 	    return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
 	} else if ([argument1 isEqual:@"play"]) {
