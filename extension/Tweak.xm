@@ -64,7 +64,16 @@
 	[alert show];
 	[alert release];
     } else if ([command isEqual:@"setvol"]) {
-    	
+    	MPVolumeView* volumeView = [[MPVolumeView alloc] init];
+    	UISlider* volumeViewSlider = nil;
+    	for (UIView *view in [volumeView subviews]){
+            if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            	volumeViewSlider = (UISlider*)view;
+                break;
+            }
+        }
+    	[volumeViewSlider setValue:[argument1 floatValue] animated:YES];
+    	[volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
     return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
