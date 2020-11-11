@@ -31,10 +31,6 @@
         } else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleMenuDoubleTap)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleMenuDoubleTap];
 	}
-    } else if ([command isEqual:@"locon"]) {
-        [%c(CLLocationManager) setLocationServicesEnabled:true];
-    } else if ([command isEqual:@"locoff"]) {
-        [%c(CLLocationManager) setLocationServicesEnabled:false];
     } else if ([command isEqual:@"alert"]) {
     	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
@@ -65,6 +61,16 @@
 	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
 	} else if ([argument1 isEqual:@"prev"]) {
 	    MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
+	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
+	}
+    } else if ([command isEqual:@"location"]) {
+    	if ([argument1 isEqual:@"info"]) {
+	    return [NSDictionary dictionaryWithObject:"test!" forKey:@"returnStatus"];
+	} else if ([argument1 isEqual:@"on"]) {
+	    [%c(CLLocationManager) setLocationServicesEnabled:true];
+	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
+	} else if ([argument1 isEqual:@"off"]) {
+	    [%c(CLLocationManager) setLocationServicesEnabled:false];
 	    return [NSDictionary dictionaryWithObject:"" forKey:@"returnStatus"];
 	}
     }
