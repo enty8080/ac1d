@@ -1,8 +1,7 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
-#import <AudioToolbox/AudioServices.h>
 #import <UIKit/UIAlertView.h>
 
-#import "media_remote.h"
+#import "mediaremote.h"
 #import "ac1d.h"
 
 %hook SpringBoard
