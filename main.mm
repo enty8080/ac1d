@@ -10,6 +10,12 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
     @"state", nil];
 
+NSArray *player_commands = [[NSArray alloc] initWithObjects:
+    @"play",
+    @"pause",
+    @"next",
+    @"prev", nil];
+
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
         ac1d *ac1d_base = [[ac1d alloc] init];
@@ -44,11 +50,10 @@ int main(int argc, const char *argv[]) {
                     if ([args[2] isEqualToString:@"info"]) {
                         [ac1d_base player:args[2]];
                     } else {
-                        if ([args[2] isEqualToString:@"play"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
-                        else if ([args[2] isEqualToString:@"pause"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
-                        else if ([args[2] isEqualToString:@"next"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
-                        else if ([args[2] isEqualToString:@"prev"]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
-                        else printf("Usage: ac1d player [play|pause|next|prev|info]\n");
+                        if ([player_commands containsObject:args[2]]) [ac1d_base send_command:args[2]:@"(null)":@"(null)"];
+                        else {
+                            printf("Usage: ac1d player [play|pause|next|prev|info]\n");
+                        }
                     }
                 }
             } else if ([commands containsObject:args[1]]) {
