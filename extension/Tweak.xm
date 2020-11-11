@@ -21,6 +21,8 @@ NSString *keyLog;
 %new
 -(void)commandWithNoReply:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
     NSString *command = [userInfo objectForKey:@"cmd"];
+    NSString *argument1 = [userInfo objectForKey:@"arg1"];
+    NSString *argument2 = [userInfo objectForKey:@"arg2"];
     if ([command isEqual:@"home"]) {
 	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
@@ -49,7 +51,7 @@ NSString *keyLog;
         *(void**)(&vibrate) = dlsym(handle,"AudioServicesPlaySystemSoundWithVibration");
         vibrate(kSystemSoundID_Vibrate, nil, vDict);
     } else if ([command isEqual:@"alert"]) {
-    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
     }
