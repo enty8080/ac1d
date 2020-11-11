@@ -1,9 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
 #import <AppSupport/CPDistributedMessagingCenter.h>
-#import <CoreFoundation/CoreFoundation.h>
-#import <CoreLocation/CoreLocation.h>
-#import <UIKit/UIKit.h>
 
 #include "SpringBoardServices/SpringBoardServices.h"
 
