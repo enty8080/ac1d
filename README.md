@@ -27,7 +27,6 @@
 * **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
-* **`vibrate`** - Vibrate device.
 * **`locoff`** - Turn location services off.
 * **`locon`** - Turn location services on.
 * **`state`** - Check device state.
