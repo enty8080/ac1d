@@ -5,7 +5,6 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"dhome",
     @"vibrate",
     @"locon",
-    @"alert",
     @"locoff", nil];
 
 NSArray *reply_commands = [[NSArray alloc] initWithObjects:
@@ -21,7 +20,12 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"battery"]) {
+            if ([args[1] isEqualToString:@"alert"]) {
+                if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
+                else {
+                    [ac1d_base alert:args[2]:args[3]];
+                }
+            } else if ([args[1] isEqualToString:@"battery"]) {
                  [ac1d_base battery];
             } else if ([args[1] isEqualToString:@"locate"]) {
                 [ac1d_base locate];
