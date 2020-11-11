@@ -6,11 +6,7 @@
 #if __cplusplus
 extern "C" {
 #endif
-
-    extern CFStringRef kMRMediaRemoteNowPlayingInfoTitle;
-    extern CFStringRef kMRMediaRemoteNowPlayingInfoArtist;
-    extern CFStringRef kMRMediaRemoteNowPlayingInfoAlbum;
-
+    
     typedef NS_ENUM(NSInteger, MRCommand) {
         kMRPlay = 0,
         kMRPause = 1,
