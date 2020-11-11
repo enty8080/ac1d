@@ -9,12 +9,6 @@
     return self;
 }
 
--(void)alert:(NSString *)title :(NSString *)message {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-}
-
 -(void)battery {
     int battery_level = ([_thisUIDevice batteryLevel] * 100);
     printf("%d", battery_level);
