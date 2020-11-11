@@ -58,10 +58,10 @@ int main(int argc, const char *argv[]) {
                         [ac1d_base send_command:args[1]:args[2]:args[3]];
                     }
                 } else {
-                    [ac1d_base send_command:args[1]:"(null)":"(null)"];
+                    [ac1d_base send_command:args[1]:@"(null)":@"(null)"];
                 }
             } else if ([reply_commands containsObject:args[1]]) {
-                [ac1d_base send_reply_command:args[1]:"(null)":"(null)"];
+                [ac1d_base send_reply_command:args[1]:@"(null)":@"(null)"];
             } else printf("Usage: ac1d <option>\n");
         }
     }
