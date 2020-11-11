@@ -1,12 +1,13 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <AVFoundation/AVFlashlight.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AudioToolbox/AudioServices.h>
 #import <UIKit/UIAlertView.h>
 
 #include "SpringBoardServices/SpringBoardServices.h"
+
+#import "avflashlight.h"
 #import "mediaremote.h"
 #import "ac1d.h"
 
