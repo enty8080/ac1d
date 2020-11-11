@@ -16,14 +16,9 @@
 
 ## Features
 
-### No installation needed
-
 * **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
 * **`sysinfo`** - Should return string of device.
-
-### Installation needed
-
 * **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
