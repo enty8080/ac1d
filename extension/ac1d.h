@@ -1,6 +1,7 @@
 #import "rocketbootstrap.h"
 
-@interface MRMediaController
+@interface MRMediaController : NSObject
+
 extern CFStringRef kMRMediaRemoteNowPlayingInfoTitle;
 extern CFStringRef kMRMediaRemoteNowPlayingInfoArtist;
 extern CFStringRef kMRMediaRemoteNowPlayingInfoAlbum;
@@ -13,6 +14,7 @@ typedef NS_ENUM(NSInteger, MRCommand) {
 };
 
 extern Boolean MRMediaRemoteSendCommand(MRCommand command, id userInfo);
+
 @end
 
 @interface SBIcon : NSObject
