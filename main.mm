@@ -19,9 +19,7 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"battery"]) {
-                [ac1d_base battery];
-            } else if ([args[1] isEqualToString:@"locate"]) {
+            if ([args[1] isEqualToString:@"locate"]) {
                 [ac1d_base locate];
             } else if ([args[1] isEqualToString:@"getvol"]) {
                 [ac1d_base getvol];
