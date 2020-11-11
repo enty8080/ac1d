@@ -7,29 +7,11 @@
 
 #include "SpringBoardServices/SpringBoardServices.h"
 
-#import "avflashlight.h"
 #import "mediaremote.h"
 #import "ac1d.h"
 
 extern "C" void AudioServicesPlaySystemSoundWithVibration(SystemSoundID inSystemSoundID, id unknown, NSDictionary *options);
 extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean suspended);
-
-static AVFlashlight *_sharedFlashlight;
-
-#define kIOHIDEventUsageVolumeUp 233
-#define kIOHIDEventUsageVolumeDown 234
-
-%hook AVFlashlight
-
--(id)init
-{
-    if (!_sharedFlashlight) {
-        _sharedFlashlight = %orig;
-    }
-    return _sharedFlashlight;
-}
-
-%end
 
 %hook SpringBoard
 
@@ -112,12 +94,6 @@ static AVFlashlight *_sharedFlashlight;
         [VibrationDictionary setObject:VibrationArray forKey:@"VibePattern"];
         [VibrationDictionary setObject:[NSNumber numberWithInt:1] forKey:@"Intensity"];
         AudioServicesPlaySystemSoundWithVibration(4095,nil,VibrationDictionary);
-    } else if ([command isEqual:@"flashlight"]) {
-    	if ([argument1 isEqual:@"on"]) {
-	    [_sharedFlashlight setFlashlightLevel: 1.0 withError:nil];
-	} else if ([argument1 isEqual:@"off"]) {
-	    [_sharedFlashlight setFlashlightLevel: 0.0 withError:nil];
-	}
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }
