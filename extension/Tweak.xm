@@ -1,7 +1,7 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <AudioToolbox/AudioServices.h>
 
-#import <SpringBoard/SBAlert.h>
+#import <UIKit/UIAlertView.h>
 
 #import "ac1d.h"
 
