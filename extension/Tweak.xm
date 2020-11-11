@@ -1,9 +1,14 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreFoundation/CoreFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIAlertView.h>
 
+#include "SpringBoardServices/SpringBoardServices.h"
 #import "mediaremote.h"
 #import "ac1d.h"
+
+extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean suspended);
 
 %hook SpringBoard
 
@@ -63,6 +68,26 @@
     	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+    } else if ([command isEqual:@"openurl"]) {
+        CFURLRef cu = CFURLCreateWithBytes(NULL, (UInt8*)[argument1 UTF8String], strlen([argument1 UTF8String]), kCFStringEncodingUTF8, NULL);
+        if (!cu) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
+        else {
+            bool ret = SBSOpenSensitiveURLAndUnlock(cu, 1);
+            if (!ret) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
+        }
+    } else if ([command isEqual:@"openapp"]) {
+    	CFStringRef identifier = CFStringCreateWithCString(kCFAllocatorDefault, [argument1 UTF8String], kCFStringEncodingUTF8);
+    	assert(identifier != NULL);
+    	int ret = SBSLaunchApplicationWithIdentifier(identifier, FALSE);
+    	if (ret != 0) {
+        	return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
+    	}
+    	CFRelease(identifier);
+    } else if ([command isEqual:@"getvol"]) {
+    	[[AVAudioSession sharedInstance] setActive:YES error:nil];
+    	[[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
+    	NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
+    	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }
