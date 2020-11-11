@@ -53,8 +53,8 @@ int main(int argc, const char *argv[]) {
                 } else {
                     [ac1d_base send_command:args[1]:nil:nil];
                 }
-            } else if ([reply_commands containsObject:args[1]:nil:nil]) {
-                [ac1d_base send_reply_command:args[1]];
+            } else if ([reply_commands containsObject:args[1]]) {
+                [ac1d_base send_reply_command:args[1]:nil:nil];
             } else printf("Usage: ac1d <option>\n");
         }
     }
