@@ -5,6 +5,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <UIKit/UIAlertView.h>
 #import <UIKit/UIKit.h>
 
 #include "SpringBoardServices/SpringBoardServices.h"
@@ -18,6 +19,7 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 @property (retain) UIDevice *thisUIDevice;
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
+-(void)alert:(NSString *)title:(NSString *)message;
 -(void)battery;
 -(void)locate;
 -(void)getvol;
