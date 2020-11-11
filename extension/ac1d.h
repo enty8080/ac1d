@@ -1,12 +1,10 @@
 #import "rocketbootstrap.h"
 
-@interface SBMediaController : NSObject {
-    int _manualVolumeChangeCount;
-    float _pendingVolumeChange;
-    NSTimer* _volumeCommitTimer;
-    BOOL _debounceVolumeRepeat;
-    NSDictionary *_nowPlayingInfo;
-}
+@interface SBMediaController : NSObject
++ (instancetype)sharedInstance;
+-(BOOL)_sendMediaCommand:(unsigned)command;
+-(float)volume;
+@end
 
 @property (assign,getter=isRingerMuted,nonatomic) BOOL ringerMuted;
 
