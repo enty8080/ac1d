@@ -59,7 +59,7 @@
 	[alert show];
 	[alert release];
     }
-    return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
+    return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }
 
 %end
