@@ -20,7 +20,6 @@
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
 * **`sysinfo`** - Should return string of device.
-* **`player`** - Control device media player.
 
 ### Installation needed
 
@@ -30,6 +29,7 @@
 * **`locoff`** - Turn location services off.
 * **`locon`** - Turn location services on.
 * **`state`** - Check device state.
+* **`player`** - Control device media player.
 
 ## Installation
 
