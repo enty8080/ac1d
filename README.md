@@ -14,6 +14,7 @@
 
 ### No installation needed
 
+* **`battery`** - Show device battery level.
 * **`locate`** - Show device location.
 * **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
@@ -23,7 +24,6 @@
 
 ### Installation needed
 
-* **`battery`** - Show device battery level.
 * **`dhome`** - Double home button tap.
 * **`home`** - Home button tap.
 * **`locoff`** - Turn location services off.
