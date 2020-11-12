@@ -5,8 +5,6 @@
 #import <UIKit/UIAlertView.h>
 #import <UIKit/UIDevice.h>
 
-#import <objc/runtime.h>
-
 #import "mediaremote.h"
 #import "ac1d.h"
 
@@ -52,6 +50,7 @@
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: location [on|off|info]" forKey:@"returnStatus"];
 	else {
     	    if ([args[2] isEqual:@"info"]) {
+	        // todo
 	    	return [NSDictionary dictionaryWithObject:@"test!" forKey:@"returnStatus"];
 	    } else if ([args[2] isEqual:@"on"]) {
 	    	[%c(CLLocationManager) setLocationServicesEnabled:true];
@@ -114,10 +113,7 @@
     } else if ([args[1] isEqual:@"openapp"]) {
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openapp <application>" forKey:@"returnStatus"];
 	else {
-	    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
-	    NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
-	    bool isopen = [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:args[2]];
-	    if (!isopen) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
+	    // todo
 	}
     } else if ([args[1] isEqual:@"dial"]) {
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: dial <phone>" forKey:@"returnStatus"];
