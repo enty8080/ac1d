@@ -36,30 +36,30 @@ int main(int argc, const char *argv[]) {
                 if ([args[1] isEqualToString:@"alert"]) {
                     if (argc < 4) printf("Usage: ac1d alert <title> <message>\n");
                     else {
-                        [ac1d_base send_command:args[1]:args[2]:args[3]];
+                        [ac1d_base send_command:args];
                     }
                 } else if ([args[1] isEqualToString:@"player"]) {
                     if (argc < 3) printf("Usage: ac1d player [next|prev|play|pause|info]\n");
                     else {
-                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
+                        [ac1d_base send_command:args];
                     }
                 } else if ([args[1] isEqualToString:@"location"]) {
                     if (argc < 3) printf("Usage: ac1d location [on|off|info]\n");
                     else {
-                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
+                        [ac1d_base send_command:args];
                     }
                 } else if ([args[1] isEqualToString:@"setvol"]) {
                     if (argc < 3) printf("Usage: ac1d setvol <level>\n");
                     else {
-                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
+                        [ac1d_base send_command:args];
                     }
                 } else if ([args[1] isEqualToString:@"say"]) {
                     if (argc < 3) printf("Usage: ac1d say <message>\n");
                     else {
-                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
+                        [ac1d_base send_command:args];
                     }
                 } else {
-                    [ac1d_base send_command:args[1]:@"(null)":@"(null)"];
+                    [ac1d_base send_command:args];
                 }
             } else printf("Usage: ac1d <option>\n");
         }
