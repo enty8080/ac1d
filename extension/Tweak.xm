@@ -42,7 +42,7 @@
 	    } else if ([args[2] isEqual:@"prev"]) {
 	    	MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
 	    } else {
-	        return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+	        return [NSDictionary dictionaryWithObject:@"Usage: player [next|prev|pause|play|info]" forKey:@"returnStatus"];
 	    }
 	}
     } else if ([args[1] isEqual:@"location"]) {
@@ -73,7 +73,7 @@
     } else if ([args[1] isEqual:@"alert"]) {
         if (args_count < 6) return [NSDictionary dictionaryWithObject:@"Usage: alert <title> <message> <first_button> <second_button>" forKey:@"returnStatus"];
 	else {
-    	    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:args[2] message:args[3] delegate:nil cancelButtonTitle:args[4] otherButtonTitles:args[5]];
+    	    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:args[2] message:args[3] delegate:nil cancelButtonTitle:args[4] otherButtonTitles:args[5], nil];
 	    [alert show];
 	    [alert release];
 	}
