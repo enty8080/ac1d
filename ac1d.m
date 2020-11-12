@@ -7,15 +7,6 @@
     return self;
 }
 
--(void)openurl:(NSString *)url {
-    CFURLRef cu = CFURLCreateWithBytes(NULL, (UInt8*)[url UTF8String], strlen([url UTF8String]), kCFStringEncodingUTF8, NULL);
-    if (!cu) printf("error");
-    else {
-        bool ret = SBSOpenSensitiveURLAndUnlock(cu, 1);
-        if (!ret) printf("error");
-    }
-}
-
 -(void)openapp:(NSString *)application {
     CFStringRef identifier = CFStringCreateWithCString(kCFAllocatorDefault, [application UTF8String], kCFStringEncodingUTF8);
     assert(identifier != NULL);
