@@ -1,6 +1,7 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <UIKit/UIApplication.h>
 #import <UIKit/UIAlertView.h>
 #import <UIKit/UIDevice.h>
 
