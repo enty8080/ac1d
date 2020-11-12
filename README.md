@@ -11,12 +11,12 @@
 
 ### No installation needed
 
-* **`battery`** - Show device battery level.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
 
 ### Installation needed
 
+* **`battery`** - Show device battery level.
 * **`say`** - Say message on device.
 * **`getvol`** - Show device volume level.
 * **`setvol`** - Set device volume level.
