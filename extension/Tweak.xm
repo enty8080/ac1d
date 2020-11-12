@@ -7,6 +7,12 @@
 #import "mediaremote.h"
 #import "ac1d.h"
 
+@interface CLLocationManager : NSObject
+
++(void)setLocationServicesEnabled:(BOOL)arg1;
+
+@end
+
 %hook SpringBoard
 
 -(void)applicationDidFinishLaunching:(id)application {
