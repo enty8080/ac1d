@@ -1,17 +1,9 @@
 #import "ac1d.h"
 
 @implementation ac1d
-
+    
 -(id)init {
-    _thisUIDevice = [UIDevice currentDevice];
-    [_thisUIDevice setBatteryMonitoringEnabled:YES];
-    _messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.ac1d"];
     return self;
-}
-
--(void)battery {
-    int battery_level = ([_thisUIDevice batteryLevel] * 100);
-    printf("%d", battery_level);
 }
 
 -(void)openurl:(NSString *)url {
