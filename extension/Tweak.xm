@@ -53,8 +53,16 @@
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: location [on|off|info]" forKey:@"returnStatus"];
 	else {
     	    if ([args[2] isEqual:@"info"]) {
-	        // todo
-	    	return [NSDictionary dictionaryWithObject:@"test!" forKey:@"returnStatus"];
+	        CLLocationManager* manager = [[CLLocationManager alloc] init];
+     		[manager startUpdatingLocation];
+     		CLLocation *location = [manager location];
+     		CLLocationCoordinate2D coordinate = [location coordinate];
+     		NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
+     		if ((int)(coordinate.latitude + coordinate.longitude) == 0) {
+         	    result = @"error";
+     		}
+     		[manager release];
+	    	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
 	    } else if ([args[2] isEqual:@"on"]) {
 	    	[%c(CLLocationManager) setLocationServicesEnabled:true];
 	    } else if ([args[2] isEqual:@"off"]) {
