@@ -3,6 +3,7 @@
 @implementation ac1d
     
 -(id)init {
+    _messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.ac1d"];
     return self;
 }
 
