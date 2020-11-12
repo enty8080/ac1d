@@ -22,9 +22,8 @@ int main(int argc, const char *argv[]) {
                 else {
                     [ac1d_base openapp:args[2]];
                 }
-            } else if ([commands containsObject:args[1]]) {
-                [ac1d_base send_command:args];
-            } else printf("Usage: ac1d <option>\n");
+            } else if ([commands containsObject:args[1]]) [ac1d_base send_command:args];
+            else printf("Usage: ac1d <option>\n");
         }
     }
     return 0;
