@@ -116,7 +116,7 @@
 	else {
 	    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
 	    NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
-	    BOOL isopen = [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:args[2]];
+	    bool isopen = [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:args[2]];
 	    if (!isopen) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
 	}
     } else if ([args[1] isEqual:@"dial"]) {
