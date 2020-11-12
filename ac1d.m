@@ -14,13 +14,6 @@
     printf("%d", battery_level);
 }
 
--(void)getvol {
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
-    NSString *result = [NSString stringWithFormat:@"%.2f",[AVAudioSession sharedInstance].outputVolume];
-    printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
 -(void)openurl:(NSString *)url {
     if (![url isEqualToString:@""]) {
         CFURLRef cu = CFURLCreateWithBytes(NULL, (UInt8*)[url UTF8String], strlen([url UTF8String]), kCFStringEncodingUTF8, NULL);
