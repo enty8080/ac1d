@@ -1,6 +1,6 @@
 #import "ac1d.h"
 
-NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"state", nil];
+NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"state", @"openurl", nil];
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
@@ -12,12 +12,7 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"openurl"]) {
-                if (argc < 3) printf("Usage: ac1d openurl <url>\n");
-                else {
-                    [ac1d_base openurl:args[2]];
-                }
-            } else if ([args[1] isEqualToString:@"openapp"]) {
+            if ([args[1] isEqualToString:@"openapp"]) {
                 if (argc < 3) printf("Usage: ac1d openapp <application>\n");
                 else {
                     [ac1d_base openapp:args[2]];
