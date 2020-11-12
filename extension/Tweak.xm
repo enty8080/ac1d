@@ -57,7 +57,7 @@
 	//    [manager setLocationServicesEnabled:true];
 	//} else if ([argument1 isEqual:@"off"]) {
 	//    [manager setLocationServicesEnabled:false];
-	//}
+	}
     } else if ([command isEqual:@"home"]) {
 	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
