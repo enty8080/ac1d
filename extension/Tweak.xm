@@ -107,11 +107,7 @@
 	else {
 	    UIApplication *application = [UIApplication sharedApplication];
 	    NSURL *URL = [NSURL URLWithString:args[2]];
-	    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
-    	        if (!success) {
-         	    return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
-		}
-	    }];
+	    [application openURL:URL options:@{} completionHandler:nil];
 	}
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
