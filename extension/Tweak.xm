@@ -1,4 +1,5 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
+#import <AVFoundation/AVAudioSession.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIAlertView.h>
 
@@ -65,6 +66,9 @@
 	[alert release];
     } else if ([command isEqual:@"setvol"]) {
     	[[MPMusicPlayerController systemMusicPlayer] setVolume:[argument1 floatValue]];
+    } else if ([command isEqual:@"getvol"]) {
+    	NSString *level = [NSString stringWithFormat:@"%.2f", [[AVAudioSession sharedInstance] outputVolume]];
+	return [NSDictionary dictionaryWithObject:level forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
