@@ -1,5 +1,4 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
-#import <CoreLocation/CoreLocation.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIAlertView.h>
@@ -42,21 +41,12 @@
 	    MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
 	}
     } else if ([command isEqual:@"location"]) {
-        CLLocationManager *manager = [[CLLocationManager alloc] init];
     	if ([argument1 isEqual:@"info"]) {
-     	    [manager startUpdatingLocation];
-     	    CLLocation *location = [manager location];
-     	    CLLocationCoordinate2D coordinate = [location coordinate];
-            NSString *result = [NSString stringWithFormat:@"Latitude: %f\nLongitude: %f\nhttp://maps.google.com/maps?q=%f,%f", coordinate.latitude, coordinate.longitude, coordinate.latitude, coordinate.longitude];
-            if ((int)(coordinate.latitude + coordinate.longitude) == 0) {
-                result = @"error";
-            }
-            [manager release];
-	    return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-	//} else if ([argument1 isEqual:@"on"]) {
-	//    [manager setLocationServicesEnabled:true];
-	//} else if ([argument1 isEqual:@"off"]) {
-	//    [manager setLocationServicesEnabled:false];
+	    return [NSDictionary dictionaryWithObject:@"test!" forKey:@"returnStatus"];
+	} else if ([argument1 isEqual:@"on"]) {
+	    [%c(CLLocationManager) setLocationServicesEnabled:true];
+	} else if ([argument1 isEqual:@"off"]) {
+	    [%c(CLLocationManager) setLocationServicesEnabled:false];
 	}
     } else if ([command isEqual:@"home"]) {
 	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
