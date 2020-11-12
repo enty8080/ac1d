@@ -114,7 +114,7 @@
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openapp <application>" forKey:@"returnStatus"];
 	else {
 	    UIApplication *application = [UIApplication sharedApplication];
-	    if (![application launchApplicationWithIdentifier:args[2]]) {
+	    if (![application launchApplicationWithIdentifier:args[2] suspended:NO]) {
 	    	return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
 	    }
 	}
