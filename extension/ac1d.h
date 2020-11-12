@@ -36,12 +36,6 @@
 
 @end
 
-@interface CLLocationManager : NSObject
-
-+(void)setLocationServicesEnabled:(BOOL)arg1;
-
-@end
-
 @interface SBLockScreenManager : NSObject
 
 @property (nonatomic, readonly) BOOL isUILocked;
