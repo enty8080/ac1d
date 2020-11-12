@@ -5,6 +5,8 @@
 #import <UIKit/UIAlertView.h>
 #import <UIKit/UIDevice.h>
 
+#import <objc/runtime.h>
+
 #import "mediaremote.h"
 #import "ac1d.h"
 
@@ -108,6 +110,14 @@
 	    UIApplication *application = [UIApplication sharedApplication];
 	    NSURL *URL = [NSURL URLWithString:args[2]];
 	    [application openURL:URL options:@{} completionHandler:nil];
+	}
+    } else if ([args[1] isEqual:@"openapp"]) {
+    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openapp <application>" forKey:@"returnStatus"];
+	else {
+	    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
+	    NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
+	    BOOL isopen = [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:args[2]];
+	    if (!isopen) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
 	}
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
