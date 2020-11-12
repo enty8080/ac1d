@@ -12,7 +12,6 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
--(void)openurl:(NSString *)url;
 -(void)openapp:(NSString *)application;
 
 -(void)send_command:(NSMutableArray *)args;
