@@ -33,8 +33,8 @@
 -(void)send_command:(NSMutableArray *)args {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:args forKey:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
-    NSString *replystr = [reply objectForKey:@"returnStatus"];
-    if (replystr) {
+    NSString *result = [reply objectForKey:@"returnStatus"];
+    if (result) {
         printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
     } else {
         printf("error");
