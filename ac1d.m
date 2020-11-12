@@ -30,10 +30,8 @@
     CFRelease(identifier);
 }
 
--(void)send_command:(NSString *)cmd :(NSMutableArray *)args {
-    NSArray *keys = [NSArray arrayWithObjects:@"cmd", @"args", nil];
-    NSArray *values = [NSArray arrayWithObjects:command, cmd, args, nil];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+-(void)send_command:(NSMutableArray *)args {
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:args forKeys:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
     NSString *replystr = [reply objectForKey:@"returnStatus"];
     printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
