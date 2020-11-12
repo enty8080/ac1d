@@ -34,7 +34,11 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:args forKeys:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
     NSString *replystr = [reply objectForKey:@"returnStatus"];
-    printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
+    if (replystr) {
+        printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
+    } else {
+        printf("error");
+    }
 }
 
 @end
