@@ -11,13 +11,8 @@
 
 ## Features
 
-### No installation needed
-
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
-
-### Installation needed
-
 * **`battery`** - Show device battery level.
 * **`say`** - Say message on device.
 * **`getvol`** - Show device volume level.
@@ -28,16 +23,3 @@
 * **`location`** - Control device location services.
 * **`state`** - Check device state.
 * **`player`** - Control device media player.
-
-## Installation
-
-```shell
-cp extension/ac1d.dylib /Library/MobileSubstrate/DynamicLibraries
-cp extension/ac1d.plist /Library/MobileSubstrate/DynamicLibraries
-killall SpringBoard
-```
-
-## Tests
-
-* Tested on **iOS 13.3.3** (`jailbroken`, `Checkra1n`)
-* Tested on **iOS 10.3.3** (`jailbroken`, `H3lix`)
