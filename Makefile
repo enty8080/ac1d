@@ -4,7 +4,7 @@ export TARGET_CODESIGN_FLAGS = "-Ssign.plist"
 TOOL_NAME = ac1d
 
 ac1d_FILES = main.mm ac1d.m
-ac1d_FRAMEWORS = Foundation CoreFoundation UIKit
+ac1d_FRAMEWORS = Foundation CoreFoundation
 ac1d_PRIVATE_FRAMEWORKS = SpringBoardServices AppSupport
 
 include ~/theos/makefiles/tool.mk
