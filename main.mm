@@ -2,6 +2,7 @@
 
 NSArray *commands = [[NSArray alloc] initWithObjects:
     @"home", 
+    @"getvol",
     @"dhome",
     @"alert",
     @"setvol",
@@ -23,8 +24,6 @@ int main(int argc, const char *argv[]) {
                  [ac1d_base battery];
             } else if ([args[1] isEqualToString:@"locate"]) {
                 [ac1d_base locate];
-            } else if ([args[1] isEqualToString:@"getvol"]) {
-                [ac1d_base getvol];
             } else if ([args[1] isEqualToString:@"openurl"]) {
                 if (argc < 3) printf("Usage: ac1d openurl <url>\n");
                 else {
