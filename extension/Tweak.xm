@@ -21,6 +21,9 @@
     NSString *command = [userInfo objectForKey:@"cmd"];
     NSString *argument1 = [userInfo objectForKey:@"arg1"];
     NSString *argument2 = [userInfo objectForKey:@"arg2"];
+    NSString *argument3 = [userInfo objectForKey:@"arg3"];
+    NSString *argument4 = [userInfo objectForKey:@"arg4"];
+    NSString *argument5 = [userInfo objectForKey:@"arg5"];
     if ([command isEqual:@"state"]) {
 	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"locked" forKey:@"returnStatus"];
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
@@ -62,7 +65,7 @@
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleMenuDoubleTap];
 	}
     } else if ([command isEqual:@"alert"]) {
-    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:argument1 message:argument2 delegate:nil cancelButtonTitle:argument3 otherButtonTitles:argument4];
 	[alert show];
 	[alert release];
     } else if ([command isEqual:@"setvol"]) {
