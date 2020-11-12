@@ -7,14 +7,6 @@
     return self;
 }
 
--(void)openapp:(NSString *)application {
-    CFStringRef identifier = CFStringCreateWithCString(kCFAllocatorDefault, [application UTF8String], kCFStringEncodingUTF8);
-    assert(identifier != NULL);
-    int ret = SBSLaunchApplicationWithIdentifier(identifier, FALSE);
-    if (ret != 0) printf("error");
-    CFRelease(identifier);
-}
-
 -(void)send_command:(NSMutableArray *)args {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:args forKey:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
