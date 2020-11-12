@@ -25,7 +25,7 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 
 ## Global usage
 
-> ./ac1d \<option\>
+> ./ac1d \<option\> \[arguments\]
 
 ## Features
 
