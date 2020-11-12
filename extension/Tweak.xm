@@ -42,7 +42,7 @@
 	    MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
 	}
     } else if ([command isEqual:@"location"]) {
-        CLLocationManager *manager = [[%c(CLLocationManager) alloc] init];
+        CLLocationManager *manager = [[CLLocationManager alloc] init];
     	if ([argument1 isEqual:@"info"]) {
      	    [manager startUpdatingLocation];
      	    CLLocation *location = [manager location];
