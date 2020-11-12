@@ -22,8 +22,6 @@ int main(int argc, const char *argv[]) {
             }
             if ([args[1] isEqualToString:@"battery"]) {
                  [ac1d_base battery];
-            } else if ([args[1] isEqualToString:@"locate"]) {
-                [ac1d_base locate];
             } else if ([args[1] isEqualToString:@"openurl"]) {
                 if (argc < 3) printf("Usage: ac1d openurl <url>\n");
                 else {
