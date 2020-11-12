@@ -7,6 +7,7 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"alert",
     @"say",
     @"setvol",
+    @"battery",
     @"state",
     @"location",
     @"player", nil];
@@ -21,9 +22,7 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"battery"]) {
-                 [ac1d_base battery];
-            } else if ([args[1] isEqualToString:@"openurl"]) {
+            if ([args[1] isEqualToString:@"openurl"]) {
                 if (argc < 3) printf("Usage: ac1d openurl <url>\n");
                 else {
                     [ac1d_base openurl:args[2]];
