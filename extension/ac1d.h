@@ -3,7 +3,7 @@
 @interface UIApplication (Undocumented)
 	
 //-(void)launchApplicationWithIdentifier: (NSString*)identifier suspended: (BOOL)suspended;
--(bool)launchApplicationWithIdentifier:(id)arg1 suspended:(bool)arg2 
+-(bool)launchApplicationWithIdentifier:(id)arg1 suspended:(bool)arg2;
 
 @end
 
