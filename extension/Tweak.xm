@@ -67,6 +67,7 @@
     } else if ([command isEqual:@"setvol"]) {
     	[[MPMusicPlayerController systemMusicPlayer] setVolume:[argument1 floatValue]];
     } else if ([command isEqual:@"getvol"]) {
+    	[[AVAudioSession sharedInstance] setActive:YES error:nil];
     	NSString *level = [NSString stringWithFormat:@"%.2f", [[AVAudioSession sharedInstance] outputVolume]];
 	return [NSDictionary dictionaryWithObject:level forKey:@"returnStatus"];
     }
