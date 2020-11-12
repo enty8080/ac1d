@@ -52,13 +52,11 @@
 
 @end
 	
-//@interface CLLocationManager : NSObject
-//
-//+(void)setLocationServicesEnabled:(BOOL)arg1;
-//-(CLLocation *)location;
-//-(void)startUpdatingLocation;
-//
-//@end
+@interface CLLocationManager : NSObject
+
++(void)setLocationServicesEnabled:(BOOL)arg1;
+
+@end
 
 @interface VolumeControl : NSObject
 
