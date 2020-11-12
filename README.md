@@ -12,12 +12,12 @@
 ### No installation needed
 
 * **`battery`** - Show device battery level.
-* **`getvol`** - Show device volume level.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
 
 ### Installation needed
 
+* **`getvol`** - Show device volume level.
 * **`setvol`** - Set device volume level.
 * **`alert`** - Show alert on device.
 * **`dhome`** - Double home button tap.
