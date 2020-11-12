@@ -101,8 +101,8 @@
     } else if ([args[1] isEqual:@"battery"]) {
     	UIDevice *thisUIDevice = [UIDevice currentDevice];
 	[thisUIDevice setBatteryMonitoringEnabled:YES];
-	int battery_level = ([thisUIDevice batteryLevel] * 100);
-	NSString *result = [NSString stringWithFormat:@"%d", battery_level];
+	int batteryLevel = ([thisUIDevice batteryLevel] * 100);
+	NSString *result = [NSString stringWithFormat:@"%d", batteryLevel];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     } else if ([args[1] isEqual:@"openurl"]) {
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openurl <url>" forKey:@"returnStatus"];
@@ -118,6 +118,14 @@
 	    NSObject * workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
 	    BOOL isopen = [workspace performSelector:@selector(openApplicationWithBundleID:) withObject:args[2]];
 	    if (!isopen) return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
+	}
+    } else if ([args[1] isEqual:@"dial"]) {
+    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: dial <phone>" forKey:@"returnStatus"];
+	else {
+	    UIApplication *application = [UIApplication sharedApplication];
+	    NSString *phoneNumber = [NSString stringWithFormat:@"tel://%@", args[2]];
+	    NSURL *phoneURL = [NSURL URLWithString:phoneNumber];
+	    [application openURL:phoneURL options:@{} completionHandler:nil];
 	}
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
