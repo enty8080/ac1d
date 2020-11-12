@@ -29,6 +29,7 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 
 ## Features
 
+* **`dial`** - Make a call from device.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
 * **`battery`** - Show device battery level.
