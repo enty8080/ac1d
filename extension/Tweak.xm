@@ -78,7 +78,7 @@
     	AVSpeechSynthesizer *syn = [[[AVSpeechSynthesizer alloc] init]autorelease];
     	[syn speakUtterance:utterance];
     } else if ([command isEqual:@"battery"]) {
-    	thisUIDevice = [UIDevice currentDevice];
+    	UIDevice *thisUIDevice = [UIDevice currentDevice];
 	[thisUIDevice setBatteryMonitoringEnabled:YES];
 	NSString *result = [NSString stringWithFormat:@"%d", [thisUIDevice batteryLevel] * 100];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
