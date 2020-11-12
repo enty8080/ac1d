@@ -2,6 +2,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIAlertView.h>
+#import <UIKit/UIDevice.h>
 
 #import "mediaremote.h"
 #import "ac1d.h"
