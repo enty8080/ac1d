@@ -76,6 +76,11 @@
     	utterance.rate = 0.4;
     	AVSpeechSynthesizer *syn = [[[AVSpeechSynthesizer alloc] init]autorelease];
     	[syn speakUtterance:utterance];
+    } else if ([command isEqual:@"battery"]) {
+    	thisUIDevice = [UIDevice currentDevice];
+	[thisUIDevice setBatteryMonitoringEnabled:YES];
+	NSString *result = [NSString stringWithFormat:@"%d", [thisUIDevice batteryLevel] * 100];
+	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
