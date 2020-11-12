@@ -53,11 +53,11 @@
             }
             [manager release];
 	    return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-	} else if ([argument1 isEqual:@"on"]) {
-	    [manager setLocationServicesEnabled:true];
-	} else if ([argument1 isEqual:@"off"]) {
-	    [manager setLocationServicesEnabled:false];
-	}
+	//} else if ([argument1 isEqual:@"on"]) {
+	//    [manager setLocationServicesEnabled:true];
+	//} else if ([argument1 isEqual:@"off"]) {
+	//    [manager setLocationServicesEnabled:false];
+	//}
     } else if ([command isEqual:@"home"]) {
 	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
