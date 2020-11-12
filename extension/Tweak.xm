@@ -113,7 +113,10 @@
     } else if ([args[1] isEqual:@"openapp"]) {
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openapp <application>" forKey:@"returnStatus"];
 	else {
-	    // todo
+	    UIApplication *application = [UIApplication sharedApplication];
+	    if (![application launchApplicationWithIdentifier:args[2]]) {
+	    	return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
+	    }
 	}
     } else if ([args[1] isEqual:@"dial"]) {
     	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: dial <phone>" forKey:@"returnStatus"];
