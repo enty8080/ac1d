@@ -15,6 +15,6 @@ extern int SBSLaunchApplicationWithIdentifier(CFStringRef identifier, Boolean su
 -(void)openurl:(NSString *)url;
 -(void)openapp:(NSString *)application;
 
--(void)send_command:(NSString *)cmd :(NSArray *)args;
+-(void)send_command:(NSMutableArray *)args;
 
 @end
