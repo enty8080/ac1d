@@ -71,6 +71,11 @@
     	NSString *level = [NSString stringWithFormat:@"%.2f", [[AVAudioSession sharedInstance] outputVolume]];
 	MRMediaRemoteSendCommand(kMRPlay, nil);
 	return [NSDictionary dictionaryWithObject:level forKey:@"returnStatus"];
+    } else if ([command isEqual:@"say"]) {
+    	AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:argument1];
+    	utterance.rate = 0.4;
+    	AVSpeechSynthesizer *syn = [[[AVSpeechSynthesizer alloc] init]autorelease];
+    	[syn speakUtterance:utterance];
     }
     return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
