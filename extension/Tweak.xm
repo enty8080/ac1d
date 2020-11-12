@@ -101,6 +101,17 @@
 	int battery_level = ([thisUIDevice batteryLevel] * 100);
 	NSString *result = [NSString stringWithFormat:@"%d", battery_level];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+    } else if ([args[1] isEqual:@"openurl"]) {
+    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openurl <url>" forKey:@"returnStatus"];
+	else {
+	    UIApplication *application = [UIApplication sharedApplication];
+	    NSURL *URL = [NSURL URLWithString:args[2]];
+	    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+    	        if (!success) {
+         	    return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
+		}
+	    }];
+	}
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }
