@@ -5,6 +5,12 @@
 -(bool)launchApplicationWithIdentifier:(id)arg1 suspended:(bool)arg2;
 
 @end
+	
+@interface CLLocationManager (Undocumented)
+
++(void)setLocationServicesEnabled:(BOOL)arg1;
+
+@end
 
 @interface SBIcon : NSObject
 	
@@ -55,12 +61,6 @@
 +(id)sharedInstance;
 -(void)hideHUD;
 -(void)showHUD;
-
-@end
-	
-@interface CLLocationManager : NSObject
-
-+(void)setLocationServicesEnabled:(BOOL)arg1;
 
 @end
 
