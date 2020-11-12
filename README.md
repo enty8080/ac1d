@@ -17,6 +17,7 @@
 
 ### Installation needed
 
+* **`say`** - Say message on device.
 * **`getvol`** - Show device volume level.
 * **`setvol`** - Set device volume level.
 * **`alert`** - Show alert on device.
