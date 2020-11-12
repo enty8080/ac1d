@@ -1,5 +1,11 @@
 #import "rocketbootstrap.h"
 
+@interface UIApplication (Undocumented)
+	
+-(void)launchApplicationWithIdentifier: (NSString*)identifier suspended: (BOOL)suspended;
+
+@end
+
 @interface SBIcon : NSObject
 	
 -(NSString *)nodeIdentifier;
