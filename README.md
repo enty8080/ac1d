@@ -5,6 +5,24 @@
 * **Supported iOS versions:** `iOS 9/10/11/12/13/14`
 * **Suported CPUs:** `arm64`, `armv7`
 
+## Building it
+
+**Requirements:** `macOS` with installed `XCode` >= 7.3, `Theos`, `jailbroken iOS device` >= 9.0.
+
+**handler (compile on macOS):**
+
+```
+cd ac1d; make
+cp .theos/obj/debug/ac1d ./ac1d
+```
+
+**extension (compile on iOS):**
+
+```
+cd ac1d/extension; make
+cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
+```
+
 ## Global usage
 
 > ./ac1d \<option\>
