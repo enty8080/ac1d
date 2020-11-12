@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <AppSupport/CPDistributedMessagingCenter.h>
 
-#include "SpringBoardServices/SpringBoardServices.h"
+#import "SpringBoardServices/SpringBoardServices.h"
 
 @interface ac1d : NSObject {
 }
