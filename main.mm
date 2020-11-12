@@ -1,6 +1,6 @@
 #import "ac1d.h"
 
-NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"state", @"openurl", @"openapp", nil];
+NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dial", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"state", @"openurl", @"openapp", nil];
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
