@@ -1,5 +1,5 @@
 #import <AppSupport/CPDistributedMessagingCenter.h>
-#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIAlertView.h>
 
