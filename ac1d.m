@@ -3,7 +3,7 @@
 @implementation ac1d
     
 -(id)init {
-    _messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.ac1d"];
+    messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.ac1d"];
     return self;
 }
 
@@ -20,7 +20,7 @@
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
     if (result) {
-        printf("%s", [replystr cStringUsingEncoding:NSUTF8StringEncoding]);
+        printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
     } else {
         printf("error");
     }
