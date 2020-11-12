@@ -8,7 +8,7 @@
 
 @interface SBApplicationIcon : SBIcon
 	
-@end
+@end  
 
 @interface SBIconController : NSObject
 
@@ -49,6 +49,14 @@
 +(id)sharedInstance;
 -(void)hideHUD;
 -(void)showHUD;
+
+@end
+	
+@interface CLLocationManager : NSObject
+
++(void)setLocationServicesEnabled:(BOOL)arg1;
+-(CLLocation *)location;
+-(void)startUpdatingLocation;
 
 @end
 
