@@ -5,6 +5,7 @@ NSArray *commands = [[NSArray alloc] initWithObjects:
     @"getvol",
     @"dhome",
     @"alert",
+    @"say",
     @"setvol",
     @"state",
     @"location",
@@ -50,6 +51,11 @@ int main(int argc, const char *argv[]) {
                     }
                 } else if ([args[1] isEqualToString:@"setvol"]) {
                     if (argc < 3) printf("Usage: ac1d setvol <level>\n");
+                    else {
+                        [ac1d_base send_command:args[1]:args[2]:@"(null)"];
+                    }
+                } else if ([args[1] isEqualToString:@"say"]) {
+                    if (argc < 3) printf("Usage: ac1d say <message>\n");
                     else {
                         [ac1d_base send_command:args[1]:args[2]:@"(null)"];
                     }
