@@ -80,7 +80,7 @@
     } else if ([command isEqual:@"battery"]) {
     	UIDevice *thisUIDevice = [UIDevice currentDevice];
 	[thisUIDevice setBatteryMonitoringEnabled:YES];
-	NSString *result = [NSString stringWithFormat:@"%d", [thisUIDevice batteryLevel] * 100];
+	NSString *result = [NSString stringWithFormat:@"%d", ([thisUIDevice batteryLevel] * 100)];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
