@@ -29,6 +29,8 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 
 ## Features
 
+* **`download`** - Download file from device.
+* **`upload`** - Upload file to device.
 * **`dial`** - Make a call from device.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
