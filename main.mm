@@ -1,11 +1,3 @@
-//
-//  main.mm
-//  ac1d
-//
-//  Created by Ivan Nikolsky on 2020.
-//  Copyright (C) 2020 Ivan Nikolsky. All rights reserved.
-//
-
 #import "ac1d.h"
 
 NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dial", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"state", @"openurl", @"openapp", nil];
