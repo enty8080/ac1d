@@ -1,3 +1,11 @@
+//
+//  Tweak.xm
+//  ac1d
+//
+//  Created by Ivan Nikolsky on 2020.
+//  Copyright (C) 2020 Ivan Nikolsky. All rights reserved.
+//
+
 #import <AppSupport/CPDistributedMessagingCenter.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
