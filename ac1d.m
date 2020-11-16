@@ -1,3 +1,11 @@
+//
+//  ac1d.m
+//  ac1d
+//
+//  Created by Ivan Nikolsky on 2020.
+//  Copyright (C) 2020 Ivan Nikolsky. All rights reserved.
+//
+
 #import "ac1d.h"
 
 @implementation ac1d
