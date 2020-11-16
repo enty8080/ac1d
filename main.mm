@@ -3,7 +3,7 @@
 //  ac1d
 //
 //  Created by Ivan Nikolsky on 2020.
-//  Copyright (C) 2020 Ivan Nikolsky. All rights reserved.
+//  Copyright (c) 2020 Ivan Nikolsky. All rights reserved.
 //
 
 #import "ac1d.h"
