@@ -1,5 +1,5 @@
 //
-//  main.mm
+//  ac1d.h
 //  ac1d
 //
 //  Created by Ivan Nikolsky on 2020.
