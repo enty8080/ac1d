@@ -117,7 +117,10 @@
     } else if ([args[1] isEqual:@"setvol"]) {
         if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: setvol [0-100]" forKey:@"returnStatus"];
 	else {
-	    [[MPMusicPlayerController systemMusicPlayer] setVolume:[args[2] floatValue]/100];
+	    if ([args[2] integerValue] >= 0 && [args[2] integerValue] <= 100) {
+	    	float volumeLevel = [args[2] integerValue]/100;
+	    	[[MPMusicPlayerController systemMusicPlayer] setVolume:volumeLevel];
+	    } else return [NSDictionary dictionaryWithObject:@"Usage: setvol [0-100]" forKey:@"returnStatus"];
 	}
     } else if ([args[1] isEqual:@"getvol"]) {
     	[[AVAudioSession sharedInstance] setActive:YES error:nil];
