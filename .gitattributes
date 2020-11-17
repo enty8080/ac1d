@@ -1,4 +1,4 @@
-*.h linguist-language=Objective-C
+*.h linguist-language=Logos
 *.m linguist-language=Objective-C
 *.mm linguist-language=Objective-C++
 *.xm linguist-language=Logos
