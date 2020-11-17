@@ -115,15 +115,15 @@
 	    [alert release];
 	}
     } else if ([args[1] isEqual:@"setvol"]) {
-        if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: setvol [0-1]" forKey:@"returnStatus"];
+        if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: setvol [0-100]" forKey:@"returnStatus"];
 	else {
-    	    [[MPMusicPlayerController systemMusicPlayer] setVolume:[args[2] floatValue]];
+	    [[MPMusicPlayerController systemMusicPlayer] setVolume:[args[2] floatValue]/100];
 	}
     } else if ([args[1] isEqual:@"getvol"]) {
     	[[AVAudioSession sharedInstance] setActive:YES error:nil];
-    	NSString *level = [NSString stringWithFormat:@"%.2f", [[AVAudioSession sharedInstance] outputVolume]];
+    	NSString *volumeLevel = [NSString stringWithFormat:@"%.2f", [[AVAudioSession sharedInstance] outputVolume]];
 	MRMediaRemoteSendCommand(kMRPlay, nil);
-	return [NSDictionary dictionaryWithObject:level forKey:@"returnStatus"];
+	return [NSDictionary dictionaryWithObject:volumeLevel forKey:@"returnStatus"];
     } else if ([args[1] isEqual:@"say"]) {
         if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: say <message>" forKey:@"returnStatus"];
 	else {
