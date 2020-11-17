@@ -39,7 +39,6 @@
 @interface SBUserAgent : NSObject
 
 +(id)sharedUserAgent;
--(void)lockAndDimDevice;
 -(void)handleMenuDoubleTap;
 -(void)clickedMenuButton;
 -(bool)handleHomeButtonSinglePressUp;
