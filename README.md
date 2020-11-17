@@ -42,3 +42,10 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 * **`location`** - Control device location services.
 * **`state`** - Check device state.
 * **`player`** - Control device media player.
+
+## Acknowledgments
+
+* https://iphonedevwiki.net
+    * https://iphonedevwiki.net/index.php/Logos
+* https://developer.apple.com/documentation
+    * https://developer.apple.com/documentation/technologies?language=objc
