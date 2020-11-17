@@ -36,10 +36,20 @@
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
     if (result) {
-        printf("%s", [result cStringUsingEncoding:NSUTF8StringEncoding]);
+        [self sendString:result];
     } else {
-        printf("error");
+        [self sendString:@"error"];
     }
+    [self terminateClient];
+}
+
+-(void)terminateClient {
+    SSL_write(client_ssl, terminator, (int)strlen(terminator));
+}
+
+
+-(void)sendString:(NSString *)str {
+    SSL_write(client_ssl, [str UTF8String], (int)str.length);
 }
 
 @end
