@@ -47,14 +47,6 @@
 
 @end
 
-@interface SBDeviceLockController : NSObject
-
-+(id)sharedController;
--(void)_clearBlockedState;
--(BOOL)isPasscodeLocked;
-
-@end
-
 @interface SBLockScreenManager : NSObject
 
 @property (nonatomic, readonly) BOOL isUILocked;
