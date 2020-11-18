@@ -26,10 +26,6 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 ## Global usage
 
 ```
-EntySec's ac1d v1.0
-Copyright (c) 2020 Ivan Nikolsky
-Copyright (c) 2020 Anna Fet
-
 Usage: ac1d <option> [arguments]
 
   -h, --help                                Show available options.
