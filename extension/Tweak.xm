@@ -46,7 +46,7 @@
 
 %new
 -(NSDictionary *)recieve_command:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
-    NSString *cmd = [userInfo objectForKey:@"cmd"]
+    NSString *cmd = [userInfo objectForKey:@"cmd"];
     NSMutableArray *args = [userInfo objectForKey:@"args"];
     int args_count = [args count];
     if ([cmd isEqual:@"state"]) {
