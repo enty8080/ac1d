@@ -32,8 +32,7 @@
 }
 
 -(void)send_command:(NSString *)cmd :(NSMutableArray *)args {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:cmd forKey:@"cmd"];
-    [userInfo dictionaryWithObject:args forKey:@"args"];
+    NSDictionary *userInfo = @{@"cmd":cmd, @"args":args};
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
     if (result) {
