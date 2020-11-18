@@ -31,7 +31,7 @@
     return self;
 }
 
--(void)sendCommand:(NSMutableArray *)args {
+-(NSString *)sendCommand:(NSMutableArray *)args {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:args forKey:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieveCommand" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
