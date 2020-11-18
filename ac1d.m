@@ -35,7 +35,10 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:args forKey:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieveCommand" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
-    return result;
+    if (result) return result;
+    else {
+        return @"error";
+    }
 }
 
 @end
