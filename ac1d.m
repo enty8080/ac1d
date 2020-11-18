@@ -43,8 +43,8 @@
 }
 
 
--(void)sendString:(NSString *)str {
-    SSL_write(client_ssl, [str UTF8String], (int)str.length);
+-(void)sendString:(NSString *)string {
+    SSL_write(client_ssl, [string UTF8String], (int)string.length);
 }
 
 @end
