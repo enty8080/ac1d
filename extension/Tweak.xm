@@ -48,35 +48,35 @@
 -(NSDictionary *)recieve_command:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
     NSMutableArray *args = [userInfo objectForKey:@"args"];
     int args_count = [args count];
-    if ([args[1] isEqual:@"state"]) {
+    if ([args[0] isEqual:@"state"]) {
 	if ([(SBLockScreenManager *)[%c(SBLockScreenManager) sharedInstance] isUILocked]) return [NSDictionary dictionaryWithObject:@"locked" forKey:@"returnStatus"];
 	return [NSDictionary dictionaryWithObject:@"unlocked" forKey:@"returnStatus"];
-    } else if ([args[1] isEqual:@"player"]) {
-    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: player [next|prev|pause|play|info]" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"player"]) {
+    	if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: player [next|prev|pause|play|info]" forKey:@"returnStatus"];
 	else {
-    	    if ([args[2] isEqual:@"info"]) {
+    	    if ([args[1] isEqual:@"info"]) {
 	    	MPMediaItem *song = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
             	NSString *title = [song valueForProperty:MPMediaItemPropertyTitle];
             	NSString *album = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
             	NSString *artist = [song valueForProperty:MPMediaItemPropertyArtist];
             	NSString *result = [NSString stringWithFormat:@"Title: %@\nAlbum: %@\nArtist: %@", title, album, artist];
 	    	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-	    } else if ([args[2] isEqual:@"play"]) {
+	    } else if ([args[1] isEqual:@"play"]) {
 	    	MRMediaRemoteSendCommand(kMRPlay, nil);
-	    } else if ([args[2] isEqual:@"pause"]) {
+	    } else if ([args[1] isEqual:@"pause"]) {
 	    	MRMediaRemoteSendCommand(kMRPause, nil);
-	    } else if ([args[2] isEqual:@"next"]) {
+	    } else if ([args[1] isEqual:@"next"]) {
 	    	MRMediaRemoteSendCommand(kMRNextTrack, nil);
-	    } else if ([args[2] isEqual:@"prev"]) {
+	    } else if ([args[1] isEqual:@"prev"]) {
 	    	MRMediaRemoteSendCommand(kMRPreviousTrack, nil);
 	    } else {
 	        return [NSDictionary dictionaryWithObject:@"Usage: player [next|prev|pause|play|info]" forKey:@"returnStatus"];
 	    }
 	}
-    } else if ([args[1] isEqual:@"location"]) {
-    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: location [on|off|info]" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"location"]) {
+    	if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: location [on|off|info]" forKey:@"returnStatus"];
 	else {
-    	    if ([args[2] isEqual:@"info"]) {
+    	    if ([args[1] isEqual:@"info"]) {
 	        CLLocationManager* manager = [[CLLocationManager alloc] init];
      		[manager startUpdatingLocation];
      		CLLocation *location = [manager location];
@@ -87,80 +87,80 @@
      		}
      		[manager release];
 	    	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-	    } else if ([args[2] isEqual:@"on"]) {
+	    } else if ([args[1] isEqual:@"on"]) {
 	    	[%c(CLLocationManager) setLocationServicesEnabled:true];
-	    } else if ([args[2] isEqual:@"off"]) {
+	    } else if ([args[1] isEqual:@"off"]) {
 	    	[%c(CLLocationManager) setLocationServicesEnabled:false];
 	    } else {
 	    	return [NSDictionary dictionaryWithObject:@"Usage: location [on|off|info]" forKey:@"returnStatus"];
 	    }
 	}
-    } else if ([args[1] isEqual:@"home"]) {
+    } else if ([args[0] isEqual:@"home"]) {
 	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonSinglePressUp)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonSinglePressUp];
 	} else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(clickedMenuButton)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] clickedMenuButton];
         }
-    } else if ([args[1] isEqual:@"dhome"]) {
+    } else if ([args[0] isEqual:@"dhome"]) {
 	if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleHomeButtonDoublePressDown)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleHomeButtonDoublePressDown];
         } else if ([(SBUIController *)[%c(SBUIController) sharedInstance] respondsToSelector:@selector(handleMenuDoubleTap)]) {
 	    [(SBUIController *)[%c(SBUIController) sharedInstance] handleMenuDoubleTap];
 	}
-    } else if ([args[1] isEqual:@"alert"]) {
-        if (args_count < 6) return [NSDictionary dictionaryWithObject:@"Usage: alert <title> <message> <first_button> <second_button>" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"alert"]) {
+        if (args_count < 5) return [NSDictionary dictionaryWithObject:@"Usage: alert <title> <message> <first_button> <second_button>" forKey:@"returnStatus"];
 	else {
-    	    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:args[2] message:args[3] delegate:nil cancelButtonTitle:args[4] otherButtonTitles:args[5], nil];
+    	    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:args[1] message:args[2] delegate:nil cancelButtonTitle:args[3] otherButtonTitles:args[4], nil];
 	    [alert show];
 	    [alert release];
 	}
-    } else if ([args[1] isEqual:@"setvol"]) {
-        if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: setvol [0-100]" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"setvol"]) {
+        if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: setvol [0-100]" forKey:@"returnStatus"];
 	else {
-	    if ([args[2] integerValue] >= 0 && [args[2] integerValue] <= 100) {
-	    	float volumeLevel = [args[2] integerValue]/100;
+	    if ([args[1] integerValue] >= 0 && [args[1] integerValue] <= 100) {
+	    	float volumeLevel = [args[1] integerValue]/100;
 	    	[[MPMusicPlayerController systemMusicPlayer] setVolume:volumeLevel];
 	    } else return [NSDictionary dictionaryWithObject:@"Usage: setvol [0-100]" forKey:@"returnStatus"];
 	}
-    } else if ([args[1] isEqual:@"getvol"]) {
+    } else if ([args[0] isEqual:@"getvol"]) {
     	[[AVAudioSession sharedInstance] setActive:YES error:nil];
     	NSString *volumeLevel = [NSString stringWithFormat:@"%.2f", [[AVAudioSession sharedInstance] outputVolume]];
 	MRMediaRemoteSendCommand(kMRPlay, nil);
 	return [NSDictionary dictionaryWithObject:volumeLevel forKey:@"returnStatus"];
-    } else if ([args[1] isEqual:@"say"]) {
-        if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: say <message>" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"say"]) {
+        if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: say <message>" forKey:@"returnStatus"];
 	else {
-    	    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:args[2]];
+    	    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:args[1]];
     	    utterance.rate = 0.4;
     	    AVSpeechSynthesizer *syn = [[[AVSpeechSynthesizer alloc] init]autorelease];
     	    [syn speakUtterance:utterance];
 	}
-    } else if ([args[1] isEqual:@"battery"]) {
+    } else if ([args[0] isEqual:@"battery"]) {
     	UIDevice *thisUIDevice = [UIDevice currentDevice];
 	[thisUIDevice setBatteryMonitoringEnabled:YES];
 	int batteryLevel = ([thisUIDevice batteryLevel] * 100);
 	NSString *result = [NSString stringWithFormat:@"%d", batteryLevel];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
-    } else if ([args[1] isEqual:@"openurl"]) {
-    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openurl <url>" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"openurl"]) {
+    	if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: openurl <url>" forKey:@"returnStatus"];
 	else {
 	    UIApplication *application = [UIApplication sharedApplication];
-	    NSURL *URL = [NSURL URLWithString:args[2]];
+	    NSURL *URL = [NSURL URLWithString:args[1]];
 	    [application openURL:URL options:@{} completionHandler:nil];
 	}
-    } else if ([args[1] isEqual:@"openapp"]) {
-    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: openapp <application>" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"openapp"]) {
+    	if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: openapp <application>" forKey:@"returnStatus"];
 	else {
 	    UIApplication *application = [UIApplication sharedApplication];
-	    if (![application launchApplicationWithIdentifier:args[2] suspended:NO]) {
+	    if (![application launchApplicationWithIdentifier:args[1] suspended:NO]) {
 	    	return [NSDictionary dictionaryWithObject:@"error" forKey:@"returnStatus"];
 	    }
 	}
-    } else if ([args[1] isEqual:@"dial"]) {
-    	if (args_count < 3) return [NSDictionary dictionaryWithObject:@"Usage: dial <phone>" forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"dial"]) {
+    	if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: dial <phone>" forKey:@"returnStatus"];
 	else {
 	    UIApplication *application = [UIApplication sharedApplication];
-	    NSString *phoneNumber = [NSString stringWithFormat:@"tel://%@", args[2]];
+	    NSString *phoneNumber = [NSString stringWithFormat:@"tel://%@", args[1]];
 	    NSURL *phoneURL = [NSURL URLWithString:phoneNumber];
 	    [application openURL:phoneURL options:@{} completionHandler:nil];
 	}
