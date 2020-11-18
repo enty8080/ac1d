@@ -30,7 +30,7 @@ Usage: ac1d <option> [arguments]
 
   -h, --help                                Show available options.
   -v, --version                             Show ac1d version.
-  -l, --local <option>                      Execute ac1d command locally.
+  -l, --local <option> [arguments]          Execute ac1d command locally.
   -r, --remote <remote_host> <remote_port>  Execute ac1d commands over TCP.
 ```
 
