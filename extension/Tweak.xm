@@ -164,6 +164,10 @@
 	    NSURL *phoneURL = [NSURL URLWithString:phoneNumber];
 	    [application openURL:phoneURL options:@{} completionHandler:nil];
 	}
+    } else if ([args[0] isEqual:@"sysinfo"]) {
+    	UIDevice *thisUIDevice = [UIDevice currentDevice];
+    	NSString *result = [NSString stringWithFormat:@"%@ %@ %@ %@", [thisUIDevice model], [thisUIDevice systemName], [thisUIDevice systemVersion], [thisUIDevice name]];
+	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     }
     return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
 }
