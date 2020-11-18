@@ -99,6 +99,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         } else {
             printf("[-] Unrecognized command!\n");
             sendString(@"error");
+            SSL_write(client_ssl, terminator, (int)strlen(terminator));
         }
         memset(buffer, '\0', 2048);
     }
