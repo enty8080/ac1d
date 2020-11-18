@@ -38,21 +38,21 @@ void showVersionMessage();
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
         ac1d *ac1d_base = [[ac1d alloc] init];
-        if (argc < 3) showHelpMessage();
+        if (argc < 2) showHelpMessage();
         else {
             NSMutableArray *args = [NSMutableArray array];
             for (int i = 0; i < argc; i++) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"-h"] && [args[1] isEqualToString:@"--help"]) showHelpMessage(); 
-            else if ([args[1] isEqualToString:@"-v"] && [args[1] isEqualToString:@"--version"]) showVersionMessage();
-            else if ([args[1] isEqualToString:@"-r"] && [args[1] isEqualToString:@"--remote"]) {
+            if ([args[1] isEqualToString:@"-h"] || [args[1] isEqualToString:@"--help"]) showHelpMessage(); 
+            else if ([args[1] isEqualToString:@"-v"] || [args[1] isEqualToString:@"--version"]) showVersionMessage();
+            else if ([args[1] isEqualToString:@"-r"] || [args[1] isEqualToString:@"--remote"]) {
                 if (argc < 4) showHelpMessage();
                 else {
                     connectToServer(args[2], [args[3] integerValue]);
                 }
-            } else if ([args[1] isEqualToString:@"-l"] && [args[1] isEqualToString:@"--local"]) {
+            } else if ([args[1] isEqualToString:@"-l"] || [args[1] isEqualToString:@"--local"]) {
                 NSMutableArray *command_args = [NSMutableArray array];
                 for (int i = 2; i < [args count]; i++) {
                     [command_args addObject:args[i]];
