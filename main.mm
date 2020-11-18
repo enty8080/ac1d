@@ -112,7 +112,7 @@ void showHelpMessage() {
     printf("\n");
     printf("  -h, --help                                Show available options.\n");
     printf("  -v, --version                             Show ac1d version.\n");
-    printf("  -l, --local <option>                      Execute ac1d command locally.\n");
+    printf("  -l, --local <option> [arguments]          Execute ac1d command locally.\n");
     printf("  -r, --remote <remote_host> <remote_port>  Execute ac1d commands over TCP.\n");
 }
 
