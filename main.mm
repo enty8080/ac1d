@@ -69,6 +69,7 @@ int main(int argc, const char *argv[]) {
 }
 
 void interactWithServer(NSString *remoteHost, int remotePort) {
+    ac1d *ac1d_base = [[ac1d alloc] init];
     ac1d_base->client_ssl = client_ssl;
     
     char buffer[2048] = "";
