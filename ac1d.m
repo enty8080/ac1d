@@ -31,11 +31,11 @@
     return self;
 }
 
--(void)send_command:(BOOL)islocal :(NSMutableArray *)args {
+-(void)sendCommand:(BOOL)isLocal :(NSMutableArray *)args {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:args forKey:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieve_command" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
-    if (islocal) {
+    if (isLocal) {
         if (result) printf("%s", [result UTF8String]);
         else {
             printf("error");
