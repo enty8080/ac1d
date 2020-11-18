@@ -7,7 +7,7 @@
 
 ## Building it
 
-**Requirements:** `macOS` with installed `XCode` >= 7.3, `Theos`, `jailbroken iOS device` >= 9.0.
+**Requirements:** `macOS` with installed `XCode` >= 7.3, `Theos`, `jailbroken iOS device` >= 10.0.
 
 **handler (compile on macOS):**
 
