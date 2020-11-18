@@ -51,9 +51,13 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         NSMutableDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
         NSString *cmd = [jsonDict objectForKey:@"cmd"];
         NSString *args = [jsonDict objectForKey:@"args"];
+        
         ac1d_base->terminator = (char*)[[jsonDict objectForKey:@"term"] UTF8String];
         NSArray *args_container = [args componentsSeparatedByString:@" "];
         NSMutableArray *args_data = [NSMutableArray arrayWithArray:args_container];
+        
+        printf("%s", buffer);
+        
         if ([commands containsObject:cmd]) [ac1d_base send_command:cmd:args_data];
         memset(buffer, '\0', 2048);
     }
