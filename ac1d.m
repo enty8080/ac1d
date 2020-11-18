@@ -40,11 +40,6 @@
     } else {
         [self sendString:@"error"];
     }
-    [self terminateClient];
-}
-
--(void)terminateClient {
-    SSL_write(client_ssl, terminator, (int)strlen(terminator));
 }
 
 
