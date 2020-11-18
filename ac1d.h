@@ -43,6 +43,6 @@
 
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
--(void)send_command:(NSMutableArray *)args;
+-(void)send_command:(NSString *)cmd :(NSMutableArray *)args;
 
 @end
