@@ -54,9 +54,8 @@ int main(int argc, const char *argv[]) {
                 }
             } else if ([args[1] isEqualToString:@"-l"] && [args[1] isEqualToString:@"--local"]) {
                 NSMutableArray *command_args = [NSMutableArray array];
-                for (int i = 2; i < argc; i++) {
-                    NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
-                    [command_args addObject:str];
+                for (int i = 2; i < [args count]; i++) {
+                    [command_args addObject:args[i]];
                 }
                 if ([commands containsObject:args[2]]) {
                     NSString *result = [ac1d_base sendCommand:command_args];
@@ -89,8 +88,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         if ([commands containsObject:args[1]]) {
             NSMutableArray *command_args = [NSMutableArray array];
             for (int i = 1; i < [args count]; i++) {
-                NSString *str = [[NSString alloc] initWithCString:args[i] encoding:NSUTF8StringEncoding];
-                [command_args addObject:str];
+                [command_args addObject:args[i]];
             }
             NSString *result = [ac1d_base sendCommand:command_args];
             if ([result isEqualToString:@"error"]) printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
