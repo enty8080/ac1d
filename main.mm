@@ -67,16 +67,6 @@ int main(int argc, const char *argv[]) {
     return 0;
 }
 
-void DestroySSL() {
-    ERR_free_strings();
-    EVP_cleanup();
-}
-
-void ShutdownSSL() {
-    SSL_shutdown(client_ssl);
-    SSL_free(client_ssl);
-}
-
 void interactWithServer(NSString *remoteHost, int remotePort) {
     ac1d *ac1d_base = [[ac1d alloc] init];
     ac1d_base->client_ssl = client_ssl;
