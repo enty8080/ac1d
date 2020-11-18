@@ -24,7 +24,6 @@
 
 #import <Foundation/Foundation.h>
 #import <AppSupport/CPDistributedMessagingCenter.h>
-#import <UIKit/UIDevice.h>
 #include <openssl/bio.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
