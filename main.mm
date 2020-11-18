@@ -37,6 +37,7 @@ void showVersionMessage();
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
+        ac1d *ac1d_base = [[ac1d alloc] init];
         if (argc < 3) showHelpMessage();
         else {
             NSMutableArray *args = [NSMutableArray array];
@@ -68,7 +69,6 @@ int main(int argc, const char *argv[]) {
 }
 
 void interactWithServer(NSString *remoteHost, int remotePort) {
-    ac1d *ac1d_base = [[ac1d alloc] init];
     ac1d_base->client_ssl = client_ssl;
     
     char buffer[2048] = "";
@@ -108,7 +108,7 @@ void connectToServer(NSString *remoteHost, int remotePort) {
 }
 
 void showHelpMessage() {
-    printf("Usage: ac1d <option> [arguments]\n";
+    printf("Usage: ac1d <option> [arguments]\n");
     printf("\n");
     printf("  -h, --help                                Show available options.\n");
     printf("  -v, --version                             Show ac1d version.\n");
