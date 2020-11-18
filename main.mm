@@ -100,7 +100,14 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            connectToServer(args[1], [args[2] integerValue]);
+            if ([args[1] isEqualToString:@"remote"]) {
+                if (argc < 4) printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+                else {
+                    connectToServer(args[2], [args[3] integerValue]);
+                }
+            } else if ([args[1] isEqualToString:@"local"]) {
+                // todo
+            } else printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
         }
     }
     return 0;
