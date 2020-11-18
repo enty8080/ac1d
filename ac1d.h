@@ -34,7 +34,6 @@
 @interface ac1d : NSObject {
     @public
     SSL* client_ssl;
-    char *terminator;
 }
 
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
