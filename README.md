@@ -25,7 +25,9 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 
 ## Global usage
 
-> ./ac1d \[local|remote \<remote_host\> \<remote_port\>\]
+```
+Usage: ac1d \[local|remote \<remote_host\> \<remote_port\>\]
+```
 
 ## Features
 
