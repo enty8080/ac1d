@@ -66,7 +66,7 @@ void connectToServer(NSString *remoteHost, int remotePort) {
     ssl_client_ctx = SSL_CTX_new(SSLv23_client_method());
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     serverAddress.sin_family = AF_INET;
-    inet_aton(remoteHost, &serverAddress.sin_addr);
+    inet_aton([remoteHost UTF8String], &serverAddress.sin_addr);
     serverAddress.sin_port = htons(remotePort);
     if (connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) {
         printf("error");
