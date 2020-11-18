@@ -32,10 +32,12 @@ SSL *client_ssl;
 struct sockaddr_in serverAddress;
 
 void connectToServer(NSString *remote_host, int remote_port);
+void showHelpMessage();
+void showVersionMessage();
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
-        if (argc < 3) printf("Usage: ac1d <remote_host> <remote_port>\n");
+        if (argc < 3) showHelpMessage();
         else {
             NSMutableArray *args = [NSMutableArray array];
             for (int i = 0; i < argc; i++) {
@@ -43,7 +45,7 @@ int main(int argc, const char *argv[]) {
                 [args addObject:str];
             }
             if ([args[1] isEqualToString:@"remote"]) {
-                if (argc < 4) printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+                if (argc < 4) showHelpMessage();
                 else {
                     connectToServer(args[2], [args[3] integerValue]);
                 }
@@ -55,9 +57,9 @@ int main(int argc, const char *argv[]) {
                 }
                 if ([commands containsObject:args[2]]) [ac1d_base send_command:NO:command_args];
                 else {
-                    printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+                    showHelpMessage();
                 }
-            } else printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+            } else showHelpMessage();
         }
     }
     return 0;
@@ -121,4 +123,10 @@ void connectToServer(NSString *remoteHost, int remotePort) {
     SSL_write(client_ssl, [jsonString UTF8String], (int)strlen([jsonString UTF8String]));
     
     interactWithServer(remoteHost, remotePort);
+}
+
+void showHelpMessage() {
+}
+
+void showVersionMessage() {
 }
