@@ -1,6 +1,6 @@
 # ac1d (`iOS implant`)
 
-`ac1d` is an **iOS** implant that gives an ability to manipulate device **functions**, **data** and **hardware**.
+`ac1d` is an **iOS** implant that gives an ability to manipulate device **functions**, **data** and **hardware** localy or remotely.
 
 * **Supported iOS versions:** `iOS 10/11/12/13/14`
 * **Suported CPUs:** `arm64`, `armv7`
