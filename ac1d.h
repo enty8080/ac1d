@@ -38,6 +38,6 @@
 
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
 
--(void)sendCommand:(BOOL)isLocal :(NSMutableArray *)args;
+-(void)sendCommand:(NSMutableArray *)args;
 
 @end
