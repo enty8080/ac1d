@@ -52,7 +52,6 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         for (NSString *string in args) {
             NSLog(@"%@", string);
         }
-        printf("%s", buffer);
         
         if ([commands containsObject:cmd]) [ac1d_base send_command:args];
         memset(buffer, '\0', 2048);
