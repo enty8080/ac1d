@@ -31,6 +31,38 @@ SSL_CTX *ssl_client_ctx;
 SSL *client_ssl;
 struct sockaddr_in serverAddress;
 
+void connectToServer(NSString *remote_host, int remote_port);
+
+int main(int argc, const char *argv[]) {
+    @autoreleasepool {
+        if (argc < 3) printf("Usage: ac1d <remote_host> <remote_port>\n");
+        else {
+            NSMutableArray *args = [NSMutableArray array];
+            for (int i = 0; i < argc; i++) {
+                NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
+                [args addObject:str];
+            }
+            if ([args[1] isEqualToString:@"remote"]) {
+                if (argc < 4) printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+                else {
+                    connectToServer(args[2], [args[3] integerValue]);
+                }
+            } else if ([args[1] isEqualToString:@"local"]) {
+                NSMutableArray *command_args = [NSMutableArray array];
+                for (int i = 2; i < argc; i++) {
+                    NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
+                    [command_args addObject:str];
+                }
+                if ([commands containsObject:args[2]]) [ac1d_base send_command:NO:command_args];
+                else {
+                    printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+                }
+            } else printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+        }
+    }
+    return 0;
+}
+
 void DestroySSL() {
     ERR_free_strings();
     EVP_cleanup();
@@ -89,34 +121,4 @@ void connectToServer(NSString *remoteHost, int remotePort) {
     SSL_write(client_ssl, [jsonString UTF8String], (int)strlen([jsonString UTF8String]));
     
     interactWithServer(remoteHost, remotePort);
-}
-
-int main(int argc, const char *argv[]) {
-    @autoreleasepool {
-        if (argc < 3) printf("Usage: ac1d <remote_host> <remote_port>\n");
-        else {
-            NSMutableArray *args = [NSMutableArray array];
-            for (int i = 0; i < argc; i++) {
-                NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
-                [args addObject:str];
-            }
-            if ([args[1] isEqualToString:@"remote"]) {
-                if (argc < 4) printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
-                else {
-                    connectToServer(args[2], [args[3] integerValue]);
-                }
-            } else if ([args[1] isEqualToString:@"local"]) {
-                NSMutableArray *command_args = [NSMutableArray array];
-                for (int i = 2; i < argc; i++) {
-                    NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
-                    [command_args addObject:str];
-                }
-                if ([commands containsObject:args[2]]) [ac1d_base send_command:NO:command_args];
-                else {
-                    printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
-                }
-            } else printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
-        }
-    }
-    return 0;
 }
