@@ -125,7 +125,6 @@
     } else if ([args[0] isEqual:@"getvol"]) {
     	[[AVAudioSession sharedInstance] setActive:YES error:nil];
     	NSString *volumeLevel = [NSString stringWithFormat:@"%.2f", [[AVAudioSession sharedInstance] outputVolume]];
-	MRMediaRemoteSendCommand(kMRPlay, nil);
 	return [NSDictionary dictionaryWithObject:volumeLevel forKey:@"returnStatus"];
     } else if ([args[0] isEqual:@"say"]) {
         if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: say <message>" forKey:@"returnStatus"];
