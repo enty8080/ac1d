@@ -26,7 +26,16 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 ## Global usage
 
 ```
-Usage: ac1d [local|remote <remote_host> <remote_port>]
+EntySec's ac1d v1.0
+Copyright (c) 2020 Ivan Nikolsky
+Copyright (c) 2020 Anna Fet
+
+Usage: ac1d <option> [arguments]
+
+  -h, --help                                Show available options.
+  -v, --version                             Show ac1d version.
+  -l, --local <option>                      Execute ac1d command locally.
+  -r, --remote <remote_host> <remote_port>  Execute ac1d commands over TCP.
 ```
 
 ## Features
