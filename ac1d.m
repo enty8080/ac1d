@@ -31,26 +31,11 @@
     return self;
 }
 
--(void)sendCommand:(BOOL)isLocal :(NSMutableArray *)args {
+-(void)sendCommand:(NSMutableArray *)args {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:args forKey:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieveCommand" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
-    if (isLocal) {
-        if (result) printf("%s", [result UTF8String]);
-        else {
-            printf("error");
-        }
-    } else {
-        if (result) [self sendString:result];
-        else {
-            [self sendString:@"error"];
-        }
-    }
-}
-
-
--(void)sendString:(NSString *)string {
-    SSL_write(client_ssl, [string UTF8String], (int)string.length);
+    return result;
 }
 
 @end
