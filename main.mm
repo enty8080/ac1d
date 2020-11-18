@@ -90,7 +90,12 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         printf("[i] Current client terminator: %s\n", terminator);
         printf("[*] Executing %s...\n", [args[1] UTF8String]);
         if ([commands containsObject:args[1]]) {
-            NSString *result = [ac1d_base sendCommand:args];
+            NSMutableArray *command_args = [NSMutableArray array];
+            for (int i = 1; i < argc; i++) {
+                NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
+                [command_args addObject:str];
+            }
+            NSString *result = [ac1d_base sendCommand:command_args];
             if (result isEqualToString:@"error") printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
             else {
                 sendString(result);
