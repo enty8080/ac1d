@@ -52,10 +52,8 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         NSString *cmd = [jsonDict objectForKey:@"cmd"];
         NSString *args = [jsonDict objectForKey:@"args"];
         ac1d_base->terminator = (char*)[[jsonDict objectForKey:@"term"] UTF8String];
-        NSMutableArray *cmd_data = [NSMutableArray array];
-        [cmd_data addObject:cmd];
-        [cmd_data addObject:args];
-        if ([commands containsObject:cmd]) [ac1d_base send_command:cmd_data];
+        NSMutableArray *args_data = [args componentsSeparatedByString:@" "];
+        if ([commands containsObject:cmd]) [ac1d_base send_command:cmd:args_data];
         memset(buffer, '\0', 2048);
     }
 }
