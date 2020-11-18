@@ -31,10 +31,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <util.h>
-#include <sys/ttycom.h>
-#include <unistd.h>
-#include <dirent.h>
 
 @interface ac1d : NSObject {
     @public
@@ -42,7 +38,6 @@
 }
 
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
-@property (retain) UIDevice *thisUIDevice;
 
 -(void)send_command:(BOOL)islocal :(NSMutableArray *)args;
 
