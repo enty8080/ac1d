@@ -42,6 +42,7 @@
 }
 
 @property (retain) CPDistributedMessagingCenter *messagingCenter;
+@property (retain) UIDevice *thisUIDevice;
 
 -(void)send_command:(NSString *)cmd :(NSMutableArray *)args;
 
