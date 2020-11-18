@@ -41,11 +41,11 @@
     %orig;
     CPDistributedMessagingCenter *messagingCenter = [CPDistributedMessagingCenter centerNamed:@"com.ac1d"];
     [messagingCenter runServerOnCurrentThread];
-    [messagingCenter registerForMessageName:@"recieve_command" target:self selector:@selector(recieve_command:withUserInfo:)];
+    [messagingCenter registerForMessageName:@"recieveCommand" target:self selector:@selector(recieveCommand:withUserInfo:)];
 }
 
 %new
--(NSDictionary *)recieve_command:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
+-(NSDictionary *)recieveCommand:(NSString *)name withUserInfo:(NSDictionary *)userInfo {
     NSMutableArray *args = [userInfo objectForKey:@"args"];
     int args_count = [args count];
     if ([args[0] isEqual:@"state"]) {
