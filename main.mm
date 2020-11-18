@@ -71,7 +71,7 @@ int main(int argc, const char *argv[]) {
 }
 
 void terminateClient() {
-    SSL_write(client_ssl, terminator, (int)strlen(terminator));
+    SSL_write(client_ssl, ac1d_base->terminator, (int)strlen(ac1d_base->terminator));
 }
 
 void sendString(NSString *string) {
@@ -92,8 +92,8 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         printf("[*] Executing %s...\n", [args[1] UTF8String]);
         if ([commands containsObject:args[1]]) {
             NSMutableArray *command_args = [NSMutableArray array];
-            for (int i = 1; i < argc; i++) {
-                NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
+            for (int i = 1; i < [args count]; i++) {
+                NSString *str = [[NSString alloc] initWithCString:args[i] encoding:NSUTF8StringEncoding];
                 [command_args addObject:str];
             }
             NSString *result = [ac1d_base sendCommand:command_args];
