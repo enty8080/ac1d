@@ -59,7 +59,8 @@ int main(int argc, const char *argv[]) {
                     [command_args addObject:str];
                 }
                 if ([commands containsObject:args[2]]) {
-                    printf("%s", [[ac1d_base sendCommand:command_args] UTF8String]);
+                    NSString *result = [ac1d_base sendCommand:command_args];
+                    printf("%s", [result UTF8String]);
                 } else {
                     showHelpMessage();
                 }
@@ -69,7 +70,7 @@ int main(int argc, const char *argv[]) {
     return 0;
 }
 
-void terminateClient {
+void terminateClient() {
     SSL_write(client_ssl, terminator, (int)strlen(terminator));
 }
 
