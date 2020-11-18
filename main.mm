@@ -49,7 +49,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         
-        if ([commands containsObject:args[0]]) [ac1d_base send_command:args];
+        if ([commands containsObject:args[0]]) [ac1d_base send_command:NO:args];
         memset(buffer, '\0', 2048);
     }
 }
@@ -106,7 +106,15 @@ int main(int argc, const char *argv[]) {
                     connectToServer(args[2], [args[3] integerValue]);
                 }
             } else if ([args[1] isEqualToString:@"local"]) {
-                // todo
+                NSMutableArray *command_args = [NSMutableArray array];
+                for (int i = 2; i < argc; i++) {
+                    NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
+                    [command_args addObject:str];
+                }
+                if ([commands containsObject:args[2]]) [ac1d_base send_command:NO:command_args];
+                else {
+                    printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
+                }
             } else printf("Usage: ac1d [local <option> [arguments]|remote <remote_host> <remote_port>]\n");
         }
     }
