@@ -91,8 +91,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
                 [command_args addObject:args[i]];
             }
             NSString *result = [ac1d_base sendCommand:command_args];
-            if ([result isEqualToString:@"error"]) printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
-            if ([result isEqualToString:@""]) printf("[!] Command output empty, sending anyway.\n");
+            if (!result) printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
             sendString(result);
             SSL_write(client_ssl, terminator, (int)strlen(terminator));
         } else {
