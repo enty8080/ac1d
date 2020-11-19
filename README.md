@@ -16,7 +16,7 @@ cd ac1d; make
 cp .theos/obj/debug/ac1d ./ac1d
 ```
 
-**extension (compile on iOS):**
+**dylib (compile on iOS):**
 
 ```
 cd ac1d/extension; make
