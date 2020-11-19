@@ -26,16 +26,21 @@ cp .theos/obj/debug/ac1d.dylib ./ac1d.dylib
 ## Global usage
 
 ```
-Usage: ac1d <option> [arguments]
+Usage: ac1d <option> [arguments] [flags]
 
-  -h, --help                                Show available options.
-  -v, --version                             Show ac1d version.
-  -l, --local <option> [arguments]          Execute ac1d command locally.
-  -r, --remote <remote_host> <remote_port>  Execute ac1d commands over TCP.
+Options:
+  -h, --help                                        Show available options.
+  -v, --version                                     Show ac1d version.
+  -l, --local <option> [arguments] [flags]          Execute ac1d command locally.
+  -r, --remote <remote_host> <remote_port> [flags]  Execute ac1d commands over TCP.
+  
+Flags:
+  -v, --verbose  Show verbose output.
 ```
 
 ## Features
 
+* **`shell`** - Execute system command.
 * **`dial`** - Make a call from device.
 * **`openurl`** - Open URL on device.
 * **`openapp`** - Open device application.
