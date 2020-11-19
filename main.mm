@@ -30,7 +30,7 @@ int sockfd, newsockfd;
 SSL_CTX *ssl_client_ctx;
 SSL *client_ssl;
 struct sockaddr_in serverAddress;
-extern BOOL debug;
+BOOL debug;
 
 void connectToServer(NSString *remote_host, int remote_port);
 void showHelpMessage();
