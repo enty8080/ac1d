@@ -53,6 +53,7 @@ Usage: ac1d <option> [arguments]
 ## Acknowledgments
 
 * https://iphonedevwiki.net
+    * https://iphonedevwiki.net/index.php/Theos
     * https://iphonedevwiki.net/index.php/Logos
 * https://developer.apple.com/documentation
     * https://developer.apple.com/documentation/technologies?language=objc
