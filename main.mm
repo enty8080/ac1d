@@ -82,7 +82,7 @@ int main(int argc, const char *argv[]) {
                                 if ([result isEqualToString:@"error"]) printf("[-] Failed to execute command!\n");
                                 else if ([result isEqualToString:@""]) printf("[!] Command output empty.\n");
                                 else {
-                                    printf("[i] Command output: %s", [result UTF8String]);
+                                    printf("[i] Command output: %s\n", [result UTF8String]);
                                 }
                             } else printf("%s", [result UTF8String]);
                         } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
