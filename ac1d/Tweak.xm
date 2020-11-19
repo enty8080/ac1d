@@ -32,6 +32,7 @@
 #import <UIKit/UIAlertView.h>
 #import <UIKit/UIDevice.h>
 
+#import "NSTask.h"
 #import "mediaremote.h"
 #import "ac1d.h"
 
