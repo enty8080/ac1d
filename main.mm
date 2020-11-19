@@ -78,8 +78,13 @@ int main(int argc, const char *argv[]) {
                         if (debug) printf("[*] Executing %s...\n", [args[2] UTF8String]);
                         NSString *result = [ac1d_base sendCommand:command_args];
                         if (result) {
-                            if ([result isEqualToString:@""]) if (debug) printf("[!] Command output empty, sending anyway.\n");
-                            printf("%s", [result UTF8String]);
+                            if (debug) {
+                                if ([result isEqualToString:@"error"]) printf("[-] Failed to execute command!\n");
+                                else if ([result isEqualToString:@""]) printf("[!] Command output empty.\n");
+                                else {
+                                    printf("[i] Command output: %s", [result UTF8String]);
+                                }
+                            } else printf("%s", [result UTF8String]);
                         } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
                     } else showHelpMessage();
                 }
