@@ -30,6 +30,7 @@ int sockfd, newsockfd;
 SSL_CTX *ssl_client_ctx;
 SSL *client_ssl;
 struct sockaddr_in serverAddress;
+extern BOOL debug;
 
 void connectToServer(NSString *remote_host, int remote_port);
 void showHelpMessage();
@@ -50,19 +51,19 @@ int main(int argc, const char *argv[]) {
             else if ([args[1] isEqualToString:@"-r"] || [args[1] isEqualToString:@"--remote"]) {
                 if (argc < 4) showHelpMessage();
                 else {
-                    extern BOOL debug = NO;
+                    debug = NO;
                     for (int i = 0; i < [args count]; i++) {
                         if ([args[i] isEqualToString:@"-d"] || [args[i] isEqualToString:@"-d"]) {
-                            extern BOOL debug = YES;
+                            debug = YES;
                         }
                     }
                     connectToServer(args[2], [args[3] integerValue]);
                 }
             } else if ([args[1] isEqualToString:@"-l"] || [args[1] isEqualToString:@"--local"]) {
-                extern BOOL debug = NO;
+                debug = NO;
                 for (int i = 0; i < [args count]; i++) {
                     if ([args[i] isEqualToString:@"-d"] || [args[i] isEqualToString:@"-d"]) {
-                        extern BOOL debug = YES;
+                        debug = YES;
                     }
                 }
                 NSMutableArray *command_args = [NSMutableArray array];
