@@ -168,7 +168,7 @@
     	NSString *result = [NSString stringWithFormat:@"%@ %@ %@ %@", [thisUIDevice model], [thisUIDevice systemName], [thisUIDevice systemVersion], [thisUIDevice name]];
 	return [NSDictionary dictionaryWithObject:result forKey:@"returnStatus"];
     }
-    return [NSDictionary dictionaryWithObject:@"noReply" forKey:@"returnStatus"];
+    return [NSDictionary dictionaryWithObject:@"" forKey:@"returnStatus"];
 }
 
 %end
