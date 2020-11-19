@@ -35,7 +35,7 @@ Options:
   -r, --remote <remote_host> <remote_port> [flags]  Execute ac1d commands over TCP.
   
 Flags:
-  -v, --verbose  Show verbose output.
+  --verbose  Show verbose output.
 ```
 
 ## Features
