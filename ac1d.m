@@ -35,10 +35,7 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:args forKey:@"args"];
     NSDictionary *reply = [_messagingCenter sendMessageAndReceiveReplyName:@"recieveCommand" userInfo:userInfo];
     NSString *result = [reply objectForKey:@"returnStatus"];
-    if (result isEqualToScript:@"noReply") return @"";
-    else {
-        return result;
-    }
+    return result;
 }
 
 @end
