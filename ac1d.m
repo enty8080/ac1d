@@ -37,7 +37,10 @@
     NSString *result = [reply objectForKey:@"returnStatus"];
     if (result) return result;
     else {
-        return @"error";
+        if (result isEqualToScript:@"noReply") return @"";
+        else {
+            return @"error";
+        }
     }
 }
 
