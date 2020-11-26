@@ -105,7 +105,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     
     char buffer[2048] = "";
     
-    while (SSL_read(client_ssl, buffer, sizeof(buffer));) {
+    while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSString *terminator = [NSString stringWithFormat:@"%s", buffer];
         memset(buffer, '\0', 2048);
     
