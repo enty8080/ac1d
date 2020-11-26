@@ -105,7 +105,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     
     char buffer[2048] = "";
     SSL_read(client_ssl, buffer, sizeof(buffer));
-    char *terminator = (char*)buffer[0];
+    char *terminator = (char*)buffer;
     memset(buffer, '\0', 2048);
     
     if (debug) printf("[i] Current client terminator: %s\n", terminator);
