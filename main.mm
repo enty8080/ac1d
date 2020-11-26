@@ -124,6 +124,8 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
                 } else sendString(result);
                 SSL_write(client_ssl, [terminator UTF8String], (int)terminator.length);
             } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
+        } else if ([args[0] isEqualToString:@"exit"]) {
+            break;
         } else {
             if (debug) printf("[-] Unrecognized command!\n");
             sendString(@"error");
