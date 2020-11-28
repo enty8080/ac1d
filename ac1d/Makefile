@@ -31,5 +31,3 @@ ac1d_FILES = Tweak.xm
 ac1d_PRIVATE_FRAMEWORKS = AppSupport UIKit MediaRemote MediaPlayer AVFoundation CoreLocation
 
 include $(THEOS)/makefiles/tweak.mk
-
-CFLAGS = -Wno-deprecated -Wno-deprecated-declarations
