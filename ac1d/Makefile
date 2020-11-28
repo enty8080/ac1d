@@ -22,14 +22,14 @@
 # SOFTWARE.
 #
 
-include /opt/theos/makefiles/common.mk
+include $(THEOS)/makefiles/common.mk
 
-export SYSROOT = /opt/theos/sdks/iPhoneOS11.2.sdk
+export SYSROOT = $(THEOS)/sdks/iPhoneOS11.2.sdk
 
 TWEAK_NAME = ac1d
 ac1d_FILES = Tweak.xm
 ac1d_PRIVATE_FRAMEWORKS = AppSupport UIKit MediaRemote MediaPlayer AVFoundation CoreLocation
 
-include /opt/theos/makefiles/tweak.mk
+include $(THEOS)/makefiles/tweak.mk
 
 CFLAGS = -Wno-deprecated -Wno-deprecated-declarations
