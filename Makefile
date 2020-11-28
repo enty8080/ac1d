@@ -22,8 +22,8 @@
 # SOFTWARE.
 #
 
-include ~/theos/makefiles/common.mk
-export SYSROOT = /Users/teleprosheo/theos/sdks/iPhoneOS11.2.sdk
+include $(THEOS)/makefiles/common.mk
+export SYSROOT = $(THEOS)/sdks/iPhoneOS11.2.sdk
 export TARGET_CODESIGN_FLAGS = "-Ssign.plist"
 TOOL_NAME = ac1d
 
@@ -32,7 +32,7 @@ ac1d_OBJ_FILES = libcrypto.a libssl.a
 ac1d_FRAMEWORS = Foundation
 ac1d_PRIVATE_FRAMEWORKS = AppSupport
 
-include ~/theos/makefiles/tool.mk
+include $(THEOS)/makefiles/tool.mk
 
 export ARCHS = armv7 arm64
 
